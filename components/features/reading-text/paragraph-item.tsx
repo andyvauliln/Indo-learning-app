@@ -3,7 +3,9 @@
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { RefreshCw, Check } from "lucide-react"
+import { Word } from "@/components/features/word"
 import { INDONESIAN_FONT_FAMILY, ENGLISH_FONT_FAMILY, PARAGRAPH_STYLE } from "@/lib/reading-text-constants"
+import { isWordLikeToken, tokenizeSentence } from "@/lib/word-utils"
 
 interface ParagraphItemProps {
     paragraphId: string
@@ -34,6 +36,29 @@ export function ParagraphItem({
 }: ParagraphItemProps) {
     const fontFamily = language === 'id' ? INDONESIAN_FONT_FAMILY : ENGLISH_FONT_FAMILY
 
+    const renderContent = () => {
+        if (language !== 'id') {
+            return content
+        }
+        const tokens = tokenizeSentence(content)
+        return tokens.map((token, index) => {
+            if (isWordLikeToken(token)) {
+                return (
+                    <Word
+                        key={`${paragraphId}-word-${index}`}
+                        text={token}
+                        sentence={content}
+                    />
+                )
+            }
+            return (
+                <span key={`${paragraphId}-text-${index}`}>
+                    {token}
+                </span>
+            )
+        })
+    }
+
     return (
         <div className="relative animate-in fade-in duration-500">
             {/* Paragraph Content */}
@@ -43,10 +68,11 @@ export function ParagraphItem({
                     style={{
                         fontFamily,
                         ...PARAGRAPH_STYLE,
-                        color: 'var(--foreground)'
+                        color: 'var(--foreground)',
+                        whiteSpace: 'pre-wrap'
                     }}
                 >
-                    {content}
+                    {renderContent()}
                 </div>
             </div>
 

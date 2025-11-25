@@ -10,15 +10,13 @@ import {
     WordUpdateInput,
     WORD_LEVELS,
 } from "@/types/word"
+import { buildWordTokens, normalizeToken, sanitizeWordJSON, stripAffixes, validateWordEntry } from "@/lib/word-utils"
 
 const WORD_DATA_DIR = path.join(process.cwd(), "data", "words")
 const OPENROUTER_API_KEY = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 const OPENROUTER_DEFAULT_MODEL = "openrouter/auto"
 const OPENROUTER_TITLE = "Indo Learning App"
-
-const NORMALIZED_SUFFIXES = ["lah", "kah", "nya", "kan", "pun", "ku", "mu", "an", "in"]
-const NORMALIZED_PREFIXES = ["me", "mem", "men", "meng", "meny", "ber", "ter", "se", "ke", "pe", "pen", "peng", "per", "di"]
 
 function getWordFilePath(level: WordLevel) {
     return path.join(WORD_DATA_DIR, `level-${level}.json`)
@@ -34,66 +32,6 @@ async function writeWordFile(level: WordLevel, words: WordEntry[]) {
     const filePath = getWordFilePath(level)
     const sorted = [...words].sort((a, b) => a.word.localeCompare(b.word, "id-ID"))
     await writeFile(filePath, JSON.stringify(sorted, null, 2) + "\n", "utf8")
-}
-
-function normalizeToken(value: string): string {
-    return value
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .replace(/[^a-z]/g, "")
-}
-
-function stripAffixes(token: string): string {
-    let current = token
-    let changed = true
-    while (changed) {
-        changed = false
-        for (const suffix of NORMALIZED_SUFFIXES) {
-            if (current.endsWith(suffix) && current.length - suffix.length > 2) {
-                current = current.slice(0, -suffix.length)
-                changed = true
-            }
-        }
-        for (const prefix of NORMALIZED_PREFIXES) {
-            if (current.startsWith(prefix) && current.length - prefix.length > 2) {
-                current = current.slice(prefix.length)
-                changed = true
-            }
-        }
-    }
-    return current
-}
-
-function buildWordTokens(word: WordEntry, includeForms = true): Set<string> {
-    const tokens = new Set<string>()
-    const push = (value: string) => {
-        if (!value) return
-        const normalized = normalizeToken(value)
-        if (!normalized) return
-        tokens.add(normalized)
-        tokens.add(stripAffixes(normalized))
-    }
-
-    push(word.word)
-    if (includeForms) {
-        word.other_forms.forEach(form => push(form.word))
-        word.similar_words.forEach(sim => push(sim.word))
-    }
-
-    const englishSources = [
-        word.translation,
-        ...word.alternative_translations.map(item => item.word),
-        ...word.examples.map(item => item.translation),
-    ]
-    englishSources.forEach(source => {
-        source
-            .split(/[,/]/)
-            .map(part => part.trim())
-            .forEach(part => push(part))
-    })
-
-    return tokens
 }
 
 function ensureLevels(levels?: WordLevel[]): WordLevel[] {
@@ -192,30 +130,6 @@ export async function searchWords(query: string, options?: WordSearchOptions): P
     return matches
 }
 
-function sanitizeJSONContent(content: string): string {
-    const trimmed = content.trim()
-    if (trimmed.startsWith("```")) {
-        const parts = trimmed.split("```")
-        return parts[1] || parts[2] || trimmed
-    }
-    return trimmed
-}
-
-function validateGeneratedWord(entry: WordEntry): WordEntry {
-    const defaults = {
-        examples: [],
-        alternative_translations: [],
-        similar_words: [],
-        other_forms: [],
-        "q&a": [],
-    }
-    const merged = { ...defaults, ...entry }
-    if (!merged.word || !merged.translation) {
-        throw new Error("Generated entry is missing required fields.")
-    }
-    return merged
-}
-
 export async function generateWordWithAI(args: WordGenerationArgs): Promise<WordEntry> {
     if (!OPENROUTER_API_KEY) {
         throw new Error("Missing OpenRouter API key.")
@@ -297,7 +211,7 @@ export async function generateWordWithAI(args: WordGenerationArgs): Promise<Word
         throw new Error("Model returned an empty response.")
     }
 
-    const cleaned = sanitizeJSONContent(content)
+    const cleaned = sanitizeWordJSON(content)
     const parsed = JSON.parse(cleaned)
-    return validateGeneratedWord(parsed)
+    return validateWordEntry(parsed)
 }
