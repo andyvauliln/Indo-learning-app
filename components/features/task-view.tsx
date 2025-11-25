@@ -1,12 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { generateTranslation } from "@/lib/api"
 import { storage, type Task, type Subtask } from "@/lib/storage"
-import { AVAILABLE_MODELS, DEFAULT_MODEL, DEFAULT_PROMPT } from "@/lib/models"
+import { AVAILABLE_MODELS, DEFAULT_MODEL, DEFAULT_PROMPT, DEFAULT_LEARNING_DAYS } from "@/lib/models"
 import { Loader2, CheckCircle2, ArrowRight, Settings2, Edit, Trash2 } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
@@ -33,15 +33,19 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
     const settings = storage.getSettings()
     const [taskModel, setTaskModel] = useState(settings?.selectedModel || DEFAULT_MODEL)
     const [taskPrompt, setTaskPrompt] = useState(settings?.customPrompt || subtask.prompt || DEFAULT_PROMPT)
+    const [learningDays, setLearningDays] = useState(settings?.learningDays || DEFAULT_LEARNING_DAYS)
 
-    // Sync taskPrompt to activePrompt on mount or when task changes
+    // Reset state when subtask changes
     useEffect(() => {
-        setActivePrompt(taskPrompt)
-    }, [taskPrompt, setActivePrompt])
+        setInput(subtask.content || "")
+        const initialPrompt = settings?.customPrompt || subtask.prompt || DEFAULT_PROMPT
+        setTaskPrompt(initialPrompt)
+        setActivePrompt(initialPrompt)
+    }, [subtask.id, subtask.content, subtask.prompt, settings?.customPrompt, setActivePrompt])
 
     const handleSaveWrite = () => {
         if (!input.trim()) return
-        updateSubtask(input, "completed")
+        updateSubtask({ content: input, status: "completed" })
         setIsEditing(false)
     }
 
@@ -55,7 +59,9 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
             const updatedSubtasks = task.subtasks.map(s => ({
                 ...s,
                 content: undefined,
-                status: "pending" as const
+                status: "pending" as const,
+                formattedContent: undefined,
+                learnedParagraphs: undefined
             }))
             const updatedTask = { ...task, subtasks: updatedSubtasks, status: "active" as const }
             const updatedTasks = tasks.map(t => t.id === task.id ? updatedTask : t)
@@ -66,7 +72,22 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
         }
     }
 
-    const handleGenerate = async () => {
+    const updateSubtask = useCallback((updates: Partial<Subtask>) => {
+        const updatedSubtasks = task.subtasks.map(s =>
+            s.id === subtask.id ? { ...s, ...updates } : s
+        )
+
+        const updatedTask = { ...task, subtasks: updatedSubtasks }
+        const allCompleted = updatedSubtasks.every(s => s.status === "completed")
+        if (allCompleted) {
+            updatedTask.status = "completed"
+        }
+
+        const updatedTasks = tasks.map(t => t.id === task.id ? updatedTask : t)
+        onUpdateTasks(updatedTasks)
+    }, [task, subtask.id, tasks, onUpdateTasks])
+
+    const handleGenerate = useCallback(async () => {
         setIsGenerating(true)
         setError(null)
         try {
@@ -80,13 +101,27 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
 
             // Use activePrompt for generation to ensure latest edits are used
             const translation = await generateTranslation(previousContent, activePrompt, taskModel)
-            updateSubtask(translation, "completed")
+            // Clear formatted content AND learned paragraphs when regenerating main translation
+            // Set startDate if this is the first time completing, preserve it on regeneration
+            const updates: Partial<Subtask> = {
+                content: translation,
+                status: "completed",
+                formattedContent: {},
+                learnedParagraphs: {}
+            }
+            if (!subtask.startDate) {
+                updates.startDate = new Date().toISOString()
+            } else {
+                // Preserve existing startDate on regeneration
+                updates.startDate = subtask.startDate
+            }
+            updateSubtask(updates)
         } catch (err) {
             setError(err instanceof Error ? err.message : "Failed to generate translation")
         } finally {
             setIsGenerating(false)
         }
-    }
+    }, [task.subtasks, subtask.id, subtask.startDate, activePrompt, taskModel, setIsGenerating, updateSubtask])
 
     // Register regenerate function only if not completed (EnhancedReadingText takes over when completed)
     useEffect(() => {
@@ -95,27 +130,28 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
         } else if (subtask.type !== "generate") {
             setRegenerateFn(null)
         }
-        // Cleanup is handled by next effect or component unmount
-    }, [subtask.type, subtask.status, activePrompt, taskModel, task.subtasks])
+        return () => setRegenerateFn(null)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [subtask.type, subtask.status, setRegenerateFn])
 
     const handleCompleteRead = () => {
-        updateSubtask(subtask.content, "completed")
+        updateSubtask({ content: subtask.content, status: "completed" })
     }
 
-    const updateSubtask = (content: string | undefined, status: "pending" | "completed") => {
-        const updatedSubtasks = task.subtasks.map(s =>
-            s.id === subtask.id ? { ...s, content, status } : s
-        )
 
-        const updatedTask = { ...task, subtasks: updatedSubtasks }
-        const allCompleted = updatedSubtasks.every(s => s.status === "completed")
-        if (allCompleted) {
-            updatedTask.status = "completed"
-        }
 
-        const updatedTasks = tasks.map(t => t.id === task.id ? updatedTask : t)
-        onUpdateTasks(updatedTasks)
-    }
+    const handleUpdateFormattedContent = useCallback((newFormats: Record<string, string>) => {
+        updateSubtask({
+            formattedContent: {
+                ...(subtask.formattedContent || {}),
+                ...newFormats
+            }
+        })
+    }, [subtask.formattedContent, updateSubtask])
+
+    const handleUpdateLearnedParagraphs = useCallback((learnedParagraphs: Record<string, boolean>) => {
+        updateSubtask({ learnedParagraphs })
+    }, [updateSubtask])
 
     return (
         <Card className="w-full max-w-5xl mx-auto mt-8">
@@ -182,7 +218,16 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
                                     <Label htmlFor="task-model" className="text-sm font-medium">
                                         Translation Model
                                     </Label>
-                                    <Select value={taskModel} onValueChange={setTaskModel}>
+                                    <Select value={taskModel} onValueChange={(value) => {
+                                        setTaskModel(value)
+                                        // Save to localStorage
+                                        const currentSettings = storage.getSettings() || {
+                                            selectedModel: DEFAULT_MODEL,
+                                            customPrompt: DEFAULT_PROMPT,
+                                            learningDays: DEFAULT_LEARNING_DAYS
+                                        }
+                                        storage.saveSettings({ ...currentSettings, selectedModel: value })
+                                    }}>
                                         <SelectTrigger id="task-model">
                                             <SelectValue placeholder="Choose a model" />
                                         </SelectTrigger>
@@ -210,16 +255,52 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
                                         id="task-prompt"
                                         value={activePrompt}
                                         onChange={(e) => {
-                                            setActivePrompt(e.target.value)
+                                            const newPrompt = e.target.value
+                                            setActivePrompt(newPrompt)
                                             // Update local task prompt if we are in base mode or clean tab
                                             // Note: EnhancedReadingText will handle updating taskPrompt if on Clean tab
                                             if (subtask.status !== 'completed') {
-                                                setTaskPrompt(e.target.value)
+                                                setTaskPrompt(newPrompt)
                                             }
+                                            // Save to localStorage
+                                            const currentSettings = storage.getSettings() || {
+                                                selectedModel: DEFAULT_MODEL,
+                                                customPrompt: DEFAULT_PROMPT,
+                                                learningDays: DEFAULT_LEARNING_DAYS
+                                            }
+                                            storage.saveSettings({ ...currentSettings, customPrompt: newPrompt })
                                         }}
                                         placeholder="Enter custom prompt..."
                                         className="min-h-[80px] text-sm"
                                     />
+                                </div>
+
+                                {/* Learning Days */}
+                                <div className="space-y-2">
+                                    <Label htmlFor="learning-days" className="text-sm font-medium">
+                                        Learning Days
+                                    </Label>
+                                    <div className="flex items-center gap-2">
+                                        <input
+                                            type="number"
+                                            id="learning-days"
+                                            min="1"
+                                            max="30"
+                                            value={learningDays}
+                                            onChange={(e) => {
+                                                const value = parseInt(e.target.value) || 1
+                                                setLearningDays(value)
+                                                const currentSettings = storage.getSettings() || {
+                                                    selectedModel: DEFAULT_MODEL,
+                                                    customPrompt: DEFAULT_PROMPT,
+                                                    learningDays: DEFAULT_LEARNING_DAYS
+                                                }
+                                                storage.saveSettings({ ...currentSettings, learningDays: value })
+                                            }}
+                                            className="w-20 px-3 py-2 border border-input rounded-md bg-background text-sm"
+                                        />
+                                        <span className="text-sm text-muted-foreground">days to split content equally</span>
+                                    </div>
                                 </div>
                             </CollapsibleContent>
                         </Collapsible>
@@ -233,6 +314,12 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
                                 basePrompt={taskPrompt}
                                 onUpdateBasePrompt={setTaskPrompt}
                                 onRegenerateBase={handleGenerate}
+                                formattedContent={subtask.formattedContent}
+                                onUpdateFormattedContent={handleUpdateFormattedContent}
+                                learnedParagraphs={subtask.learnedParagraphs}
+                                onUpdateLearnedParagraphs={handleUpdateLearnedParagraphs}
+                                learningDays={learningDays}
+                                startDate={subtask.startDate}
                             />
                         )}
 
@@ -280,6 +367,12 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
                                     basePrompt=""
                                     onUpdateBasePrompt={() => { }}
                                     onRegenerateBase={async () => { }}
+                                    formattedContent={subtask.formattedContent}
+                                    onUpdateFormattedContent={handleUpdateFormattedContent}
+                                    learnedParagraphs={subtask.learnedParagraphs}
+                                    onUpdateLearnedParagraphs={handleUpdateLearnedParagraphs}
+                                    learningDays={learningDays}
+                                    startDate={subtask.startDate}
                                 />
                             ) : (
                                 <div className="p-6 bg-card border border-border rounded-lg shadow-sm text-center text-muted-foreground">

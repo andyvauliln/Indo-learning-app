@@ -59,17 +59,15 @@ export const AVAILABLE_MODELS: ModelConfig[] = [
 ]
 
 export const DEFAULT_MODEL = AVAILABLE_MODELS[0].id
-
+export const DEFAULT_LEARNING_DAYS = 3 // Default sentences per day for calculation
 export const DEFAULT_PROMPT = `Translate the following text to Indonesian for language learning purposes. Follow these guidelines:
 
 1. Keep the translation simple and natural for beginners
 2. Use varied vocabulary - if a word appears multiple times, try to use synonyms or alternative expressions where natural
-3. Split the text into paragraphs of approximately 3 sentences each
-4. Separate each paragraph with a double newline (\\n\\n)
-5. Use common, everyday Indonesian words
-6. Maintain the original meaning while making it accessible for learners
+3. Use common, everyday Indonesian words
+4. Maintain the original meaning while making it accessible for learners
 
-Provide ONLY the Indonesian translation, formatted as described above.`
+Provide ONLY the Indonesian translation.`
 
 export const FORMAT_PROMPT = `You are a language learning assistant. You have Indonesian text and need to format it for learning.
 

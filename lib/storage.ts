@@ -13,6 +13,7 @@ export interface User {
 export interface Settings {
     selectedModel: string
     customPrompt: string
+    learningDays: number // Number of days to split learning content
 }
 
 export interface CurrentView {
@@ -30,6 +31,8 @@ export interface Subtask {
     content?: string // For user input or generated text
     prompt?: string // For generation tasks
     formattedContent?: Record<string, string> // Cache for formatted versions
+    learnedParagraphs?: Record<string, boolean> // Track which paragraphs are marked as learned
+    startDate?: string // ISO date when learning started (when first completed)
 }
 
 export interface Task {

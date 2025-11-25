@@ -17,6 +17,7 @@ interface SettingsViewProps {
 export function SettingsView({ onClose }: SettingsViewProps) {
     const [selectedModel, setSelectedModel] = useState(DEFAULT_MODEL)
     const [customPrompt, setCustomPrompt] = useState(DEFAULT_PROMPT)
+    const [learningDays, setLearningDays] = useState(3)
     const [isSaved, setIsSaved] = useState(false)
 
     useEffect(() => {
@@ -25,13 +26,15 @@ export function SettingsView({ onClose }: SettingsViewProps) {
         if (savedSettings) {
             setSelectedModel(savedSettings.selectedModel)
             setCustomPrompt(savedSettings.customPrompt)
+            setLearningDays(savedSettings.learningDays ?? 3)
         }
     }, [])
 
     const handleSave = () => {
         const settings: Settings = {
             selectedModel,
-            customPrompt
+            customPrompt,
+            learningDays
         }
         storage.saveSettings(settings)
         setIsSaved(true)

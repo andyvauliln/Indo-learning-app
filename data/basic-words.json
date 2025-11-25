@@ -1,0 +1,1345 @@
+{
+    "pronouns": {
+        "personal": [
+            {
+                "indonesian": "saya",
+                "english": "I, me",
+                "type": "first_person_formal"
+            },
+            {
+                "indonesian": "aku",
+                "english": "I, me",
+                "type": "first_person_informal"
+            },
+            {
+                "indonesian": "kamu",
+                "english": "you",
+                "type": "second_person_informal"
+            },
+            {
+                "indonesian": "anda",
+                "english": "you",
+                "type": "second_person_formal"
+            },
+            {
+                "indonesian": "engkau",
+                "english": "you",
+                "type": "second_person_poetic"
+            },
+            {
+                "indonesian": "dia",
+                "english": "he, she, him, her",
+                "type": "third_person"
+            },
+            {
+                "indonesian": "ia",
+                "english": "he, she, him, her",
+                "type": "third_person_formal"
+            },
+            {
+                "indonesian": "beliau",
+                "english": "he, she (respectful)",
+                "type": "third_person_respectful"
+            },
+            {
+                "indonesian": "kita",
+                "english": "we, us (inclusive)",
+                "type": "first_person_plural_inclusive"
+            },
+            {
+                "indonesian": "kami",
+                "english": "we, us (exclusive)",
+                "type": "first_person_plural_exclusive"
+            },
+            {
+                "indonesian": "kalian",
+                "english": "you (plural)",
+                "type": "second_person_plural"
+            },
+            {
+                "indonesian": "mereka",
+                "english": "they, them",
+                "type": "third_person_plural"
+            }
+        ],
+        "possessive": [
+            {
+                "indonesian": "saya",
+                "english": "my, mine",
+                "type": "first_person"
+            },
+            {
+                "indonesian": "-ku",
+                "english": "my, mine",
+                "type": "first_person_suffix"
+            },
+            {
+                "indonesian": "kamu",
+                "english": "your, yours",
+                "type": "second_person"
+            },
+            {
+                "indonesian": "-mu",
+                "english": "your, yours",
+                "type": "second_person_suffix"
+            },
+            {
+                "indonesian": "dia",
+                "english": "his, her, hers",
+                "type": "third_person"
+            },
+            {
+                "indonesian": "-nya",
+                "english": "his, her, hers, its",
+                "type": "third_person_suffix"
+            },
+            {
+                "indonesian": "kita",
+                "english": "our, ours (inclusive)",
+                "type": "first_person_plural"
+            },
+            {
+                "indonesian": "kami",
+                "english": "our, ours (exclusive)",
+                "type": "first_person_plural"
+            },
+            {
+                "indonesian": "mereka",
+                "english": "their, theirs",
+                "type": "third_person_plural"
+            }
+        ],
+        "demonstrative": [
+            {
+                "indonesian": "ini",
+                "english": "this",
+                "type": "near"
+            },
+            {
+                "indonesian": "itu",
+                "english": "that",
+                "type": "far"
+            },
+            {
+                "indonesian": "begini",
+                "english": "like this, this way",
+                "type": "manner_near"
+            },
+            {
+                "indonesian": "begitu",
+                "english": "like that, that way",
+                "type": "manner_far"
+            }
+        ]
+    },
+    "questionWords": [
+        {
+            "indonesian": "apa",
+            "english": "what"
+        },
+        {
+            "indonesian": "siapa",
+            "english": "who"
+        },
+        {
+            "indonesian": "kapan",
+            "english": "when"
+        },
+        {
+            "indonesian": "dimana",
+            "english": "where"
+        },
+        {
+            "indonesian": "di mana",
+            "english": "where (separated)"
+        },
+        {
+            "indonesian": "kemana",
+            "english": "where to"
+        },
+        {
+            "indonesian": "ke mana",
+            "english": "where to (separated)"
+        },
+        {
+            "indonesian": "darimana",
+            "english": "where from"
+        },
+        {
+            "indonesian": "dari mana",
+            "english": "where from (separated)"
+        },
+        {
+            "indonesian": "mengapa",
+            "english": "why"
+        },
+        {
+            "indonesian": "kenapa",
+            "english": "why (informal)"
+        },
+        {
+            "indonesian": "bagaimana",
+            "english": "how"
+        },
+        {
+            "indonesian": "berapa",
+            "english": "how many, how much"
+        },
+        {
+            "indonesian": "yang mana",
+            "english": "which"
+        },
+        {
+            "indonesian": "mana",
+            "english": "which, where"
+        }
+    ],
+    "prepositions": [
+        {
+            "indonesian": "di",
+            "english": "in, at, on",
+            "usage": "location"
+        },
+        {
+            "indonesian": "ke",
+            "english": "to",
+            "usage": "direction"
+        },
+        {
+            "indonesian": "dari",
+            "english": "from",
+            "usage": "origin"
+        },
+        {
+            "indonesian": "untuk",
+            "english": "for",
+            "usage": "purpose"
+        },
+        {
+            "indonesian": "bagi",
+            "english": "for, to",
+            "usage": "beneficiary"
+        },
+        {
+            "indonesian": "dengan",
+            "english": "with",
+            "usage": "accompaniment"
+        },
+        {
+            "indonesian": "tanpa",
+            "english": "without",
+            "usage": "absence"
+        },
+        {
+            "indonesian": "pada",
+            "english": "at, on, to",
+            "usage": "time/formal"
+        },
+        {
+            "indonesian": "oleh",
+            "english": "by",
+            "usage": "agent"
+        },
+        {
+            "indonesian": "kepada",
+            "english": "to (person)",
+            "usage": "recipient"
+        },
+        {
+            "indonesian": "tentang",
+            "english": "about",
+            "usage": "topic"
+        },
+        {
+            "indonesian": "mengenai",
+            "english": "about, regarding",
+            "usage": "topic"
+        },
+        {
+            "indonesian": "terhadap",
+            "english": "toward, against",
+            "usage": "direction/relation"
+        },
+        {
+            "indonesian": "menurut",
+            "english": "according to",
+            "usage": "source"
+        },
+        {
+            "indonesian": "sebagai",
+            "english": "as",
+            "usage": "role"
+        },
+        {
+            "indonesian": "seperti",
+            "english": "like, as",
+            "usage": "comparison"
+        },
+        {
+            "indonesian": "antara",
+            "english": "between",
+            "usage": "position"
+        },
+        {
+            "indonesian": "sampai",
+            "english": "until, to",
+            "usage": "limit"
+        },
+        {
+            "indonesian": "hingga",
+            "english": "until",
+            "usage": "limit_formal"
+        },
+        {
+            "indonesian": "selain",
+            "english": "besides, other than",
+            "usage": "exception"
+        }
+    ],
+    "timeWords": {
+        "general": [
+            {
+                "indonesian": "waktu",
+                "english": "time"
+            },
+            {
+                "indonesian": "sekarang",
+                "english": "now"
+            },
+            {
+                "indonesian": "kini",
+                "english": "now, nowadays"
+            },
+            {
+                "indonesian": "nanti",
+                "english": "later"
+            },
+            {
+                "indonesian": "kemudian",
+                "english": "then, later, afterwards"
+            },
+            {
+                "indonesian": "lalu",
+                "english": "ago, past"
+            },
+            {
+                "indonesian": "segera",
+                "english": "soon, immediately"
+            },
+            {
+                "indonesian": "tadi",
+                "english": "just now, earlier"
+            },
+            {
+                "indonesian": "barusan",
+                "english": "just now"
+            },
+            {
+                "indonesian": "baru",
+                "english": "just, recently, new"
+            },
+            {
+                "indonesian": "dulu",
+                "english": "before, formerly, first"
+            },
+            {
+                "indonesian": "dahulu",
+                "english": "formerly, in the past"
+            },
+            {
+                "indonesian": "sudah",
+                "english": "already, have"
+            },
+            {
+                "indonesian": "belum",
+                "english": "not yet"
+            },
+            {
+                "indonesian": "masih",
+                "english": "still"
+            },
+            {
+                "indonesian": "sedang",
+                "english": "currently, in the middle of"
+            },
+            {
+                "indonesian": "akan",
+                "english": "will, going to"
+            },
+            {
+                "indonesian": "pernah",
+                "english": "ever, have experienced"
+            },
+            {
+                "indonesian": "tidak pernah",
+                "english": "never"
+            },
+            {
+                "indonesian": "selalu",
+                "english": "always"
+            },
+            {
+                "indonesian": "sering",
+                "english": "often"
+            },
+            {
+                "indonesian": "kadang",
+                "english": "sometimes"
+            },
+            {
+                "indonesian": "kadang-kadang",
+                "english": "sometimes"
+            },
+            {
+                "indonesian": "jarang",
+                "english": "rarely, seldom"
+            }
+        ],
+        "dayParts": [
+            {
+                "indonesian": "pagi",
+                "english": "morning"
+            },
+            {
+                "indonesian": "pagi-pagi",
+                "english": "early morning"
+            },
+            {
+                "indonesian": "siang",
+                "english": "noon, daytime"
+            },
+            {
+                "indonesian": "sore",
+                "english": "afternoon"
+            },
+            {
+                "indonesian": "petang",
+                "english": "late afternoon"
+            },
+            {
+                "indonesian": "malam",
+                "english": "evening, night"
+            },
+            {
+                "indonesian": "tengah malam",
+                "english": "midnight"
+            },
+            {
+                "indonesian": "dini hari",
+                "english": "dawn, early morning (2-5 AM)"
+            },
+            {
+                "indonesian": "subuh",
+                "english": "dawn (Islamic prayer time)"
+            }
+        ],
+        "days": [
+            {
+                "indonesian": "hari",
+                "english": "day"
+            },
+            {
+                "indonesian": "hari ini",
+                "english": "today"
+            },
+            {
+                "indonesian": "kemarin",
+                "english": "yesterday"
+            },
+            {
+                "indonesian": "besok",
+                "english": "tomorrow"
+            },
+            {
+                "indonesian": "lusa",
+                "english": "day after tomorrow"
+            },
+            {
+                "indonesian": "tulat",
+                "english": "three days from now"
+            },
+            {
+                "indonesian": "kemarin dulu",
+                "english": "day before yesterday"
+            },
+            {
+                "indonesian": "sehari-hari",
+                "english": "daily, everyday"
+            }
+        ],
+        "daysOfWeek": [
+            {
+                "indonesian": "hari",
+                "english": "day"
+            },
+            {
+                "indonesian": "Senin",
+                "english": "Monday"
+            },
+            {
+                "indonesian": "Selasa",
+                "english": "Tuesday"
+            },
+            {
+                "indonesian": "Rabu",
+                "english": "Wednesday"
+            },
+            {
+                "indonesian": "Kamis",
+                "english": "Thursday"
+            },
+            {
+                "indonesian": "Jumat",
+                "english": "Friday"
+            },
+            {
+                "indonesian": "Sabtu",
+                "english": "Saturday"
+            },
+            {
+                "indonesian": "Minggu",
+                "english": "Sunday"
+            },
+            {
+                "indonesian": "akhir pekan",
+                "english": "weekend"
+            }
+        ],
+        "weeks": [
+            {
+                "indonesian": "minggu",
+                "english": "week"
+            },
+            {
+                "indonesian": "pekan",
+                "english": "week (formal)"
+            },
+            {
+                "indonesian": "minggu ini",
+                "english": "this week"
+            },
+            {
+                "indonesian": "minggu lalu",
+                "english": "last week"
+            },
+            {
+                "indonesian": "minggu depan",
+                "english": "next week"
+            }
+        ],
+        "months": [
+            {
+                "indonesian": "bulan",
+                "english": "month"
+            },
+            {
+                "indonesian": "bulan ini",
+                "english": "this month"
+            },
+            {
+                "indonesian": "bulan lalu",
+                "english": "last month"
+            },
+            {
+                "indonesian": "bulan depan",
+                "english": "next month"
+            },
+            {
+                "indonesian": "Januari",
+                "english": "January"
+            },
+            {
+                "indonesian": "Februari",
+                "english": "February"
+            },
+            {
+                "indonesian": "Maret",
+                "english": "March"
+            },
+            {
+                "indonesian": "April",
+                "english": "April"
+            },
+            {
+                "indonesian": "Mei",
+                "english": "May"
+            },
+            {
+                "indonesian": "Juni",
+                "english": "June"
+            },
+            {
+                "indonesian": "Juli",
+                "english": "July"
+            },
+            {
+                "indonesian": "Agustus",
+                "english": "August"
+            },
+            {
+                "indonesian": "September",
+                "english": "September"
+            },
+            {
+                "indonesian": "Oktober",
+                "english": "October"
+            },
+            {
+                "indonesian": "November",
+                "english": "November"
+            },
+            {
+                "indonesian": "Desember",
+                "english": "December"
+            }
+        ],
+        "years": [
+            {
+                "indonesian": "tahun",
+                "english": "year"
+            },
+            {
+                "indonesian": "tahun ini",
+                "english": "this year"
+            },
+            {
+                "indonesian": "tahun lalu",
+                "english": "last year"
+            },
+            {
+                "indonesian": "tahun depan",
+                "english": "next year"
+            }
+        ]
+    },
+    "conjunctions": [
+        {
+            "indonesian": "dan",
+            "english": "and",
+            "type": "coordinating"
+        },
+        {
+            "indonesian": "serta",
+            "english": "and, as well as",
+            "type": "coordinating"
+        },
+        {
+            "indonesian": "atau",
+            "english": "or",
+            "type": "coordinating"
+        },
+        {
+            "indonesian": "tetapi",
+            "english": "but",
+            "type": "coordinating"
+        },
+        {
+            "indonesian": "tapi",
+            "english": "but (informal)",
+            "type": "coordinating"
+        },
+        {
+            "indonesian": "namun",
+            "english": "however",
+            "type": "coordinating"
+        },
+        {
+            "indonesian": "lalu",
+            "english": "then, and then",
+            "type": "coordinating"
+        },
+        {
+            "indonesian": "kemudian",
+            "english": "then, afterwards",
+            "type": "coordinating"
+        },
+        {
+            "indonesian": "bahkan",
+            "english": "even",
+            "type": "coordinating"
+        },
+        {
+            "indonesian": "apalagi",
+            "english": "moreover, let alone",
+            "type": "coordinating"
+        },
+        {
+            "indonesian": "karena",
+            "english": "because",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "sebab",
+            "english": "because",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "jika",
+            "english": "if",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "kalau",
+            "english": "if (informal)",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "bila",
+            "english": "if, when",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "apabila",
+            "english": "if, when (formal)",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "supaya",
+            "english": "so that, in order to",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "agar",
+            "english": "so that, in order that",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "meskipun",
+            "english": "although, even though",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "walaupun",
+            "english": "although",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "walau",
+            "english": "although (informal)",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "meski",
+            "english": "although (informal)",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "ketika",
+            "english": "when",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "saat",
+            "english": "when, moment",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "sambil",
+            "english": "while (doing)",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "setelah",
+            "english": "after",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "sesudah",
+            "english": "after",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "sebelum",
+            "english": "before",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "selama",
+            "english": "during, as long as",
+            "type": "subordinating"
+        },
+        {
+            "indonesian": "sejak",
+            "english": "since",
+            "type": "subordinating"
+        }
+    ],
+    "articles": [
+        {
+            "indonesian": "yang",
+            "english": "that, which, who",
+            "usage": "relative_clause"
+        },
+        {
+            "indonesian": "para",
+            "english": "plural marker for people",
+            "usage": "plural"
+        },
+        {
+            "indonesian": "kaum",
+            "english": "group of people",
+            "usage": "collective"
+        },
+        {
+            "indonesian": "sang",
+            "english": "the (honorific)",
+            "usage": "honorific"
+        },
+        {
+            "indonesian": "si",
+            "english": "the (informal)",
+            "usage": "informal"
+        },
+        {
+            "indonesian": "sri",
+            "english": "the (very respectful)",
+            "usage": "very_honorific"
+        }
+    ],
+    "modalWords": [
+        {
+            "indonesian": "bisa",
+            "english": "can, able to"
+        },
+        {
+            "indonesian": "dapat",
+            "english": "can, able to"
+        },
+        {
+            "indonesian": "mampu",
+            "english": "capable of"
+        },
+        {
+            "indonesian": "boleh",
+            "english": "may, allowed to"
+        },
+        {
+            "indonesian": "harus",
+            "english": "must, have to"
+        },
+        {
+            "indonesian": "wajib",
+            "english": "must, obligatory"
+        },
+        {
+            "indonesian": "perlu",
+            "english": "need to"
+        },
+        {
+            "indonesian": "mau",
+            "english": "want to"
+        },
+        {
+            "indonesian": "ingin",
+            "english": "want to, wish to"
+        },
+        {
+            "indonesian": "hendak",
+            "english": "intend to, about to"
+        },
+        {
+            "indonesian": "akan",
+            "english": "will, going to"
+        },
+        {
+            "indonesian": "bakal",
+            "english": "will (informal)"
+        }
+    ],
+    "negation": [
+        {
+            "indonesian": "tidak",
+            "english": "not, no",
+            "usage": "verb_adjective"
+        },
+        {
+            "indonesian": "tak",
+            "english": "not (contraction)",
+            "usage": "verb_adjective_informal"
+        },
+        {
+            "indonesian": "bukan",
+            "english": "not",
+            "usage": "noun"
+        },
+        {
+            "indonesian": "jangan",
+            "english": "don't",
+            "usage": "imperative"
+        },
+        {
+            "indonesian": "belum",
+            "english": "not yet",
+            "usage": "incomplete_action"
+        }
+    ],
+    "quantifiers": [
+        {
+            "indonesian": "semua",
+            "english": "all"
+        },
+        {
+            "indonesian": "seluruh",
+            "english": "entire, whole"
+        },
+        {
+            "indonesian": "segala",
+            "english": "all kinds of"
+        },
+        {
+            "indonesian": "setiap",
+            "english": "every, each"
+        },
+        {
+            "indonesian": "tiap",
+            "english": "each, every"
+        },
+        {
+            "indonesian": "masing-masing",
+            "english": "each (respectively)"
+        },
+        {
+            "indonesian": "beberapa",
+            "english": "some, several"
+        },
+        {
+            "indonesian": "berbagai",
+            "english": "various"
+        },
+        {
+            "indonesian": "banyak",
+            "english": "many, much"
+        },
+        {
+            "indonesian": "sedikit",
+            "english": "few, little"
+        },
+        {
+            "indonesian": "sebagian",
+            "english": "some, a part of"
+        },
+        {
+            "indonesian": "lebih",
+            "english": "more"
+        },
+        {
+            "indonesian": "kurang",
+            "english": "less"
+        },
+        {
+            "indonesian": "paling",
+            "english": "most"
+        },
+        {
+            "indonesian": "sangat",
+            "english": "very"
+        },
+        {
+            "indonesian": "amat",
+            "english": "very (formal)"
+        },
+        {
+            "indonesian": "cukup",
+            "english": "enough"
+        },
+        {
+            "indonesian": "terlalu",
+            "english": "too (excessive)"
+        }
+    ],
+    "numbers": {
+        "cardinal": [
+            {
+                "indonesian": "nol",
+                "english": "zero",
+                "numeral": "0"
+            },
+            {
+                "indonesian": "satu",
+                "english": "one",
+                "numeral": "1"
+            },
+            {
+                "indonesian": "dua",
+                "english": "two",
+                "numeral": "2"
+            },
+            {
+                "indonesian": "tiga",
+                "english": "three",
+                "numeral": "3"
+            },
+            {
+                "indonesian": "empat",
+                "english": "four",
+                "numeral": "4"
+            },
+            {
+                "indonesian": "lima",
+                "english": "five",
+                "numeral": "5"
+            },
+            {
+                "indonesian": "enam",
+                "english": "six",
+                "numeral": "6"
+            },
+            {
+                "indonesian": "tujuh",
+                "english": "seven",
+                "numeral": "7"
+            },
+            {
+                "indonesian": "delapan",
+                "english": "eight",
+                "numeral": "8"
+            },
+            {
+                "indonesian": "sembilan",
+                "english": "nine",
+                "numeral": "9"
+            },
+            {
+                "indonesian": "sepuluh",
+                "english": "ten",
+                "numeral": "10"
+            },
+            {
+                "indonesian": "sebelas",
+                "english": "eleven",
+                "numeral": "11"
+            },
+            {
+                "indonesian": "dua belas",
+                "english": "twelve",
+                "numeral": "12"
+            },
+            {
+                "indonesian": "tiga belas",
+                "english": "thirteen",
+                "numeral": "13"
+            },
+            {
+                "indonesian": "empat belas",
+                "english": "fourteen",
+                "numeral": "14"
+            },
+            {
+                "indonesian": "lima belas",
+                "english": "fifteen",
+                "numeral": "15"
+            },
+            {
+                "indonesian": "dua puluh",
+                "english": "twenty",
+                "numeral": "20"
+            },
+            {
+                "indonesian": "tiga puluh",
+                "english": "thirty",
+                "numeral": "30"
+            },
+            {
+                "indonesian": "seratus",
+                "english": "one hundred",
+                "numeral": "100"
+            },
+            {
+                "indonesian": "seribu",
+                "english": "one thousand",
+                "numeral": "1000"
+            },
+            {
+                "indonesian": "sejuta",
+                "english": "one million",
+                "numeral": "1000000"
+            }
+        ],
+        "ordinal": [
+            {
+                "indonesian": "pertama",
+                "english": "first",
+                "prefix": "ke-1"
+            },
+            {
+                "indonesian": "kedua",
+                "english": "second",
+                "prefix": "ke-2"
+            },
+            {
+                "indonesian": "ketiga",
+                "english": "third",
+                "prefix": "ke-3"
+            },
+            {
+                "indonesian": "keempat",
+                "english": "fourth",
+                "prefix": "ke-4"
+            },
+            {
+                "indonesian": "kelima",
+                "english": "fifth",
+                "prefix": "ke-5"
+            },
+            {
+                "indonesian": "keenam",
+                "english": "sixth",
+                "prefix": "ke-6"
+            },
+            {
+                "indonesian": "ketujuh",
+                "english": "seventh",
+                "prefix": "ke-7"
+            },
+            {
+                "indonesian": "kedelapan",
+                "english": "eighth",
+                "prefix": "ke-8"
+            },
+            {
+                "indonesian": "kesembilan",
+                "english": "ninth",
+                "prefix": "ke-9"
+            },
+            {
+                "indonesian": "kesepuluh",
+                "english": "tenth",
+                "prefix": "ke-10"
+            }
+        ],
+        "fractions": [
+            {
+                "indonesian": "setengah",
+                "english": "half",
+                "value": "1/2"
+            },
+            {
+                "indonesian": "seperempat",
+                "english": "quarter",
+                "value": "1/4"
+            },
+            {
+                "indonesian": "sepertiga",
+                "english": "one third",
+                "value": "1/3"
+            }
+        ],
+        "multipliers": [
+            {
+                "indonesian": "puluh",
+                "english": "tens",
+                "multiplier": "10"
+            },
+            {
+                "indonesian": "ratus",
+                "english": "hundreds",
+                "multiplier": "100"
+            },
+            {
+                "indonesian": "ribu",
+                "english": "thousands",
+                "multiplier": "1000"
+            },
+            {
+                "indonesian": "juta",
+                "english": "millions",
+                "multiplier": "1000000"
+            },
+            {
+                "indonesian": "miliar",
+                "english": "billions",
+                "multiplier": "1000000000"
+            },
+            {
+                "indonesian": "triliun",
+                "english": "trillions",
+                "multiplier": "1000000000000"
+            }
+        ]
+    },
+    "affirmatives": [
+        {
+            "indonesian": "ya",
+            "english": "yes"
+        },
+        {
+            "indonesian": "iya",
+            "english": "yes (informal)"
+        },
+        {
+            "indonesian": "baik",
+            "english": "okay, good, fine"
+        },
+        {
+            "indonesian": "oke",
+            "english": "okay"
+        },
+        {
+            "indonesian": "ok",
+            "english": "OK"
+        },
+        {
+            "indonesian": "tentu",
+            "english": "certainly, of course"
+        },
+        {
+            "indonesian": "pasti",
+            "english": "definitely, surely"
+        },
+        {
+            "indonesian": "benar",
+            "english": "correct, true, right"
+        },
+        {
+            "indonesian": "betul",
+            "english": "correct, right"
+        },
+        {
+            "indonesian": "setuju",
+            "english": "agree"
+        }
+    ],
+    "particles": [
+        {
+            "indonesian": "-lah",
+            "english": "emphatic particle",
+            "usage": "emphasis"
+        },
+        {
+            "indonesian": "-kah",
+            "english": "question particle",
+            "usage": "question"
+        },
+        {
+            "indonesian": "dong",
+            "english": "urging particle",
+            "usage": "urging/informal"
+        },
+        {
+            "indonesian": "sih",
+            "english": "emphasis/question particle",
+            "usage": "emphasis/curiosity"
+        },
+        {
+            "indonesian": "kok",
+            "english": "surprise/question particle",
+            "usage": "surprise"
+        },
+        {
+            "indonesian": "deh",
+            "english": "softening particle",
+            "usage": "softening"
+        },
+        {
+            "indonesian": "tuh",
+            "english": "pointing particle",
+            "usage": "pointing"
+        },
+        {
+            "indonesian": "kan",
+            "english": "isn't it/right particle",
+            "usage": "confirmation"
+        },
+        {
+            "indonesian": "lho",
+            "english": "surprise particle",
+            "usage": "surprise"
+        },
+        {
+            "indonesian": "ya",
+            "english": "isn't it/confirmation particle",
+            "usage": "tag_question"
+        }
+    ],
+    "existence": [
+        {
+            "indonesian": "ada",
+            "english": "there is, there are, have"
+        },
+        {
+            "indonesian": "tidak ada",
+            "english": "there isn't, there aren't, don't have"
+        },
+        {
+            "indonesian": "terdapat",
+            "english": "there is/are (formal)"
+        },
+        {
+            "indonesian": "berada",
+            "english": "to be located"
+        },
+        {
+            "indonesian": "mempunyai",
+            "english": "to have, to possess"
+        },
+        {
+            "indonesian": "memiliki",
+            "english": "to have, to own"
+        },
+        {
+            "indonesian": "punya",
+            "english": "have (informal)"
+        }
+    ],
+    "copula": [
+        {
+            "indonesian": "adalah",
+            "english": "is, are (formal copula)"
+        },
+        {
+            "indonesian": "ialah",
+            "english": "is, are (formal copula)"
+        },
+        {
+            "indonesian": "merupakan",
+            "english": "is, constitutes"
+        },
+        {
+            "indonesian": "yakni",
+            "english": "namely, that is"
+        },
+        {
+            "indonesian": "yaitu",
+            "english": "namely, that is to say"
+        }
+    ],
+    "comparatives": [
+        {
+            "indonesian": "lebih",
+            "english": "more"
+        },
+        {
+            "indonesian": "kurang",
+            "english": "less"
+        },
+        {
+            "indonesian": "paling",
+            "english": "most"
+        },
+        {
+            "indonesian": "ter-",
+            "english": "most (superlative prefix)",
+            "type": "prefix"
+        },
+        {
+            "indonesian": "daripada",
+            "english": "than"
+        },
+        {
+            "indonesian": "dari",
+            "english": "than (informal)"
+        },
+        {
+            "indonesian": "sama",
+            "english": "same, equal"
+        },
+        {
+            "indonesian": "seperti",
+            "english": "like, as"
+        },
+        {
+            "indonesian": "sebagai",
+            "english": "as"
+        }
+    ]
+}
