@@ -16,7 +16,7 @@ export interface EnhancedReadingTextProps {
     model: string
     onContentUpdate?: (newContent: string) => void
     basePrompt: string
-    onUpdateBasePrompt: (prompt: string) => void
+    onUpdateBasePrompt?: (prompt: string) => void
     onRegenerateBase: () => Promise<void>
     formattedContent?: Record<string, string>
     onUpdateFormattedContent?: (newFormattedContent: Record<string, string>) => void

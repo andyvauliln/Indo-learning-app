@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 import { AppHeader } from "@/components/app-header"
@@ -9,50 +9,61 @@ import { storage, type User, type Task } from "@/lib/storage"
 import { TaskView } from "@/components/features/task-view"
 import { SettingsView } from "@/components/features/settings-view"
 
+interface InitialViewState {
+    user: User | null
+    tasks: Task[]
+    currentTaskId: string | null
+    currentSubtaskId: string | null
+}
+
+function computeInitialViewState(): InitialViewState {
+    if (typeof window === "undefined") {
+        return {
+            user: null,
+            tasks: [],
+            currentTaskId: null,
+            currentSubtaskId: null
+        }
+    }
+
+    const loadedUser = storage.getUser()
+    const loadedTasks = storage.getTasks()
+    const savedView = storage.getCurrentView()
+
+    let currentTaskId: string | null = null
+    let currentSubtaskId: string | null = null
+
+    if (savedView && loadedTasks.length > 0) {
+        const savedTask = loadedTasks.find(t => t.id === savedView.taskId)
+        const savedSubtask = savedTask?.subtasks.find(s => s.id === savedView.subtaskId)
+        if (savedTask && savedSubtask) {
+            currentTaskId = savedTask.id
+            currentSubtaskId = savedSubtask.id
+        }
+    }
+
+    if (!currentTaskId && loadedTasks.length > 0) {
+        const activeTask = loadedTasks.find(t => t.status === "active") || loadedTasks[0]
+        const activeSubtask = activeTask.subtasks.find(s => s.status === "pending") || activeTask.subtasks[0]
+        currentTaskId = activeTask.id
+        currentSubtaskId = activeSubtask.id
+    }
+
+    return {
+        user: loadedUser,
+        tasks: loadedTasks,
+        currentTaskId,
+        currentSubtaskId
+    }
+}
+
 export function MainView() {
-    const [user, setUser] = useState<User | null>(null)
-    const [tasks, setTasks] = useState<Task[]>([])
-    const [currentTaskId, setCurrentTaskId] = useState<string | null>(null)
-    const [currentSubtaskId, setCurrentSubtaskId] = useState<string | null>(null)
-    const [isLoading, setIsLoading] = useState(true)
+    const initialState = useMemo(() => computeInitialViewState(), [])
+    const [user, setUser] = useState<User | null>(initialState.user)
+    const [tasks, setTasks] = useState<Task[]>(initialState.tasks)
+    const [currentTaskId, setCurrentTaskId] = useState<string | null>(initialState.currentTaskId)
+    const [currentSubtaskId, setCurrentSubtaskId] = useState<string | null>(initialState.currentSubtaskId)
     const [showSettings, setShowSettings] = useState(false)
-
-    useEffect(() => {
-        // Load initial data
-        const loadedUser = storage.getUser()
-        const loadedTasks = storage.getTasks()
-        const savedView = storage.getCurrentView()
-
-        setUser(loadedUser)
-        setTasks(loadedTasks)
-
-        // Restore saved view if available
-        if (savedView && loadedTasks.length > 0) {
-            const savedTask = loadedTasks.find(t => t.id === savedView.taskId)
-            if (savedTask) {
-                const savedSubtask = savedTask.subtasks.find(s => s.id === savedView.subtaskId)
-                if (savedSubtask) {
-                    setCurrentTaskId(savedView.taskId)
-                    setCurrentSubtaskId(savedView.subtaskId)
-                    setIsLoading(false)
-                    return
-                }
-            }
-        }
-
-        // Set initial active task if available (fallback)
-        if (loadedTasks.length > 0) {
-            const activeTask = loadedTasks.find(t => t.status === "active") || loadedTasks[0]
-            if (activeTask) {
-                setCurrentTaskId(activeTask.id)
-                // Find first pending subtask or just the first one
-                const activeSubtask = activeTask.subtasks.find(s => s.status === "pending") || activeTask.subtasks[0]
-                setCurrentSubtaskId(activeSubtask.id)
-            }
-        }
-
-        setIsLoading(false)
-    }, [])
 
     const handleLogin = (newUser: User) => {
         setUser(newUser)
@@ -92,10 +103,6 @@ export function MainView() {
         setCurrentSubtaskId(null)
         // Reload the page to ensure clean state
         window.location.reload()
-    }
-
-    if (isLoading) {
-        return <div className="flex h-screen items-center justify-center">Loading...</div>
     }
 
     if (!user) {
