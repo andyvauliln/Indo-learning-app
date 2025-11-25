@@ -231,3 +231,23 @@ This architecture ensures:
 - ✅ **Maintainability**: Easy to locate and fix issues  
 - ✅ **Testability**: Each layer can be tested independently
 - ✅ **Clarity**: Clear understanding of system structure
+
+## Vocabulary Data Model & Service
+
+- **Data layout**: the legacy `basic-words.json` was flattened into `data/words/level-{1..4}.json`. Each file now contains only one difficulty tier, which lets any feature stream the appropriate words without filtering on the client.
+- **Word schema**: every record follows the enriched contract from the brief (`word`, `translation`, `examples`, `alternative_translations`, `similar_words`, `other_forms`, `level`, `learned`, `type`, `category`, `notes`, `q&a`). Lists satisfy the requested cardinalities (3–5 examples, 2 alternative translations/forms/similar words).
+- **Service**: `lib/word-service.ts` centralizes CRUD helpers, the morphology-aware `searchWords`, and `generateWordWithAI` which sends a schema-locked prompt to OpenRouter so the UI can request brand-new entries or richer examples as needed.
+
+### Handling Derived Forms
+
+- **Option 1 – store every inflected form as its own root entry**
+  - ✅ direct lookup without extra parsing
+  - ❌ duplicated notes/examples/AI output
+  - ❌ “learned” state drifts across records for the same lemma
+- **Option 2 – keep one lemma and describe the rest in `other_forms`**
+  - ✅ single source of truth for meaning, notes, and examples
+  - ✅ much easier to regenerate/update via AI
+  - ✅ `searchWords` can expand into `other_forms` plus apply affix normalization (`-nya`, `-kan`, `me-`, etc.) so queries like `bukanya` still match `buka`
+  - ❌ search layer must normalize both lemmas and derived forms
+
+**Decision**: Option 2. Lemmas remain unique at the root while `other_forms` carries suffix/prefix variations. The search service compensates by indexing both the lemma and every recorded form and also stripping common affixes. This keeps the dataset compact, ensures updates stay consistent, and still surfaces all known spellings to the UI.
