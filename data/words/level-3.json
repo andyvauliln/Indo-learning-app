@@ -1,0 +1,2186 @@
+[
+  {
+    "word": "-kah",
+    "translation": "question particle",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"-kah\" dalam percakapan sehari-hari.",
+        "translation": "I use \"question particle\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"-kah\"?",
+        "translation": "Can you explain the meaning of \"question particle\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"-kah\".",
+        "translation": "The teacher gave an example sentence with \"question particle\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "question particle",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"-kah\" berarti \"question particle\".",
+            "translation": "In some contexts, \"-kah\" can mean \"question particle\"."
+          }
+        ]
+      },
+      {
+        "word": "question particle (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"-kah\" berarti \"question particle (contextual)\".",
+            "translation": "In some contexts, \"-kah\" can mean \"question particle (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "-lah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"-kah\" dengan \"-lah\" untuk nuansa berbeda.",
+            "translation": "Compare \"-kah\" with \"-lah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "dong",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"-kah\" dengan \"dong\" untuk nuansa berbeda.",
+            "translation": "Compare \"-kah\" with \"dong\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "-kahnya",
+        "examples": [
+          {
+            "example": "Bentuk \"-kahnya\" masih terkait dengan kata dasar \"-kah\".",
+            "translation": "The form \"-kahnya\" is still related to \"question particle\"."
+          }
+        ]
+      },
+      {
+        "word": "-kah-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"-kah-ku\" masih terkait dengan kata dasar \"-kah\".",
+            "translation": "The form \"-kah-ku\" is still related to \"question particle\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Particle",
+    "category": "Particles",
+    "notes": "Usage: question",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"-kah\"?",
+        "answer": "Gunakan \"-kah\" ketika ingin menyampaikan arti \"question particle\" dalam konteks particles."
+      }
+    ]
+  },
+  {
+    "word": "-lah",
+    "translation": "emphatic particle",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"-lah\" dalam percakapan sehari-hari.",
+        "translation": "I use \"emphatic particle\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"-lah\"?",
+        "translation": "Can you explain the meaning of \"emphatic particle\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"-lah\".",
+        "translation": "The teacher gave an example sentence with \"emphatic particle\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "emphatic particle",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"-lah\" berarti \"emphatic particle\".",
+            "translation": "In some contexts, \"-lah\" can mean \"emphatic particle\"."
+          }
+        ]
+      },
+      {
+        "word": "emphatic particle (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"-lah\" berarti \"emphatic particle (contextual)\".",
+            "translation": "In some contexts, \"-lah\" can mean \"emphatic particle (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "-kah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"-lah\" dengan \"-kah\" untuk nuansa berbeda.",
+            "translation": "Compare \"-lah\" with \"-kah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "dong",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"-lah\" dengan \"dong\" untuk nuansa berbeda.",
+            "translation": "Compare \"-lah\" with \"dong\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "-lahnya",
+        "examples": [
+          {
+            "example": "Bentuk \"-lahnya\" masih terkait dengan kata dasar \"-lah\".",
+            "translation": "The form \"-lahnya\" is still related to \"emphatic particle\"."
+          }
+        ]
+      },
+      {
+        "word": "-lah-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"-lah-ku\" masih terkait dengan kata dasar \"-lah\".",
+            "translation": "The form \"-lah-ku\" is still related to \"emphatic particle\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Particle",
+    "category": "Particles",
+    "notes": "Usage: emphasis",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"-lah\"?",
+        "answer": "Gunakan \"-lah\" ketika ingin menyampaikan arti \"emphatic particle\" dalam konteks particles."
+      }
+    ]
+  },
+  {
+    "word": "adalah",
+    "translation": "is, are (formal copula)",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"adalah\" dalam percakapan sehari-hari.",
+        "translation": "I use \"is\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"adalah\"?",
+        "translation": "Can you explain the meaning of \"is\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"adalah\".",
+        "translation": "The teacher gave an example sentence with \"is\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "is",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"adalah\" berarti \"is\".",
+            "translation": "In some contexts, \"adalah\" can mean \"is\"."
+          }
+        ]
+      },
+      {
+        "word": "are (formal copula)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"adalah\" berarti \"are (formal copula)\".",
+            "translation": "In some contexts, \"adalah\" can mean \"are (formal copula)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "ialah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"adalah\" dengan \"ialah\" untuk nuansa berbeda.",
+            "translation": "Compare \"adalah\" with \"ialah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "merupakan",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"adalah\" dengan \"merupakan\" untuk nuansa berbeda.",
+            "translation": "Compare \"adalah\" with \"merupakan\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "adalahnya",
+        "examples": [
+          {
+            "example": "Bentuk \"adalahnya\" masih terkait dengan kata dasar \"adalah\".",
+            "translation": "The form \"adalahnya\" is still related to \"is, are (formal copula)\"."
+          }
+        ]
+      },
+      {
+        "word": "adalah-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"adalah-ku\" masih terkait dengan kata dasar \"adalah\".",
+            "translation": "The form \"adalah-ku\" is still related to \"is, are (formal copula)\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Copula",
+    "category": "Copula",
+    "notes": "",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"adalah\"?",
+        "answer": "Gunakan \"adalah\" ketika ingin menyampaikan arti \"is\" dalam konteks copula."
+      }
+    ]
+  },
+  {
+    "word": "deh",
+    "translation": "softening particle",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"deh\" dalam percakapan sehari-hari.",
+        "translation": "I use \"softening particle\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"deh\"?",
+        "translation": "Can you explain the meaning of \"softening particle\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"deh\".",
+        "translation": "The teacher gave an example sentence with \"softening particle\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "softening particle",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"deh\" berarti \"softening particle\".",
+            "translation": "In some contexts, \"deh\" can mean \"softening particle\"."
+          }
+        ]
+      },
+      {
+        "word": "softening particle (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"deh\" berarti \"softening particle (contextual)\".",
+            "translation": "In some contexts, \"deh\" can mean \"softening particle (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "-lah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"deh\" dengan \"-lah\" untuk nuansa berbeda.",
+            "translation": "Compare \"deh\" with \"-lah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "-kah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"deh\" dengan \"-kah\" untuk nuansa berbeda.",
+            "translation": "Compare \"deh\" with \"-kah\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "dehnya",
+        "examples": [
+          {
+            "example": "Bentuk \"dehnya\" masih terkait dengan kata dasar \"deh\".",
+            "translation": "The form \"dehnya\" is still related to \"softening particle\"."
+          }
+        ]
+      },
+      {
+        "word": "deh-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"deh-ku\" masih terkait dengan kata dasar \"deh\".",
+            "translation": "The form \"deh-ku\" is still related to \"softening particle\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Particle",
+    "category": "Particles",
+    "notes": "Usage: softening",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"deh\"?",
+        "answer": "Gunakan \"deh\" ketika ingin menyampaikan arti \"softening particle\" dalam konteks particles."
+      }
+    ]
+  },
+  {
+    "word": "dong",
+    "translation": "urging particle",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"dong\" dalam percakapan sehari-hari.",
+        "translation": "I use \"urging particle\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"dong\"?",
+        "translation": "Can you explain the meaning of \"urging particle\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"dong\".",
+        "translation": "The teacher gave an example sentence with \"urging particle\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "urging particle",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"dong\" berarti \"urging particle\".",
+            "translation": "In some contexts, \"dong\" can mean \"urging particle\"."
+          }
+        ]
+      },
+      {
+        "word": "urging particle (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"dong\" berarti \"urging particle (contextual)\".",
+            "translation": "In some contexts, \"dong\" can mean \"urging particle (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "-lah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"dong\" dengan \"-lah\" untuk nuansa berbeda.",
+            "translation": "Compare \"dong\" with \"-lah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "-kah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"dong\" dengan \"-kah\" untuk nuansa berbeda.",
+            "translation": "Compare \"dong\" with \"-kah\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "dongnya",
+        "examples": [
+          {
+            "example": "Bentuk \"dongnya\" masih terkait dengan kata dasar \"dong\".",
+            "translation": "The form \"dongnya\" is still related to \"urging particle\"."
+          }
+        ]
+      },
+      {
+        "word": "dong-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"dong-ku\" masih terkait dengan kata dasar \"dong\".",
+            "translation": "The form \"dong-ku\" is still related to \"urging particle\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Particle",
+    "category": "Particles",
+    "notes": "Usage: urging/informal",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"dong\"?",
+        "answer": "Gunakan \"dong\" ketika ingin menyampaikan arti \"urging particle\" dalam konteks particles."
+      }
+    ]
+  },
+  {
+    "word": "ialah",
+    "translation": "is, are (formal copula)",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"ialah\" dalam percakapan sehari-hari.",
+        "translation": "I use \"is\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"ialah\"?",
+        "translation": "Can you explain the meaning of \"is\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"ialah\".",
+        "translation": "The teacher gave an example sentence with \"is\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "is",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"ialah\" berarti \"is\".",
+            "translation": "In some contexts, \"ialah\" can mean \"is\"."
+          }
+        ]
+      },
+      {
+        "word": "are (formal copula)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"ialah\" berarti \"are (formal copula)\".",
+            "translation": "In some contexts, \"ialah\" can mean \"are (formal copula)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "adalah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"ialah\" dengan \"adalah\" untuk nuansa berbeda.",
+            "translation": "Compare \"ialah\" with \"adalah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "merupakan",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"ialah\" dengan \"merupakan\" untuk nuansa berbeda.",
+            "translation": "Compare \"ialah\" with \"merupakan\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "ialahnya",
+        "examples": [
+          {
+            "example": "Bentuk \"ialahnya\" masih terkait dengan kata dasar \"ialah\".",
+            "translation": "The form \"ialahnya\" is still related to \"is, are (formal copula)\"."
+          }
+        ]
+      },
+      {
+        "word": "ialah-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"ialah-ku\" masih terkait dengan kata dasar \"ialah\".",
+            "translation": "The form \"ialah-ku\" is still related to \"is, are (formal copula)\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Copula",
+    "category": "Copula",
+    "notes": "",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"ialah\"?",
+        "answer": "Gunakan \"ialah\" ketika ingin menyampaikan arti \"is\" dalam konteks copula."
+      }
+    ]
+  },
+  {
+    "word": "kan",
+    "translation": "isn't it/right particle",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"kan\" dalam percakapan sehari-hari.",
+        "translation": "I use \"isn't it\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"kan\"?",
+        "translation": "Can you explain the meaning of \"isn't it\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"kan\".",
+        "translation": "The teacher gave an example sentence with \"isn't it\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "isn't it",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"kan\" berarti \"isn't it\".",
+            "translation": "In some contexts, \"kan\" can mean \"isn't it\"."
+          }
+        ]
+      },
+      {
+        "word": "right particle",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"kan\" berarti \"right particle\".",
+            "translation": "In some contexts, \"kan\" can mean \"right particle\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "-lah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"kan\" dengan \"-lah\" untuk nuansa berbeda.",
+            "translation": "Compare \"kan\" with \"-lah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "-kah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"kan\" dengan \"-kah\" untuk nuansa berbeda.",
+            "translation": "Compare \"kan\" with \"-kah\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "kannya",
+        "examples": [
+          {
+            "example": "Bentuk \"kannya\" masih terkait dengan kata dasar \"kan\".",
+            "translation": "The form \"kannya\" is still related to \"isn't it/right particle\"."
+          }
+        ]
+      },
+      {
+        "word": "kan-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"kan-ku\" masih terkait dengan kata dasar \"kan\".",
+            "translation": "The form \"kan-ku\" is still related to \"isn't it/right particle\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Particle",
+    "category": "Particles",
+    "notes": "Usage: confirmation",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"kan\"?",
+        "answer": "Gunakan \"kan\" ketika ingin menyampaikan arti \"isn't it\" dalam konteks particles."
+      }
+    ]
+  },
+  {
+    "word": "kaum",
+    "translation": "group of people",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"kaum\" dalam percakapan sehari-hari.",
+        "translation": "I use \"group of people\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"kaum\"?",
+        "translation": "Can you explain the meaning of \"group of people\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"kaum\".",
+        "translation": "The teacher gave an example sentence with \"group of people\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "group of people",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"kaum\" berarti \"group of people\".",
+            "translation": "In some contexts, \"kaum\" can mean \"group of people\"."
+          }
+        ]
+      },
+      {
+        "word": "group of people (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"kaum\" berarti \"group of people (contextual)\".",
+            "translation": "In some contexts, \"kaum\" can mean \"group of people (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "yang",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"kaum\" dengan \"yang\" untuk nuansa berbeda.",
+            "translation": "Compare \"kaum\" with \"yang\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "para",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"kaum\" dengan \"para\" untuk nuansa berbeda.",
+            "translation": "Compare \"kaum\" with \"para\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "kaumnya",
+        "examples": [
+          {
+            "example": "Bentuk \"kaumnya\" masih terkait dengan kata dasar \"kaum\".",
+            "translation": "The form \"kaumnya\" is still related to \"group of people\"."
+          }
+        ]
+      },
+      {
+        "word": "kaum-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"kaum-ku\" masih terkait dengan kata dasar \"kaum\".",
+            "translation": "The form \"kaum-ku\" is still related to \"group of people\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Article",
+    "category": "Articles",
+    "notes": "Usage: collective",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"kaum\"?",
+        "answer": "Gunakan \"kaum\" ketika ingin menyampaikan arti \"group of people\" dalam konteks articles."
+      }
+    ]
+  },
+  {
+    "word": "kok",
+    "translation": "surprise/question particle",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"kok\" dalam percakapan sehari-hari.",
+        "translation": "I use \"surprise\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"kok\"?",
+        "translation": "Can you explain the meaning of \"surprise\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"kok\".",
+        "translation": "The teacher gave an example sentence with \"surprise\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "surprise",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"kok\" berarti \"surprise\".",
+            "translation": "In some contexts, \"kok\" can mean \"surprise\"."
+          }
+        ]
+      },
+      {
+        "word": "question particle",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"kok\" berarti \"question particle\".",
+            "translation": "In some contexts, \"kok\" can mean \"question particle\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "-lah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"kok\" dengan \"-lah\" untuk nuansa berbeda.",
+            "translation": "Compare \"kok\" with \"-lah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "-kah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"kok\" dengan \"-kah\" untuk nuansa berbeda.",
+            "translation": "Compare \"kok\" with \"-kah\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "koknya",
+        "examples": [
+          {
+            "example": "Bentuk \"koknya\" masih terkait dengan kata dasar \"kok\".",
+            "translation": "The form \"koknya\" is still related to \"surprise/question particle\"."
+          }
+        ]
+      },
+      {
+        "word": "kok-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"kok-ku\" masih terkait dengan kata dasar \"kok\".",
+            "translation": "The form \"kok-ku\" is still related to \"surprise/question particle\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Particle",
+    "category": "Particles",
+    "notes": "Usage: surprise",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"kok\"?",
+        "answer": "Gunakan \"kok\" ketika ingin menyampaikan arti \"surprise\" dalam konteks particles."
+      }
+    ]
+  },
+  {
+    "word": "lho",
+    "translation": "surprise particle",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"lho\" dalam percakapan sehari-hari.",
+        "translation": "I use \"surprise particle\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"lho\"?",
+        "translation": "Can you explain the meaning of \"surprise particle\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"lho\".",
+        "translation": "The teacher gave an example sentence with \"surprise particle\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "surprise particle",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"lho\" berarti \"surprise particle\".",
+            "translation": "In some contexts, \"lho\" can mean \"surprise particle\"."
+          }
+        ]
+      },
+      {
+        "word": "surprise particle (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"lho\" berarti \"surprise particle (contextual)\".",
+            "translation": "In some contexts, \"lho\" can mean \"surprise particle (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "-lah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"lho\" dengan \"-lah\" untuk nuansa berbeda.",
+            "translation": "Compare \"lho\" with \"-lah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "-kah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"lho\" dengan \"-kah\" untuk nuansa berbeda.",
+            "translation": "Compare \"lho\" with \"-kah\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "lhonya",
+        "examples": [
+          {
+            "example": "Bentuk \"lhonya\" masih terkait dengan kata dasar \"lho\".",
+            "translation": "The form \"lhonya\" is still related to \"surprise particle\"."
+          }
+        ]
+      },
+      {
+        "word": "lho-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"lho-ku\" masih terkait dengan kata dasar \"lho\".",
+            "translation": "The form \"lho-ku\" is still related to \"surprise particle\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Particle",
+    "category": "Particles",
+    "notes": "Usage: surprise",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"lho\"?",
+        "answer": "Gunakan \"lho\" ketika ingin menyampaikan arti \"surprise particle\" dalam konteks particles."
+      }
+    ]
+  },
+  {
+    "word": "merupakan",
+    "translation": "is, constitutes",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"merupakan\" dalam percakapan sehari-hari.",
+        "translation": "I use \"is\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"merupakan\"?",
+        "translation": "Can you explain the meaning of \"is\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"merupakan\".",
+        "translation": "The teacher gave an example sentence with \"is\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "is",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"merupakan\" berarti \"is\".",
+            "translation": "In some contexts, \"merupakan\" can mean \"is\"."
+          }
+        ]
+      },
+      {
+        "word": "constitutes",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"merupakan\" berarti \"constitutes\".",
+            "translation": "In some contexts, \"merupakan\" can mean \"constitutes\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "adalah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"merupakan\" dengan \"adalah\" untuk nuansa berbeda.",
+            "translation": "Compare \"merupakan\" with \"adalah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "ialah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"merupakan\" dengan \"ialah\" untuk nuansa berbeda.",
+            "translation": "Compare \"merupakan\" with \"ialah\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "merupakannya",
+        "examples": [
+          {
+            "example": "Bentuk \"merupakannya\" masih terkait dengan kata dasar \"merupakan\".",
+            "translation": "The form \"merupakannya\" is still related to \"is, constitutes\"."
+          }
+        ]
+      },
+      {
+        "word": "merupakan-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"merupakan-ku\" masih terkait dengan kata dasar \"merupakan\".",
+            "translation": "The form \"merupakan-ku\" is still related to \"is, constitutes\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Copula",
+    "category": "Copula",
+    "notes": "",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"merupakan\"?",
+        "answer": "Gunakan \"merupakan\" ketika ingin menyampaikan arti \"is\" dalam konteks copula."
+      }
+    ]
+  },
+  {
+    "word": "para",
+    "translation": "plural marker for people",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"para\" dalam percakapan sehari-hari.",
+        "translation": "I use \"plural marker for people\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"para\"?",
+        "translation": "Can you explain the meaning of \"plural marker for people\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"para\".",
+        "translation": "The teacher gave an example sentence with \"plural marker for people\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "plural marker for people",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"para\" berarti \"plural marker for people\".",
+            "translation": "In some contexts, \"para\" can mean \"plural marker for people\"."
+          }
+        ]
+      },
+      {
+        "word": "plural marker for people (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"para\" berarti \"plural marker for people (contextual)\".",
+            "translation": "In some contexts, \"para\" can mean \"plural marker for people (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "yang",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"para\" dengan \"yang\" untuk nuansa berbeda.",
+            "translation": "Compare \"para\" with \"yang\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "kaum",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"para\" dengan \"kaum\" untuk nuansa berbeda.",
+            "translation": "Compare \"para\" with \"kaum\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "paranya",
+        "examples": [
+          {
+            "example": "Bentuk \"paranya\" masih terkait dengan kata dasar \"para\".",
+            "translation": "The form \"paranya\" is still related to \"plural marker for people\"."
+          }
+        ]
+      },
+      {
+        "word": "para-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"para-ku\" masih terkait dengan kata dasar \"para\".",
+            "translation": "The form \"para-ku\" is still related to \"plural marker for people\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Article",
+    "category": "Articles",
+    "notes": "Usage: plural",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"para\"?",
+        "answer": "Gunakan \"para\" ketika ingin menyampaikan arti \"plural marker for people\" dalam konteks articles."
+      }
+    ]
+  },
+  {
+    "word": "sang",
+    "translation": "the (honorific)",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"sang\" dalam percakapan sehari-hari.",
+        "translation": "I use \"the (honorific)\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"sang\"?",
+        "translation": "Can you explain the meaning of \"the (honorific)\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"sang\".",
+        "translation": "The teacher gave an example sentence with \"the (honorific)\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "the (honorific)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"sang\" berarti \"the (honorific)\".",
+            "translation": "In some contexts, \"sang\" can mean \"the (honorific)\"."
+          }
+        ]
+      },
+      {
+        "word": "the (honorific) (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"sang\" berarti \"the (honorific) (contextual)\".",
+            "translation": "In some contexts, \"sang\" can mean \"the (honorific) (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "yang",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"sang\" dengan \"yang\" untuk nuansa berbeda.",
+            "translation": "Compare \"sang\" with \"yang\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "para",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"sang\" dengan \"para\" untuk nuansa berbeda.",
+            "translation": "Compare \"sang\" with \"para\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "sangnya",
+        "examples": [
+          {
+            "example": "Bentuk \"sangnya\" masih terkait dengan kata dasar \"sang\".",
+            "translation": "The form \"sangnya\" is still related to \"the (honorific)\"."
+          }
+        ]
+      },
+      {
+        "word": "sang-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"sang-ku\" masih terkait dengan kata dasar \"sang\".",
+            "translation": "The form \"sang-ku\" is still related to \"the (honorific)\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Article",
+    "category": "Articles",
+    "notes": "Usage: honorific",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"sang\"?",
+        "answer": "Gunakan \"sang\" ketika ingin menyampaikan arti \"the (honorific)\" dalam konteks articles."
+      }
+    ]
+  },
+  {
+    "word": "seperempat",
+    "translation": "quarter",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"seperempat\" dalam percakapan sehari-hari.",
+        "translation": "I use \"quarter\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"seperempat\"?",
+        "translation": "Can you explain the meaning of \"quarter\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"seperempat\".",
+        "translation": "The teacher gave an example sentence with \"quarter\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "quarter",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"seperempat\" berarti \"quarter\".",
+            "translation": "In some contexts, \"seperempat\" can mean \"quarter\"."
+          }
+        ]
+      },
+      {
+        "word": "quarter (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"seperempat\" berarti \"quarter (contextual)\".",
+            "translation": "In some contexts, \"seperempat\" can mean \"quarter (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "setengah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"seperempat\" dengan \"setengah\" untuk nuansa berbeda.",
+            "translation": "Compare \"seperempat\" with \"setengah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "sepertiga",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"seperempat\" dengan \"sepertiga\" untuk nuansa berbeda.",
+            "translation": "Compare \"seperempat\" with \"sepertiga\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "seperempatnya",
+        "examples": [
+          {
+            "example": "Bentuk \"seperempatnya\" masih terkait dengan kata dasar \"seperempat\".",
+            "translation": "The form \"seperempatnya\" is still related to \"quarter\"."
+          }
+        ]
+      },
+      {
+        "word": "seperempat-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"seperempat-ku\" masih terkait dengan kata dasar \"seperempat\".",
+            "translation": "The form \"seperempat-ku\" is still related to \"quarter\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Number",
+    "category": "Numbers > Fractions",
+    "notes": "Value: 1/4",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"seperempat\"?",
+        "answer": "Gunakan \"seperempat\" ketika ingin menyampaikan arti \"quarter\" dalam konteks numbers > fractions."
+      }
+    ]
+  },
+  {
+    "word": "sepertiga",
+    "translation": "one third",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"sepertiga\" dalam percakapan sehari-hari.",
+        "translation": "I use \"one third\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"sepertiga\"?",
+        "translation": "Can you explain the meaning of \"one third\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"sepertiga\".",
+        "translation": "The teacher gave an example sentence with \"one third\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "one third",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"sepertiga\" berarti \"one third\".",
+            "translation": "In some contexts, \"sepertiga\" can mean \"one third\"."
+          }
+        ]
+      },
+      {
+        "word": "one third (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"sepertiga\" berarti \"one third (contextual)\".",
+            "translation": "In some contexts, \"sepertiga\" can mean \"one third (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "setengah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"sepertiga\" dengan \"setengah\" untuk nuansa berbeda.",
+            "translation": "Compare \"sepertiga\" with \"setengah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "seperempat",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"sepertiga\" dengan \"seperempat\" untuk nuansa berbeda.",
+            "translation": "Compare \"sepertiga\" with \"seperempat\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "sepertiganya",
+        "examples": [
+          {
+            "example": "Bentuk \"sepertiganya\" masih terkait dengan kata dasar \"sepertiga\".",
+            "translation": "The form \"sepertiganya\" is still related to \"one third\"."
+          }
+        ]
+      },
+      {
+        "word": "sepertiga-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"sepertiga-ku\" masih terkait dengan kata dasar \"sepertiga\".",
+            "translation": "The form \"sepertiga-ku\" is still related to \"one third\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Number",
+    "category": "Numbers > Fractions",
+    "notes": "Value: 1/3",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"sepertiga\"?",
+        "answer": "Gunakan \"sepertiga\" ketika ingin menyampaikan arti \"one third\" dalam konteks numbers > fractions."
+      }
+    ]
+  },
+  {
+    "word": "setengah",
+    "translation": "half",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"setengah\" dalam percakapan sehari-hari.",
+        "translation": "I use \"half\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"setengah\"?",
+        "translation": "Can you explain the meaning of \"half\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"setengah\".",
+        "translation": "The teacher gave an example sentence with \"half\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "half",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"setengah\" berarti \"half\".",
+            "translation": "In some contexts, \"setengah\" can mean \"half\"."
+          }
+        ]
+      },
+      {
+        "word": "half (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"setengah\" berarti \"half (contextual)\".",
+            "translation": "In some contexts, \"setengah\" can mean \"half (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "seperempat",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"setengah\" dengan \"seperempat\" untuk nuansa berbeda.",
+            "translation": "Compare \"setengah\" with \"seperempat\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "sepertiga",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"setengah\" dengan \"sepertiga\" untuk nuansa berbeda.",
+            "translation": "Compare \"setengah\" with \"sepertiga\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "setengahnya",
+        "examples": [
+          {
+            "example": "Bentuk \"setengahnya\" masih terkait dengan kata dasar \"setengah\".",
+            "translation": "The form \"setengahnya\" is still related to \"half\"."
+          }
+        ]
+      },
+      {
+        "word": "setengah-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"setengah-ku\" masih terkait dengan kata dasar \"setengah\".",
+            "translation": "The form \"setengah-ku\" is still related to \"half\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Number",
+    "category": "Numbers > Fractions",
+    "notes": "Value: 1/2",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"setengah\"?",
+        "answer": "Gunakan \"setengah\" ketika ingin menyampaikan arti \"half\" dalam konteks numbers > fractions."
+      }
+    ]
+  },
+  {
+    "word": "si",
+    "translation": "the (informal)",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"si\" dalam percakapan sehari-hari.",
+        "translation": "I use \"the (informal)\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"si\"?",
+        "translation": "Can you explain the meaning of \"the (informal)\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"si\".",
+        "translation": "The teacher gave an example sentence with \"the (informal)\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "the (informal)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"si\" berarti \"the (informal)\".",
+            "translation": "In some contexts, \"si\" can mean \"the (informal)\"."
+          }
+        ]
+      },
+      {
+        "word": "the (informal) (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"si\" berarti \"the (informal) (contextual)\".",
+            "translation": "In some contexts, \"si\" can mean \"the (informal) (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "yang",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"si\" dengan \"yang\" untuk nuansa berbeda.",
+            "translation": "Compare \"si\" with \"yang\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "para",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"si\" dengan \"para\" untuk nuansa berbeda.",
+            "translation": "Compare \"si\" with \"para\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "sinya",
+        "examples": [
+          {
+            "example": "Bentuk \"sinya\" masih terkait dengan kata dasar \"si\".",
+            "translation": "The form \"sinya\" is still related to \"the (informal)\"."
+          }
+        ]
+      },
+      {
+        "word": "si-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"si-ku\" masih terkait dengan kata dasar \"si\".",
+            "translation": "The form \"si-ku\" is still related to \"the (informal)\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Article",
+    "category": "Articles",
+    "notes": "Usage: informal",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"si\"?",
+        "answer": "Gunakan \"si\" ketika ingin menyampaikan arti \"the (informal)\" dalam konteks articles."
+      }
+    ]
+  },
+  {
+    "word": "sih",
+    "translation": "emphasis/question particle",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"sih\" dalam percakapan sehari-hari.",
+        "translation": "I use \"emphasis\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"sih\"?",
+        "translation": "Can you explain the meaning of \"emphasis\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"sih\".",
+        "translation": "The teacher gave an example sentence with \"emphasis\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "emphasis",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"sih\" berarti \"emphasis\".",
+            "translation": "In some contexts, \"sih\" can mean \"emphasis\"."
+          }
+        ]
+      },
+      {
+        "word": "question particle",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"sih\" berarti \"question particle\".",
+            "translation": "In some contexts, \"sih\" can mean \"question particle\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "-lah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"sih\" dengan \"-lah\" untuk nuansa berbeda.",
+            "translation": "Compare \"sih\" with \"-lah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "-kah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"sih\" dengan \"-kah\" untuk nuansa berbeda.",
+            "translation": "Compare \"sih\" with \"-kah\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "sihnya",
+        "examples": [
+          {
+            "example": "Bentuk \"sihnya\" masih terkait dengan kata dasar \"sih\".",
+            "translation": "The form \"sihnya\" is still related to \"emphasis/question particle\"."
+          }
+        ]
+      },
+      {
+        "word": "sih-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"sih-ku\" masih terkait dengan kata dasar \"sih\".",
+            "translation": "The form \"sih-ku\" is still related to \"emphasis/question particle\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Particle",
+    "category": "Particles",
+    "notes": "Usage: emphasis/curiosity",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"sih\"?",
+        "answer": "Gunakan \"sih\" ketika ingin menyampaikan arti \"emphasis\" dalam konteks particles."
+      }
+    ]
+  },
+  {
+    "word": "sri",
+    "translation": "the (very respectful)",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"sri\" dalam percakapan sehari-hari.",
+        "translation": "I use \"the (very respectful)\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"sri\"?",
+        "translation": "Can you explain the meaning of \"the (very respectful)\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"sri\".",
+        "translation": "The teacher gave an example sentence with \"the (very respectful)\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "the (very respectful)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"sri\" berarti \"the (very respectful)\".",
+            "translation": "In some contexts, \"sri\" can mean \"the (very respectful)\"."
+          }
+        ]
+      },
+      {
+        "word": "the (very respectful) (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"sri\" berarti \"the (very respectful) (contextual)\".",
+            "translation": "In some contexts, \"sri\" can mean \"the (very respectful) (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "yang",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"sri\" dengan \"yang\" untuk nuansa berbeda.",
+            "translation": "Compare \"sri\" with \"yang\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "para",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"sri\" dengan \"para\" untuk nuansa berbeda.",
+            "translation": "Compare \"sri\" with \"para\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "srinya",
+        "examples": [
+          {
+            "example": "Bentuk \"srinya\" masih terkait dengan kata dasar \"sri\".",
+            "translation": "The form \"srinya\" is still related to \"the (very respectful)\"."
+          }
+        ]
+      },
+      {
+        "word": "sri-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"sri-ku\" masih terkait dengan kata dasar \"sri\".",
+            "translation": "The form \"sri-ku\" is still related to \"the (very respectful)\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Article",
+    "category": "Articles",
+    "notes": "Usage: very_honorific",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"sri\"?",
+        "answer": "Gunakan \"sri\" ketika ingin menyampaikan arti \"the (very respectful)\" dalam konteks articles."
+      }
+    ]
+  },
+  {
+    "word": "tuh",
+    "translation": "pointing particle",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"tuh\" dalam percakapan sehari-hari.",
+        "translation": "I use \"pointing particle\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"tuh\"?",
+        "translation": "Can you explain the meaning of \"pointing particle\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"tuh\".",
+        "translation": "The teacher gave an example sentence with \"pointing particle\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "pointing particle",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"tuh\" berarti \"pointing particle\".",
+            "translation": "In some contexts, \"tuh\" can mean \"pointing particle\"."
+          }
+        ]
+      },
+      {
+        "word": "pointing particle (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"tuh\" berarti \"pointing particle (contextual)\".",
+            "translation": "In some contexts, \"tuh\" can mean \"pointing particle (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "-lah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"tuh\" dengan \"-lah\" untuk nuansa berbeda.",
+            "translation": "Compare \"tuh\" with \"-lah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "-kah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"tuh\" dengan \"-kah\" untuk nuansa berbeda.",
+            "translation": "Compare \"tuh\" with \"-kah\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "tuhnya",
+        "examples": [
+          {
+            "example": "Bentuk \"tuhnya\" masih terkait dengan kata dasar \"tuh\".",
+            "translation": "The form \"tuhnya\" is still related to \"pointing particle\"."
+          }
+        ]
+      },
+      {
+        "word": "tuh-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"tuh-ku\" masih terkait dengan kata dasar \"tuh\".",
+            "translation": "The form \"tuh-ku\" is still related to \"pointing particle\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Particle",
+    "category": "Particles",
+    "notes": "Usage: pointing",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"tuh\"?",
+        "answer": "Gunakan \"tuh\" ketika ingin menyampaikan arti \"pointing particle\" dalam konteks particles."
+      }
+    ]
+  },
+  {
+    "word": "ya",
+    "translation": "isn't it/confirmation particle",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"ya\" dalam percakapan sehari-hari.",
+        "translation": "I use \"isn't it\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"ya\"?",
+        "translation": "Can you explain the meaning of \"isn't it\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"ya\".",
+        "translation": "The teacher gave an example sentence with \"isn't it\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "isn't it",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"ya\" berarti \"isn't it\".",
+            "translation": "In some contexts, \"ya\" can mean \"isn't it\"."
+          }
+        ]
+      },
+      {
+        "word": "confirmation particle",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"ya\" berarti \"confirmation particle\".",
+            "translation": "In some contexts, \"ya\" can mean \"confirmation particle\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "-lah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"ya\" dengan \"-lah\" untuk nuansa berbeda.",
+            "translation": "Compare \"ya\" with \"-lah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "-kah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"ya\" dengan \"-kah\" untuk nuansa berbeda.",
+            "translation": "Compare \"ya\" with \"-kah\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "yanya",
+        "examples": [
+          {
+            "example": "Bentuk \"yanya\" masih terkait dengan kata dasar \"ya\".",
+            "translation": "The form \"yanya\" is still related to \"isn't it/confirmation particle\"."
+          }
+        ]
+      },
+      {
+        "word": "ya-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"ya-ku\" masih terkait dengan kata dasar \"ya\".",
+            "translation": "The form \"ya-ku\" is still related to \"isn't it/confirmation particle\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Particle",
+    "category": "Particles",
+    "notes": "Usage: tag_question",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"ya\"?",
+        "answer": "Gunakan \"ya\" ketika ingin menyampaikan arti \"isn't it\" dalam konteks particles."
+      }
+    ]
+  },
+  {
+    "word": "yaitu",
+    "translation": "namely, that is to say",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"yaitu\" dalam percakapan sehari-hari.",
+        "translation": "I use \"namely\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"yaitu\"?",
+        "translation": "Can you explain the meaning of \"namely\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"yaitu\".",
+        "translation": "The teacher gave an example sentence with \"namely\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "namely",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"yaitu\" berarti \"namely\".",
+            "translation": "In some contexts, \"yaitu\" can mean \"namely\"."
+          }
+        ]
+      },
+      {
+        "word": "that is to say",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"yaitu\" berarti \"that is to say\".",
+            "translation": "In some contexts, \"yaitu\" can mean \"that is to say\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "adalah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"yaitu\" dengan \"adalah\" untuk nuansa berbeda.",
+            "translation": "Compare \"yaitu\" with \"adalah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "ialah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"yaitu\" dengan \"ialah\" untuk nuansa berbeda.",
+            "translation": "Compare \"yaitu\" with \"ialah\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "yaitunya",
+        "examples": [
+          {
+            "example": "Bentuk \"yaitunya\" masih terkait dengan kata dasar \"yaitu\".",
+            "translation": "The form \"yaitunya\" is still related to \"namely, that is to say\"."
+          }
+        ]
+      },
+      {
+        "word": "yaitu-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"yaitu-ku\" masih terkait dengan kata dasar \"yaitu\".",
+            "translation": "The form \"yaitu-ku\" is still related to \"namely, that is to say\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Copula",
+    "category": "Copula",
+    "notes": "",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"yaitu\"?",
+        "answer": "Gunakan \"yaitu\" ketika ingin menyampaikan arti \"namely\" dalam konteks copula."
+      }
+    ]
+  },
+  {
+    "word": "yakni",
+    "translation": "namely, that is",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"yakni\" dalam percakapan sehari-hari.",
+        "translation": "I use \"namely\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"yakni\"?",
+        "translation": "Can you explain the meaning of \"namely\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"yakni\".",
+        "translation": "The teacher gave an example sentence with \"namely\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "namely",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"yakni\" berarti \"namely\".",
+            "translation": "In some contexts, \"yakni\" can mean \"namely\"."
+          }
+        ]
+      },
+      {
+        "word": "that is",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"yakni\" berarti \"that is\".",
+            "translation": "In some contexts, \"yakni\" can mean \"that is\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "adalah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"yakni\" dengan \"adalah\" untuk nuansa berbeda.",
+            "translation": "Compare \"yakni\" with \"adalah\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "ialah",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"yakni\" dengan \"ialah\" untuk nuansa berbeda.",
+            "translation": "Compare \"yakni\" with \"ialah\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "yakninya",
+        "examples": [
+          {
+            "example": "Bentuk \"yakninya\" masih terkait dengan kata dasar \"yakni\".",
+            "translation": "The form \"yakninya\" is still related to \"namely, that is\"."
+          }
+        ]
+      },
+      {
+        "word": "yakni-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"yakni-ku\" masih terkait dengan kata dasar \"yakni\".",
+            "translation": "The form \"yakni-ku\" is still related to \"namely, that is\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Copula",
+    "category": "Copula",
+    "notes": "",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"yakni\"?",
+        "answer": "Gunakan \"yakni\" ketika ingin menyampaikan arti \"namely\" dalam konteks copula."
+      }
+    ]
+  },
+  {
+    "word": "yang",
+    "translation": "that, which, who",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"yang\" dalam percakapan sehari-hari.",
+        "translation": "I use \"that\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"yang\"?",
+        "translation": "Can you explain the meaning of \"that\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"yang\".",
+        "translation": "The teacher gave an example sentence with \"that\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "that",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"yang\" berarti \"that\".",
+            "translation": "In some contexts, \"yang\" can mean \"that\"."
+          }
+        ]
+      },
+      {
+        "word": "which",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"yang\" berarti \"which\".",
+            "translation": "In some contexts, \"yang\" can mean \"which\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "para",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"yang\" dengan \"para\" untuk nuansa berbeda.",
+            "translation": "Compare \"yang\" with \"para\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "kaum",
+        "level": "3",
+        "examples": [
+          {
+            "example": "Bandingkan \"yang\" dengan \"kaum\" untuk nuansa berbeda.",
+            "translation": "Compare \"yang\" with \"kaum\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "yangnya",
+        "examples": [
+          {
+            "example": "Bentuk \"yangnya\" masih terkait dengan kata dasar \"yang\".",
+            "translation": "The form \"yangnya\" is still related to \"that, which, who\"."
+          }
+        ]
+      },
+      {
+        "word": "yang-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"yang-ku\" masih terkait dengan kata dasar \"yang\".",
+            "translation": "The form \"yang-ku\" is still related to \"that, which, who\"."
+          }
+        ]
+      }
+    ],
+    "level": "3",
+    "learned": false,
+    "type": "Article",
+    "category": "Articles",
+    "notes": "Usage: relative_clause",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"yang\"?",
+        "answer": "Gunakan \"yang\" ketika ingin menyampaikan arti \"that\" dalam konteks articles."
+      }
+    ]
+  }
+]

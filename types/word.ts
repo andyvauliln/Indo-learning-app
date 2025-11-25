@@ -1,0 +1,64 @@
+export type WordLevel = "1" | "2" | "3" | "4"
+
+export interface WordExample {
+    example: string
+    translation: string
+}
+
+export interface WordVariant {
+    word: string
+    examples: WordExample[]
+}
+
+export interface SimilarWord extends WordVariant {
+    level: WordLevel
+}
+
+export interface WordQA {
+    qestions: string
+    answer: string
+}
+
+export interface WordEntry {
+    word: string
+    translation: string
+    examples: WordExample[]
+    alternative_translations: WordVariant[]
+    similar_words: SimilarWord[]
+    other_forms: WordVariant[]
+    level: WordLevel
+    learned: boolean
+    type: string
+    category: string
+    notes: string
+    "q&a": WordQA[]
+}
+
+export type WordCreateInput = Omit<WordEntry, "learned"> & {
+    learned?: boolean
+}
+
+export type WordUpdateInput = Partial<Omit<WordEntry, "word">> & {
+    word?: string
+}
+
+export interface WordSearchOptions {
+    levels?: WordLevel[]
+    includeLearned?: boolean
+    limit?: number
+    exact?: boolean
+    includeForms?: boolean
+}
+
+export interface WordGenerationArgs {
+    baseWord: string
+    level: WordLevel
+    category?: string
+    type?: string
+    translationHint?: string
+    additionalContext?: string
+    model?: string
+    temperature?: number
+}
+
+export const WORD_LEVELS: WordLevel[] = ["1", "2", "3", "4"]

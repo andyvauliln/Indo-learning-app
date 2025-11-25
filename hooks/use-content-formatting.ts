@@ -2,7 +2,7 @@
  * Custom hook for managing content formatting
  */
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, useMemo } from "react"
 import { generateTranslation } from "@/lib/api"
 import { DisplayFormat } from "@/types/reading-text"
 
@@ -22,11 +22,11 @@ export function useContentFormatting({
     const [localFormattedContent, setLocalFormattedContent] = useState<Record<string, string>>({})
     const [isFormatting, setIsFormatting] = useState(false)
 
-    const currentFormattedContent: Record<string, string> = {
+    const currentFormattedContent: Record<string, string> = useMemo(() => ({
         clean: content,
         ...localFormattedContent,
         ...formattedContent
-    }
+    }), [content, localFormattedContent, formattedContent])
 
     const updateFormattedContent = useCallback((newContent: Record<string, string>) => {
         if (onUpdateFormattedContent) {

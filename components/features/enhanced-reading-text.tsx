@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import { generateTranslation } from "@/lib/api"
 import { useTaskStore } from "@/lib/store"
 import { FunLoading } from "@/components/ui/fun-loading"
@@ -22,7 +22,6 @@ export function EnhancedReadingText({
     model,
     onContentUpdate,
     basePrompt,
-    onUpdateBasePrompt,
     onRegenerateBase,
     formattedContent = {},
     onUpdateFormattedContent,

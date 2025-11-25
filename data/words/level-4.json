@@ -1,0 +1,548 @@
+[
+  {
+    "word": "juta",
+    "translation": "millions",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"juta\" dalam percakapan sehari-hari.",
+        "translation": "I use \"millions\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"juta\"?",
+        "translation": "Can you explain the meaning of \"millions\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"juta\".",
+        "translation": "The teacher gave an example sentence with \"millions\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "millions",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"juta\" berarti \"millions\".",
+            "translation": "In some contexts, \"juta\" can mean \"millions\"."
+          }
+        ]
+      },
+      {
+        "word": "millions (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"juta\" berarti \"millions (contextual)\".",
+            "translation": "In some contexts, \"juta\" can mean \"millions (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "puluh",
+        "level": "4",
+        "examples": [
+          {
+            "example": "Bandingkan \"juta\" dengan \"puluh\" untuk nuansa berbeda.",
+            "translation": "Compare \"juta\" with \"puluh\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "ratus",
+        "level": "4",
+        "examples": [
+          {
+            "example": "Bandingkan \"juta\" dengan \"ratus\" untuk nuansa berbeda.",
+            "translation": "Compare \"juta\" with \"ratus\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "jutanya",
+        "examples": [
+          {
+            "example": "Bentuk \"jutanya\" masih terkait dengan kata dasar \"juta\".",
+            "translation": "The form \"jutanya\" is still related to \"millions\"."
+          }
+        ]
+      },
+      {
+        "word": "juta-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"juta-ku\" masih terkait dengan kata dasar \"juta\".",
+            "translation": "The form \"juta-ku\" is still related to \"millions\"."
+          }
+        ]
+      }
+    ],
+    "level": "4",
+    "learned": false,
+    "type": "Number",
+    "category": "Numbers > Multipliers",
+    "notes": "Multiplier: 1000000",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"juta\"?",
+        "answer": "Gunakan \"juta\" ketika ingin menyampaikan arti \"millions\" dalam konteks numbers > multipliers."
+      }
+    ]
+  },
+  {
+    "word": "miliar",
+    "translation": "billions",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"miliar\" dalam percakapan sehari-hari.",
+        "translation": "I use \"billions\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"miliar\"?",
+        "translation": "Can you explain the meaning of \"billions\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"miliar\".",
+        "translation": "The teacher gave an example sentence with \"billions\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "billions",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"miliar\" berarti \"billions\".",
+            "translation": "In some contexts, \"miliar\" can mean \"billions\"."
+          }
+        ]
+      },
+      {
+        "word": "billions (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"miliar\" berarti \"billions (contextual)\".",
+            "translation": "In some contexts, \"miliar\" can mean \"billions (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "puluh",
+        "level": "4",
+        "examples": [
+          {
+            "example": "Bandingkan \"miliar\" dengan \"puluh\" untuk nuansa berbeda.",
+            "translation": "Compare \"miliar\" with \"puluh\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "ratus",
+        "level": "4",
+        "examples": [
+          {
+            "example": "Bandingkan \"miliar\" dengan \"ratus\" untuk nuansa berbeda.",
+            "translation": "Compare \"miliar\" with \"ratus\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "miliarnya",
+        "examples": [
+          {
+            "example": "Bentuk \"miliarnya\" masih terkait dengan kata dasar \"miliar\".",
+            "translation": "The form \"miliarnya\" is still related to \"billions\"."
+          }
+        ]
+      },
+      {
+        "word": "miliar-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"miliar-ku\" masih terkait dengan kata dasar \"miliar\".",
+            "translation": "The form \"miliar-ku\" is still related to \"billions\"."
+          }
+        ]
+      }
+    ],
+    "level": "4",
+    "learned": false,
+    "type": "Number",
+    "category": "Numbers > Multipliers",
+    "notes": "Multiplier: 1000000000",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"miliar\"?",
+        "answer": "Gunakan \"miliar\" ketika ingin menyampaikan arti \"billions\" dalam konteks numbers > multipliers."
+      }
+    ]
+  },
+  {
+    "word": "puluh",
+    "translation": "tens",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"puluh\" dalam percakapan sehari-hari.",
+        "translation": "I use \"tens\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"puluh\"?",
+        "translation": "Can you explain the meaning of \"tens\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"puluh\".",
+        "translation": "The teacher gave an example sentence with \"tens\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "tens",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"puluh\" berarti \"tens\".",
+            "translation": "In some contexts, \"puluh\" can mean \"tens\"."
+          }
+        ]
+      },
+      {
+        "word": "tens (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"puluh\" berarti \"tens (contextual)\".",
+            "translation": "In some contexts, \"puluh\" can mean \"tens (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "ratus",
+        "level": "4",
+        "examples": [
+          {
+            "example": "Bandingkan \"puluh\" dengan \"ratus\" untuk nuansa berbeda.",
+            "translation": "Compare \"puluh\" with \"ratus\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "ribu",
+        "level": "4",
+        "examples": [
+          {
+            "example": "Bandingkan \"puluh\" dengan \"ribu\" untuk nuansa berbeda.",
+            "translation": "Compare \"puluh\" with \"ribu\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "puluhnya",
+        "examples": [
+          {
+            "example": "Bentuk \"puluhnya\" masih terkait dengan kata dasar \"puluh\".",
+            "translation": "The form \"puluhnya\" is still related to \"tens\"."
+          }
+        ]
+      },
+      {
+        "word": "puluh-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"puluh-ku\" masih terkait dengan kata dasar \"puluh\".",
+            "translation": "The form \"puluh-ku\" is still related to \"tens\"."
+          }
+        ]
+      }
+    ],
+    "level": "4",
+    "learned": false,
+    "type": "Number",
+    "category": "Numbers > Multipliers",
+    "notes": "Multiplier: 10",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"puluh\"?",
+        "answer": "Gunakan \"puluh\" ketika ingin menyampaikan arti \"tens\" dalam konteks numbers > multipliers."
+      }
+    ]
+  },
+  {
+    "word": "ratus",
+    "translation": "hundreds",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"ratus\" dalam percakapan sehari-hari.",
+        "translation": "I use \"hundreds\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"ratus\"?",
+        "translation": "Can you explain the meaning of \"hundreds\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"ratus\".",
+        "translation": "The teacher gave an example sentence with \"hundreds\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "hundreds",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"ratus\" berarti \"hundreds\".",
+            "translation": "In some contexts, \"ratus\" can mean \"hundreds\"."
+          }
+        ]
+      },
+      {
+        "word": "hundreds (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"ratus\" berarti \"hundreds (contextual)\".",
+            "translation": "In some contexts, \"ratus\" can mean \"hundreds (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "puluh",
+        "level": "4",
+        "examples": [
+          {
+            "example": "Bandingkan \"ratus\" dengan \"puluh\" untuk nuansa berbeda.",
+            "translation": "Compare \"ratus\" with \"puluh\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "ribu",
+        "level": "4",
+        "examples": [
+          {
+            "example": "Bandingkan \"ratus\" dengan \"ribu\" untuk nuansa berbeda.",
+            "translation": "Compare \"ratus\" with \"ribu\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "ratusnya",
+        "examples": [
+          {
+            "example": "Bentuk \"ratusnya\" masih terkait dengan kata dasar \"ratus\".",
+            "translation": "The form \"ratusnya\" is still related to \"hundreds\"."
+          }
+        ]
+      },
+      {
+        "word": "ratus-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"ratus-ku\" masih terkait dengan kata dasar \"ratus\".",
+            "translation": "The form \"ratus-ku\" is still related to \"hundreds\"."
+          }
+        ]
+      }
+    ],
+    "level": "4",
+    "learned": false,
+    "type": "Number",
+    "category": "Numbers > Multipliers",
+    "notes": "Multiplier: 100",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"ratus\"?",
+        "answer": "Gunakan \"ratus\" ketika ingin menyampaikan arti \"hundreds\" dalam konteks numbers > multipliers."
+      }
+    ]
+  },
+  {
+    "word": "ribu",
+    "translation": "thousands",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"ribu\" dalam percakapan sehari-hari.",
+        "translation": "I use \"thousands\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"ribu\"?",
+        "translation": "Can you explain the meaning of \"thousands\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"ribu\".",
+        "translation": "The teacher gave an example sentence with \"thousands\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "thousands",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"ribu\" berarti \"thousands\".",
+            "translation": "In some contexts, \"ribu\" can mean \"thousands\"."
+          }
+        ]
+      },
+      {
+        "word": "thousands (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"ribu\" berarti \"thousands (contextual)\".",
+            "translation": "In some contexts, \"ribu\" can mean \"thousands (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "puluh",
+        "level": "4",
+        "examples": [
+          {
+            "example": "Bandingkan \"ribu\" dengan \"puluh\" untuk nuansa berbeda.",
+            "translation": "Compare \"ribu\" with \"puluh\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "ratus",
+        "level": "4",
+        "examples": [
+          {
+            "example": "Bandingkan \"ribu\" dengan \"ratus\" untuk nuansa berbeda.",
+            "translation": "Compare \"ribu\" with \"ratus\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "ribunya",
+        "examples": [
+          {
+            "example": "Bentuk \"ribunya\" masih terkait dengan kata dasar \"ribu\".",
+            "translation": "The form \"ribunya\" is still related to \"thousands\"."
+          }
+        ]
+      },
+      {
+        "word": "ribu-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"ribu-ku\" masih terkait dengan kata dasar \"ribu\".",
+            "translation": "The form \"ribu-ku\" is still related to \"thousands\"."
+          }
+        ]
+      }
+    ],
+    "level": "4",
+    "learned": false,
+    "type": "Number",
+    "category": "Numbers > Multipliers",
+    "notes": "Multiplier: 1000",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"ribu\"?",
+        "answer": "Gunakan \"ribu\" ketika ingin menyampaikan arti \"thousands\" dalam konteks numbers > multipliers."
+      }
+    ]
+  },
+  {
+    "word": "triliun",
+    "translation": "trillions",
+    "examples": [
+      {
+        "example": "Saya menggunakan \"triliun\" dalam percakapan sehari-hari.",
+        "translation": "I use \"trillions\" in daily conversations."
+      },
+      {
+        "example": "Bisakah kamu jelaskan arti \"triliun\"?",
+        "translation": "Can you explain the meaning of \"trillions\"?"
+      },
+      {
+        "example": "Guru memberi contoh kalimat dengan kata \"triliun\".",
+        "translation": "The teacher gave an example sentence with \"trillions\"."
+      }
+    ],
+    "alternative_translations": [
+      {
+        "word": "trillions",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"triliun\" berarti \"trillions\".",
+            "translation": "In some contexts, \"triliun\" can mean \"trillions\"."
+          }
+        ]
+      },
+      {
+        "word": "trillions (contextual)",
+        "examples": [
+          {
+            "example": "Dalam konteks tertentu, \"triliun\" berarti \"trillions (contextual)\".",
+            "translation": "In some contexts, \"triliun\" can mean \"trillions (contextual)\"."
+          }
+        ]
+      }
+    ],
+    "similar_words": [
+      {
+        "word": "puluh",
+        "level": "4",
+        "examples": [
+          {
+            "example": "Bandingkan \"triliun\" dengan \"puluh\" untuk nuansa berbeda.",
+            "translation": "Compare \"triliun\" with \"puluh\" to sense subtle differences."
+          }
+        ]
+      },
+      {
+        "word": "ratus",
+        "level": "4",
+        "examples": [
+          {
+            "example": "Bandingkan \"triliun\" dengan \"ratus\" untuk nuansa berbeda.",
+            "translation": "Compare \"triliun\" with \"ratus\" to sense subtle differences."
+          }
+        ]
+      }
+    ],
+    "other_forms": [
+      {
+        "word": "triliunnya",
+        "examples": [
+          {
+            "example": "Bentuk \"triliunnya\" masih terkait dengan kata dasar \"triliun\".",
+            "translation": "The form \"triliunnya\" is still related to \"trillions\"."
+          }
+        ]
+      },
+      {
+        "word": "triliun-ku",
+        "examples": [
+          {
+            "example": "Bentuk \"triliun-ku\" masih terkait dengan kata dasar \"triliun\".",
+            "translation": "The form \"triliun-ku\" is still related to \"trillions\"."
+          }
+        ]
+      }
+    ],
+    "level": "4",
+    "learned": false,
+    "type": "Number",
+    "category": "Numbers > Multipliers",
+    "notes": "Multiplier: 1000000000000",
+    "q&a": [
+      {
+        "qestions": "Kapan sebaiknya menggunakan \"triliun\"?",
+        "answer": "Gunakan \"triliun\" ketika ingin menyampaikan arti \"trillions\" dalam konteks numbers > multipliers."
+      }
+    ]
+  }
+]

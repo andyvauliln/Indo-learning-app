@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -14,21 +14,28 @@ interface SettingsViewProps {
     onClose: () => void
 }
 
-export function SettingsView({ onClose }: SettingsViewProps) {
-    const [selectedModel, setSelectedModel] = useState(DEFAULT_MODEL)
-    const [customPrompt, setCustomPrompt] = useState(DEFAULT_PROMPT)
-    const [learningDays, setLearningDays] = useState(3)
-    const [isSaved, setIsSaved] = useState(false)
-
-    useEffect(() => {
-        // Load saved settings
-        const savedSettings = storage.getSettings()
-        if (savedSettings) {
-            setSelectedModel(savedSettings.selectedModel)
-            setCustomPrompt(savedSettings.customPrompt)
-            setLearningDays(savedSettings.learningDays ?? 3)
+function getInitialSettings() {
+    if (typeof window === "undefined") {
+        return {
+            selectedModel: DEFAULT_MODEL,
+            customPrompt: DEFAULT_PROMPT,
+            learningDays: 3
         }
-    }, [])
+    }
+    const savedSettings = storage.getSettings()
+    return {
+        selectedModel: savedSettings?.selectedModel ?? DEFAULT_MODEL,
+        customPrompt: savedSettings?.customPrompt ?? DEFAULT_PROMPT,
+        learningDays: savedSettings?.learningDays ?? 3
+    }
+}
+
+export function SettingsView({ onClose }: SettingsViewProps) {
+    const initialSettings = getInitialSettings()
+    const [selectedModel, setSelectedModel] = useState(initialSettings.selectedModel)
+    const [customPrompt, setCustomPrompt] = useState(initialSettings.customPrompt)
+    const [learningDays, setLearningDays] = useState(initialSettings.learningDays)
+    const [isSaved, setIsSaved] = useState(false)
 
     const handleSave = () => {
         const settings: Settings = {
@@ -112,6 +119,30 @@ export function SettingsView({ onClose }: SettingsViewProps) {
                         <p className="text-sm text-muted-foreground">
                             This prompt will be used to guide the AI when translating your text to Indonesian.
                         </p>
+                    </div>
+
+                    {/* Learning Days */}
+                    <div className="space-y-3">
+                        <Label htmlFor="learning-days" className="text-base font-semibold">
+                            Learning Days Split
+                        </Label>
+                        <div className="flex items-center gap-3">
+                            <input
+                                id="learning-days"
+                                type="number"
+                                min={1}
+                                max={30}
+                                value={learningDays}
+                                onChange={(e) => {
+                                    const value = Number(e.target.value)
+                                    setLearningDays(Number.isNaN(value) ? 1 : Math.min(Math.max(value, 1), 30))
+                                }}
+                                className="w-24 rounded-md border border-input bg-background px-3 py-2 text-base shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                            />
+                            <p className="text-sm text-muted-foreground">
+                                Number of days to distribute study paragraphs.
+                            </p>
+                        </div>
                     </div>
 
                     {/* Action Buttons */}
