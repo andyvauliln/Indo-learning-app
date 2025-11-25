@@ -7,13 +7,35 @@ import level1 from "@/data/words/level-1.json"
 import level2 from "@/data/words/level-2.json"
 import level3 from "@/data/words/level-3.json"
 import level4 from "@/data/words/level-4.json"
-import { WordEntry, WordExample, WordLevel, WordQA } from "@/types/word"
+import { WordEntry, WordExample, WordLevel, WordQA, WORD_LEVELS } from "@/types/word"
 import { generateExampleAI, generateWordEntryAI, askWordQuestionAI } from "@/lib/word-ai"
 import { cleanWordToken, normalizeToken, stripAffixes } from "@/lib/word-utils"
 
 type WordMap = Record<string, WordEntry>
 
-const DEFAULT_WORDS: WordEntry[] = [...level1, ...level2, ...level3, ...level4]
+function toWordLevel(value: string): WordLevel {
+    return WORD_LEVELS.includes(value as WordLevel) ? (value as WordLevel) : "2"
+}
+
+function normalizeWordEntry(entry: any): WordEntry {
+    return {
+        ...entry,
+        level: toWordLevel(entry.level),
+        learned: Boolean(entry.learned),
+        examples: entry.examples ?? [],
+        alternative_translations: entry.alternative_translations ?? [],
+        similar_words: (entry.similar_words ?? []).map((similar: any) => ({
+            ...similar,
+            level: toWordLevel(similar.level),
+            examples: similar.examples ?? [],
+        })),
+        other_forms: entry.other_forms ?? [],
+        notes: entry.notes ?? "",
+        "q&a": entry["q&a"] ?? [],
+    }
+}
+
+const DEFAULT_WORDS: WordEntry[] = [...level1, ...level2, ...level3, ...level4].map(normalizeWordEntry)
 
 function buildWordMap(entries: WordEntry[]): WordMap {
     return entries.reduce<WordMap>((map, entry) => {
