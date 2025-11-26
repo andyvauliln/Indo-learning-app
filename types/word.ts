@@ -32,6 +32,7 @@ export interface WordEntry {
     category: string
     notes: string
     "q&a": WordQA[]
+    memeImage?: string  // URL/path to generated meme image
 }
 
 export type WordCreateInput = Omit<WordEntry, "learned"> & {
