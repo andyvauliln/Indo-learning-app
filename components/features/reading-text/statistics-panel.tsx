@@ -11,6 +11,7 @@ export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
         learnedCount,
         totalSentences,
         wordCount,
+        learnedWordCount,
         learnedPercentage,
         daysPassed,
         totalDaysGoal
@@ -24,8 +25,8 @@ export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
                 subtitle={`${learnedPercentage}%`}
             />
             <StatCard
-                value={wordCount}
-                label="Total Words"
+                value={`${learnedWordCount}/${wordCount}`}
+                label="Words Learned"
             />
             <StatCard
                 value={daysPassed}

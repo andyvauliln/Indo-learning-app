@@ -181,10 +181,20 @@ export function EnhancedReadingText({
     const daysPassed = calculateDaysPassed(startDate)
     const totalDaysGoal = calculateEffectiveLearningDays(displayParagraphs.length, learningDays)
 
+    // Calculate learned word count from learned sentences
+    const learnedSentences = displayParagraphs.filter((_, index) => {
+        const paragraphId = `para-${index}`
+        return paragraphStates[paragraphId]
+    })
+    const learnedWordCount = learnedSentences.reduce((total, sentence) => {
+        return total + countWords(sentence)
+    }, 0)
+
     const statistics: StatisticsData = {
         learnedCount: Object.values(paragraphStates).filter(Boolean).length,
         totalSentences: displayParagraphs.length,
         wordCount: countWords(displayContent),
+        learnedWordCount,
         learnedPercentage: calculatePercentage(
             Object.values(paragraphStates).filter(Boolean).length,
             displayParagraphs.length

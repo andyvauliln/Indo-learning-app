@@ -288,21 +288,18 @@ export function ParagraphItem({
                 <div className="flex flex-wrap gap-2 justify-end">
                     {/* Sentence Data Toggle */}
                     <Button
-                        variant="ghost"
+                        variant="outline"
                         size="sm"
                         onClick={() => setShowSentenceData(!showSentenceData)}
-                        className={cn(
-                            "text-xs",
-                            hasSentenceData && "text-primary"
-                        )}
+                        className="text-xs"
                     >
                         {showSentenceData ? (
                             <ChevronUp className="h-3 w-3 mr-1" />
                         ) : (
                             <ChevronDown className="h-3 w-3 mr-1" />
                         )}
-                        {hasSentenceData ? "Hide Analysis" : "Analyze Sentence"}
-                        {hasSentenceData && <Check className="ml-1 h-3 w-3 text-emerald-500" />}
+                        {hasSentenceData ? "Less" : "More"}
+                        {hasSentenceData && <Check className="ml-1 h-3 w-3" />}
                     </Button>
 
                     <Button
@@ -320,13 +317,10 @@ export function ParagraphItem({
                         variant={isLearned ? "default" : "outline"}
                         size="sm"
                         onClick={onMarkAsLearned}
-                        className={cn(
-                            "text-xs",
-                            isLearned && "bg-emerald-600 hover:bg-emerald-700"
-                        )}
+                        className="text-xs"
                     >
                         <Check className="h-3 w-3 mr-1" />
-                        {isLearned ? "Learned ✓" : "Mark as Learned"}
+                        {isLearned ? "Learned" : "Mark as Learned"}
                     </Button>
                 </div>
 
@@ -337,7 +331,7 @@ export function ParagraphItem({
                             placeholder="Enter regeneration prompt (e.g., 'Make it simpler', 'Use different words', etc.)"
                             value={promptValue}
                             onChange={(e) => onPromptChange(e.target.value)}
-                            className="min-h-[60px] text-sm resize-none"
+                            className="min-h-[60px] text-sm resize-none bg-background border-2 border-border focus:border-primary"
                         />
                         <div className="flex gap-2 justify-end">
                             <Button

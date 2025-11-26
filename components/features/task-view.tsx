@@ -167,25 +167,13 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-                {/* Delete Task History Button */}
-                <div className="flex justify-end">
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={handleDeleteTaskHistory}
-                        className="text-destructive hover:text-destructive"
-                    >
-                        <Trash2 className="mr-2 h-4 w-4" />
-                        Delete Task History
-                    </Button>
-                </div>
                 {subtask.type === "write" && (
                     <>
                         <Textarea
                             value={input}
                             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setInput(e.target.value)}
                             placeholder="Type here or use voice input..."
-                            className="min-h-[200px] text-lg p-4"
+                            className="min-h-[200px] text-lg p-4 border-2 border-primary/30 focus:border-primary bg-background"
                             disabled={subtask.status === "completed" && !isEditing}
                         />
                         
@@ -229,16 +217,25 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
 
                 {subtask.type === "generate" && (
                     <div className="space-y-4">
-                        {/* Task Settings - Always visible */}
-                        <Collapsible open={showTaskSettings} onOpenChange={setShowTaskSettings}>
-                            <CollapsibleTrigger asChild>
-                                <Button variant="outline" className="w-full" size="sm">
-                                    <Settings2 className="mr-2 h-4 w-4" />
-                                    {showTaskSettings ? "Hide" : "Show"} Translation Settings
-                                </Button>
-                            </CollapsibleTrigger>
-                            <CollapsibleContent className="space-y-4 pt-4">
-                                {/* Model Selection */}
+                        {/* Action Buttons Row */}
+                        <div className="flex gap-2">
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={handleDeleteTaskHistory}
+                            >
+                                <Trash2 className="mr-2 h-4 w-4" />
+                                Delete Task Data
+                            </Button>
+                            <Collapsible open={showTaskSettings} onOpenChange={setShowTaskSettings} className="flex-1">
+                                <CollapsibleTrigger asChild>
+                                    <Button variant="outline" className="w-full" size="sm">
+                                        <Settings2 className="mr-2 h-4 w-4" />
+                                        {showTaskSettings ? "Hide" : "Show"} Translation Settings
+                                    </Button>
+                                </CollapsibleTrigger>
+                                <CollapsibleContent className="space-y-4 pt-4">
+                                    {/* Model Selection */}
                                 <div className="space-y-2">
                                     <Label htmlFor="task-model" className="text-sm font-medium">
                                         Translation Model
@@ -253,7 +250,7 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
                                         }
                                         storage.saveSettings({ ...currentSettings, selectedModel: value })
                                     }}>
-                                        <SelectTrigger id="task-model">
+                                        <SelectTrigger id="task-model" className="border-2 border-primary/30 focus:border-primary bg-background">
                                             <SelectValue placeholder="Choose a model" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -296,7 +293,7 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
                                             storage.saveSettings({ ...currentSettings, customPrompt: newPrompt })
                                         }}
                                         placeholder="Enter custom prompt..."
-                                        className="min-h-[80px] text-sm"
+                                        className="min-h-[80px] text-sm border-2 border-primary/30 focus:border-primary bg-background"
                                     />
                                 </div>
 
@@ -322,13 +319,14 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
                                                 }
                                                 storage.saveSettings({ ...currentSettings, learningDays: value })
                                             }}
-                                            className="w-20 px-3 py-2 border border-input rounded-md bg-background text-sm"
+                                            className="w-20 px-3 py-2 border-2 border-primary/30 focus:border-primary rounded-md bg-background text-sm"
                                         />
                                         <span className="text-sm text-muted-foreground">days to split content equally</span>
                                     </div>
                                 </div>
-                            </CollapsibleContent>
-                        </Collapsible>
+                                </CollapsibleContent>
+                            </Collapsible>
+                        </div>
 
                         {/* Translation Result */}
                         {subtask.status === "completed" && subtask.content && (
