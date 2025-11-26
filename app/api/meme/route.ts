@@ -2,14 +2,16 @@ import { NextRequest, NextResponse } from 'next/server'
 import { writeFile, mkdir } from 'node:fs/promises'
 import path from 'node:path'
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY
-const OPENAI_URL = "https://api.openai.com/v1/images/generations"
+const OPENROUTER_API_KEY = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY
+const OPENROUTER_URL = "https://openrouter.ai/api/v1/images/generations"
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+const SITE_NAME = "Indo Learning App"
 
 export async function POST(request: NextRequest) {
     try {
-        if (!OPENAI_API_KEY) {
+        if (!OPENROUTER_API_KEY) {
             return NextResponse.json(
-                { error: 'OpenAI API key not configured' },
+                { error: 'OpenRouter API key not configured' },
                 { status: 500 }
             )
         }
@@ -24,18 +26,20 @@ export async function POST(request: NextRequest) {
             )
         }
 
-        // Create a meme-style prompt for DALL-E
+        // Create a meme-style prompt for image generation
         const memePrompt = `Create a funny, memorable meme image that helps learn the Indonesian word "${word}" which means "${translation}" in English. The image should be colorful, humorous, and visually represent the meaning in a memorable way. Make it simple, bold, and meme-like with clear visual storytelling. No text in the image.`
 
-        // Call OpenAI DALL-E API
-        const response = await fetch(OPENAI_URL, {
+        // Call OpenRouter Image Generation API
+        const response = await fetch(OPENROUTER_URL, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${OPENAI_API_KEY}`,
+                'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
                 'Content-Type': 'application/json',
+                'HTTP-Referer': SITE_URL,
+                'X-Title': SITE_NAME,
             },
             body: JSON.stringify({
-                model: 'dall-e-3',
+                model: 'openai/dall-e-3',
                 prompt: memePrompt,
                 n: 1,
                 size: '1024x1024',
@@ -46,7 +50,7 @@ export async function POST(request: NextRequest) {
 
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}))
-            console.error('OpenAI API error:', errorData)
+            console.error('OpenRouter API error:', errorData)
             return NextResponse.json(
                 { error: errorData?.error?.message || 'Failed to generate meme image' },
                 { status: response.status }
@@ -58,7 +62,7 @@ export async function POST(request: NextRequest) {
 
         if (!imageBase64) {
             return NextResponse.json(
-                { error: 'No image data received from OpenAI' },
+                { error: 'No image data received from OpenRouter' },
                 { status: 500 }
             )
         }
