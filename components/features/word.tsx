@@ -13,6 +13,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { useWordStore } from "@/lib/word-store"
+import { storage } from "@/lib/storage"
+import { DEFAULT_MEME_TEXT_MODEL, DEFAULT_IMAGE_MODEL } from "@/lib/models"
 import { cleanWordToken } from "@/lib/word-utils"
 import { cn } from "@/lib/utils"
 import { WordEntry, WordLevel, WordVariant } from "@/types/word"
@@ -259,7 +261,13 @@ export function Word({ text, sentence }: WordProps) {
         setMemeLoading(true)
         setError(null)
         try {
-            await generateMemeImage(cleanedToken)
+            // Get model settings from storage
+            const settings = storage.getSettings()
+            const options = {
+                textModel: settings?.memeTextModel || DEFAULT_MEME_TEXT_MODEL,
+                imageModel: settings?.memeImageModel || DEFAULT_IMAGE_MODEL,
+            }
+            await generateMemeImage(cleanedToken, options)
         } catch (err) {
             setError(err instanceof Error ? err.message : "Failed to generate meme image")
         } finally {
@@ -582,7 +590,20 @@ export function Word({ text, sentence }: WordProps) {
                                             <p className="text-sm text-muted-foreground">Creating a memorable meme for &ldquo;{wordEntry.word}&rdquo;...</p>
                                         </div>
                                     ) : wordEntry.memeImage ? (
-                                        <div className="rounded-lg border border-border/50 bg-muted/20 p-3 overflow-hidden">
+                                        <div className="rounded-lg border border-border/50 bg-muted/20 p-4 overflow-hidden space-y-4">
+                                            {/* Meme Concept Info */}
+                                            {wordEntry.memeConcept && (
+                                                <div className="space-y-2 pb-3 border-b border-border/30">
+                                                    <div className="flex items-start gap-2">
+                                                        <span className="text-lg">💡</span>
+                                                        <div>
+                                                            <p className="text-sm font-medium text-foreground">{wordEntry.memeConcept.scenario}</p>
+                                                            <p className="text-xs text-muted-foreground mt-1 italic">😄 {wordEntry.memeConcept.humor}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            {/* Meme Image */}
                                             <div className="relative w-full max-w-md mx-auto aspect-square">
                                                 <NextImage 
                                                     src={wordEntry.memeImage} 
@@ -592,7 +613,7 @@ export function Word({ text, sentence }: WordProps) {
                                                     unoptimized
                                                 />
                                             </div>
-                                            <p className="text-center text-xs text-muted-foreground mt-2">
+                                            <p className="text-center text-xs text-muted-foreground">
                                                 Visual mnemonic for &ldquo;{wordEntry.word}&rdquo; ({wordEntry.translation})
                                             </p>
                                         </div>

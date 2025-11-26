@@ -165,7 +165,21 @@ export async function generateExampleAI(word: WordEntry): Promise<WordExample> {
     return JSON.parse(cleaned) as WordExample
 }
 
-export async function generateMemeImageAI(word: WordEntry): Promise<string> {
+export interface MemeGenerationOptions {
+    textModel?: string
+    imageModel?: string
+}
+
+export interface MemeGenerationResult {
+    imageUrl: string
+    concept?: {
+        scenario: string
+        imagePrompt: string
+        humor: string
+    }
+}
+
+export async function generateMemeImageAI(word: WordEntry, options?: MemeGenerationOptions): Promise<MemeGenerationResult> {
     const response = await fetch('/api/meme', {
         method: 'POST',
         headers: {
@@ -174,6 +188,8 @@ export async function generateMemeImageAI(word: WordEntry): Promise<string> {
         body: JSON.stringify({
             word: word.word,
             translation: word.translation,
+            textModel: options?.textModel,
+            imageModel: options?.imageModel,
         }),
     })
 
@@ -183,5 +199,8 @@ export async function generateMemeImageAI(word: WordEntry): Promise<string> {
     }
 
     const data = await response.json()
-    return data.imageUrl
+    return {
+        imageUrl: data.imageUrl,
+        concept: data.concept,
+    }
 }

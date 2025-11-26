@@ -8,7 +8,7 @@ import level2 from "@/data/words/level-2.json"
 import level3 from "@/data/words/level-3.json"
 import level4 from "@/data/words/level-4.json"
 import { WordEntry, WordExample, WordLevel, WordQA, WORD_LEVELS } from "@/types/word"
-import { generateExampleAI, generateWordEntryAI, askWordQuestionAI, generateMemeImageAI } from "@/lib/word-ai"
+import { generateExampleAI, generateWordEntryAI, askWordQuestionAI, generateMemeImageAI, MemeGenerationOptions, MemeGenerationResult } from "@/lib/word-ai"
 import { cleanWordToken, normalizeToken, stripAffixes } from "@/lib/word-utils"
 
 type WordMap = Record<string, WordEntry>
@@ -85,8 +85,8 @@ interface WordStore {
     askAI: (token: string, question: string) => Promise<string>
     addQA: (token: string, qa: WordQA) => void
     generateAIExample: (token: string) => Promise<WordExample>
-    generateMemeImage: (token: string) => Promise<string>
-    setMemeImage: (token: string, imageUrl: string) => void
+    generateMemeImage: (token: string, options?: MemeGenerationOptions) => Promise<MemeGenerationResult>
+    setMemeData: (token: string, data: MemeGenerationResult) => void
     getLearnedWords: () => WordEntry[]
     getAllWords: () => WordEntry[]
 }
@@ -254,17 +254,18 @@ const createWordStore: StateCreator<WordStore> = (set, get) => {
             return example
         },
         
-        generateMemeImage: async (token: string) => {
+        generateMemeImage: async (token: string, options?: MemeGenerationOptions) => {
             const entry = await get().ensureWord(token)
-            const imageUrl = await generateMemeImageAI(entry)
-            get().setMemeImage(token, imageUrl)
-            return imageUrl
+            const result = await generateMemeImageAI(entry, options)
+            get().setMemeData(token, result)
+            return result
         },
         
-        setMemeImage: (token: string, imageUrl: string) => {
+        setMemeData: (token: string, data: MemeGenerationResult) => {
             updateWord(token, (entry) => ({
                 ...entry,
-                memeImage: imageUrl,
+                memeImage: data.imageUrl,
+                memeConcept: data.concept,
             }))
         },
         

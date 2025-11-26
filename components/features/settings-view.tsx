@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { storage, type Settings } from "@/lib/storage"
-import { AVAILABLE_MODELS, DEFAULT_MODEL, DEFAULT_PROMPT } from "@/lib/models"
+import { AVAILABLE_MODELS, DEFAULT_MODEL, DEFAULT_PROMPT, MEME_TEXT_MODELS, IMAGE_MODELS, DEFAULT_MEME_TEXT_MODEL, DEFAULT_IMAGE_MODEL } from "@/lib/models"
 import { Settings as SettingsIcon, Save } from "lucide-react"
 
 interface SettingsViewProps {
@@ -19,6 +19,8 @@ export function SettingsView({ onClose }: SettingsViewProps) {
     const [selectedModel, setSelectedModel] = useState(DEFAULT_MODEL)
     const [customPrompt, setCustomPrompt] = useState(DEFAULT_PROMPT)
     const [learningDays, setLearningDays] = useState(3)
+    const [memeTextModel, setMemeTextModel] = useState(DEFAULT_MEME_TEXT_MODEL)
+    const [memeImageModel, setMemeImageModel] = useState(DEFAULT_IMAGE_MODEL)
     const [isSaved, setIsSaved] = useState(false)
 
     // Load saved settings on client-side only
@@ -28,6 +30,8 @@ export function SettingsView({ onClose }: SettingsViewProps) {
             setSelectedModel(savedSettings.selectedModel ?? DEFAULT_MODEL)
             setCustomPrompt(savedSettings.customPrompt ?? DEFAULT_PROMPT)
             setLearningDays(savedSettings.learningDays ?? 3)
+            setMemeTextModel(savedSettings.memeTextModel ?? DEFAULT_MEME_TEXT_MODEL)
+            setMemeImageModel(savedSettings.memeImageModel ?? DEFAULT_IMAGE_MODEL)
         }
     }, [])
 
@@ -35,7 +39,9 @@ export function SettingsView({ onClose }: SettingsViewProps) {
         const settings: Settings = {
             selectedModel,
             customPrompt,
-            learningDays
+            learningDays,
+            memeTextModel,
+            memeImageModel
         }
         storage.saveSettings(settings)
         setIsSaved(true)
@@ -135,6 +141,81 @@ export function SettingsView({ onClose }: SettingsViewProps) {
                             />
                             <p className="text-sm text-muted-foreground">
                                 Number of days to distribute study paragraphs.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Meme Generation Settings */}
+                    <div className="space-y-4 pt-4 border-t border-border">
+                        <h3 className="text-lg font-semibold text-primary">🎨 Meme Generation Settings</h3>
+                        
+                        {/* Meme Concept Model */}
+                        <div className="space-y-3">
+                            <Label htmlFor="meme-text-model" className="text-base font-semibold">
+                                Meme Concept Model (Text)
+                            </Label>
+                            <p className="text-sm text-muted-foreground">
+                                This model generates creative meme ideas and scenarios for your words.
+                            </p>
+                            <Select value={memeTextModel} onValueChange={setMemeTextModel}>
+                                <SelectTrigger id="meme-text-model" className="w-full">
+                                    <SelectValue placeholder="Choose a model" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {MEME_TEXT_MODELS.map((model) => (
+                                        <SelectItem key={model.id} value={model.id}>
+                                            <div className="flex items-center justify-between w-full gap-4">
+                                                <div className="flex flex-col">
+                                                    <span className="font-medium">{model.name}</span>
+                                                    <span className="text-xs text-muted-foreground">
+                                                        {model.provider} • {model.description}
+                                                    </span>
+                                                </div>
+                                                <span className="text-xs font-mono text-emerald-500 whitespace-nowrap">
+                                                    {model.price}
+                                                </span>
+                                            </div>
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                            <p className="text-xs text-muted-foreground">
+                                Selected: {MEME_TEXT_MODELS.find(m => m.id === memeTextModel)?.name} ({MEME_TEXT_MODELS.find(m => m.id === memeTextModel)?.price})
+                            </p>
+                        </div>
+
+                        {/* Image Generation Model */}
+                        <div className="space-y-3">
+                            <Label htmlFor="meme-image-model" className="text-base font-semibold">
+                                Image Generation Model
+                            </Label>
+                            <p className="text-sm text-muted-foreground">
+                                This model generates the actual meme image from the concept.
+                            </p>
+                            <Select value={memeImageModel} onValueChange={setMemeImageModel}>
+                                <SelectTrigger id="meme-image-model" className="w-full">
+                                    <SelectValue placeholder="Choose an image model" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {IMAGE_MODELS.map((model) => (
+                                        <SelectItem key={model.id} value={model.id}>
+                                            <div className="flex items-center justify-between w-full gap-4">
+                                                <div className="flex flex-col">
+                                                    <span className="font-medium">{model.name}</span>
+                                                    <span className="text-xs text-muted-foreground">
+                                                        {model.provider} • {model.description}
+                                                    </span>
+                                                </div>
+                                                <span className="text-xs font-mono text-emerald-500 whitespace-nowrap">
+                                                    {model.price}
+                                                </span>
+                                            </div>
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                            <p className="text-xs text-muted-foreground">
+                                Selected: {IMAGE_MODELS.find(m => m.id === memeImageModel)?.name} ({IMAGE_MODELS.find(m => m.id === memeImageModel)?.price})
                             </p>
                         </div>
                     </div>
