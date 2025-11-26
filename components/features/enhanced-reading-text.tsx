@@ -177,6 +177,10 @@ export function EnhancedReadingText({
             .map(p => p.trim() + '.')
         : []
 
+    // Calculate current day based on start date
+    const daysPassed = calculateDaysPassed(startDate)
+    const totalDaysGoal = calculateEffectiveLearningDays(displayParagraphs.length, learningDays)
+
     const statistics: StatisticsData = {
         learnedCount: Object.values(paragraphStates).filter(Boolean).length,
         totalSentences: displayParagraphs.length,
@@ -185,11 +189,31 @@ export function EnhancedReadingText({
             Object.values(paragraphStates).filter(Boolean).length,
             displayParagraphs.length
         ),
-        daysPassed: calculateDaysPassed(startDate),
-        totalDaysGoal: calculateEffectiveLearningDays(displayParagraphs.length, learningDays)
+        daysPassed,
+        totalDaysGoal
     }
 
     const dayGroups = groupParagraphsByDay(displayParagraphs, learningDays)
+
+    // Determine which day is the "current" day based on progress
+    const getCurrentDayNumber = () => {
+        // If we have a start date, calculate based on actual days passed
+        if (daysPassed > 0) {
+            return Math.min(daysPassed, totalDaysGoal)
+        }
+        // Otherwise, find the first day with incomplete paragraphs
+        for (const group of dayGroups) {
+            const allLearned = group.paragraphs.every(
+                ({ index }) => paragraphStates[`para-${index}`]
+            )
+            if (!allLearned) {
+                return group.day
+            }
+        }
+        return 1
+    }
+
+    const currentDayNumber = getCurrentDayNumber()
 
     return (
         <div className="space-y-4">
@@ -223,7 +247,7 @@ export function EnhancedReadingText({
                     <FunLoading message="Transforming text..." />
                 </div>
             ) : (
-                <div className="space-y-6">
+                <div className="space-y-4">
                     {displayParagraphs.length > 0 ? (
                         dayGroups.map((dayGroup) => (
                             <DayGroup
@@ -238,6 +262,8 @@ export function EnhancedReadingText({
                                 onTogglePromptInput={togglePromptInput}
                                 onPromptChange={updateParagraphPrompt}
                                 onRegenerate={handleRegenerateParagraph}
+                                defaultExpanded={dayGroup.day === 1}
+                                isCurrentDay={dayGroup.day === currentDayNumber}
                             />
                         ))
                     ) : (
