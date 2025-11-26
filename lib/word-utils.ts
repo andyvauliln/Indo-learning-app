@@ -64,12 +64,26 @@ export function buildWordTokens(word: WordEntry, includeForms = true): Set<strin
 }
 
 export function sanitizeWordJSON(content: string): string {
-    const trimmed = content.trim()
-    if (trimmed.startsWith("```")) {
-        const parts = trimmed.split("```")
-        return parts[1] || parts[2] || trimmed
+    let cleaned = content.trim()
+    
+    // Remove markdown code blocks
+    if (cleaned.startsWith("```")) {
+        const parts = cleaned.split("```")
+        cleaned = parts[1] || parts[2] || cleaned
     }
-    return trimmed
+    
+    // Remove language identifier if present (e.g., "json\n{" -> "{")
+    cleaned = cleaned.replace(/^(json|JSON)\s*\n?/i, "")
+    
+    // Find the first { and last } to extract just the JSON object
+    const firstBrace = cleaned.indexOf("{")
+    const lastBrace = cleaned.lastIndexOf("}")
+    
+    if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+        cleaned = cleaned.slice(firstBrace, lastBrace + 1)
+    }
+    
+    return cleaned.trim()
 }
 
 export function validateWordEntry(entry: WordEntry): WordEntry {
