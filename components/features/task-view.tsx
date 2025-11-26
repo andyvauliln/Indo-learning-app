@@ -7,11 +7,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { generateTranslation } from "@/lib/api"
 import { storage, type Task, type Subtask } from "@/lib/storage"
 import { AVAILABLE_MODELS, DEFAULT_MODEL, DEFAULT_PROMPT, DEFAULT_LEARNING_DAYS } from "@/lib/models"
-import { Loader2, CheckCircle2, ArrowRight, Settings2, Edit, Trash2 } from "lucide-react"
+import { Loader2, CheckCircle2, ArrowRight, Settings2, Edit, Trash2, Mic } from "lucide-react"
+import { VoiceInputButton } from "@/components/ui/voice-input-button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { EnhancedReadingText } from "@/components/features/enhanced-reading-text"
+import { WordReviewSlider } from "@/components/features/word-review-slider"
 import { useTaskStore } from "@/lib/store"
 
 interface TaskViewProps {
@@ -161,6 +163,7 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
                     {subtask.type === "write" && "Write your response below."}
                     {subtask.type === "generate" && "Generate the Indonesian translation."}
                     {subtask.type === "read" && "Read and study the text below."}
+                    {subtask.type === "word-review" && "Review vocabulary words with audio and pronunciation practice."}
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -181,10 +184,32 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
                         <Textarea
                             value={input}
                             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setInput(e.target.value)}
-                            placeholder="Type here..."
+                            placeholder="Type here or use voice input..."
                             className="min-h-[200px] text-lg p-4"
                             disabled={subtask.status === "completed" && !isEditing}
                         />
+                        
+                        {/* Voice Input Section */}
+                        {(subtask.status !== "completed" || isEditing) && (
+                            <div className="flex flex-col gap-3 p-4 border border-primary/20 rounded-lg bg-primary/5">
+                                <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                                    <Mic className="h-4 w-4" />
+                                    Voice Input
+                                </div>
+                                <p className="text-sm text-muted-foreground">
+                                    Click the button below and speak your autobiography. Your speech will be converted to text.
+                                </p>
+                                <VoiceInputButton
+                                    onTranscript={(transcript) => {
+                                        setInput(prev => prev ? `${prev} ${transcript}` : transcript)
+                                    }}
+                                    language="en-US"
+                                    variant="default"
+                                    continuous={true}
+                                />
+                            </div>
+                        )}
+
                         {subtask.status !== "completed" || isEditing ? (
                             <Button onClick={handleSaveWrite} className="w-full" disabled={!input.trim()}>
                                 Save & Continue
@@ -384,6 +409,33 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
                             <Button onClick={handleCompleteRead} className="w-full" size="lg">
                                 <CheckCircle2 className="mr-2 h-5 w-5" />
                                 I have read this
+                            </Button>
+                        )}
+                    </div>
+                )}
+
+                {subtask.type === "word-review" && (
+                    <div className="space-y-6">
+                        <div className="text-center space-y-2 py-4">
+                            <h3 className="text-xl font-semibold">Vocabulary Review & Pronunciation</h3>
+                            <p className="text-muted-foreground">
+                                Practice Indonesian words with audio and pronunciation checks.
+                            </p>
+                        </div>
+                        <WordReviewSlider 
+                            onComplete={() => {
+                                updateSubtask({ status: "completed" })
+                            }}
+                        />
+                        {subtask.status !== "completed" && (
+                            <Button 
+                                onClick={() => updateSubtask({ status: "completed" })} 
+                                className="w-full" 
+                                size="lg"
+                                variant="secondary"
+                            >
+                                <CheckCircle2 className="mr-2 h-5 w-5" />
+                                Mark as Complete
                             </Button>
                         )}
                     </div>
