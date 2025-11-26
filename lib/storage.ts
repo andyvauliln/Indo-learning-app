@@ -21,7 +21,7 @@ export interface CurrentView {
     subtaskId: string
 }
 
-export type SubtaskType = "write" | "generate" | "read"
+export type SubtaskType = "write" | "generate" | "read" | "word-review"
 
 export interface Subtask {
     id: string
@@ -66,6 +66,12 @@ const INITIAL_TASKS: Task[] = [
                 id: "sub-1-3",
                 title: "Read and Verify",
                 type: "read",
+                status: "pending",
+            },
+            {
+                id: "sub-1-4",
+                title: "Word Review & Pronunciation",
+                type: "word-review",
                 status: "pending",
             },
         ],
