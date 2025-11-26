@@ -130,9 +130,85 @@ export function Word({ text, sentence }: WordProps) {
         !wordEntry && "text-muted-foreground border-muted"
     )
 
-    const infoSummary = wordEntry
-        ? `${wordEntry.translation} • Level ${wordEntry.level}`
-        : error || "Generating entry..."
+    const renderTooltipContent = () => {
+        if (!wordEntry) {
+            return (
+                <div className="space-y-1">
+                    <p className="text-sm font-medium">{error || "Generating entry..."}</p>
+                </div>
+            )
+        }
+
+        const firstExample = wordEntry.examples[0]
+        const hasAlternatives = wordEntry.alternative_translations.length > 0
+        const hasForms = wordEntry.other_forms.length > 0
+
+        return (
+            <div className="space-y-2.5 py-1">
+                {/* Header with translation and level */}
+                <div className="flex items-start justify-between gap-3">
+                    <div>
+                        <p className="text-base font-bold tracking-tight">{wordEntry.word}</p>
+                        <p className="text-sm text-cyan-200">{wordEntry.translation}</p>
+                    </div>
+                    <span className={cn(
+                        "shrink-0 px-2 py-0.5 rounded text-xs font-bold",
+                        "bg-cyan-500/30 text-cyan-100 border border-cyan-400/50"
+                    )}>
+                        L{wordEntry.level}
+                    </span>
+                </div>
+
+                {/* Example */}
+                {firstExample && (
+                    <div className="space-y-0.5 pt-1 border-t border-white/10">
+                        <p className="text-[10px] uppercase tracking-wider text-cyan-300/70 font-semibold">Example:</p>
+                        <p className="text-sm italic text-cyan-100">&ldquo;{firstExample.example}&rdquo;</p>
+                        <p className="text-xs text-cyan-200/80">→ {firstExample.translation}</p>
+                    </div>
+                )}
+
+                {/* Alternative translations */}
+                {hasAlternatives && (
+                    <div className="space-y-1 pt-1 border-t border-white/10">
+                        <p className="text-[10px] uppercase tracking-wider text-cyan-300/70 font-semibold">Also means:</p>
+                        <div className="flex flex-wrap gap-1">
+                            {wordEntry.alternative_translations.slice(0, 3).map((alt, idx) => (
+                                <span 
+                                    key={idx}
+                                    className="px-2 py-0.5 rounded-full text-xs font-medium bg-teal-500/40 text-teal-100 border border-teal-400/40"
+                                >
+                                    {alt.word}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Other forms */}
+                {hasForms && (
+                    <div className="space-y-1 pt-1 border-t border-white/10">
+                        <p className="text-[10px] uppercase tracking-wider text-cyan-300/70 font-semibold">Forms:</p>
+                        <div className="flex flex-wrap gap-1">
+                            {wordEntry.other_forms.slice(0, 4).map((form, idx) => (
+                                <span 
+                                    key={idx}
+                                    className="px-2 py-0.5 rounded-full text-xs font-medium bg-sky-500/40 text-sky-100 border border-sky-400/40"
+                                >
+                                    {form.word}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Click for details hint */}
+                <p className="text-[10px] text-center text-cyan-300/60 pt-1 border-t border-white/10">
+                    Click for full details
+                </p>
+            </div>
+        )
+    }
 
     const handleAddExample = () => {
         if (!exampleForm.example.trim() || !exampleForm.translation.trim()) {
@@ -261,9 +337,8 @@ export function Word({ text, sentence }: WordProps) {
                             </span>
                         </DialogTrigger>
                     </TooltipTrigger>
-                    <TooltipContent className="max-w-xs">
-                        <p className="text-sm">{infoSummary}</p>
-                        {error && <p className="text-xs text-destructive mt-1">{error}</p>}
+                    <TooltipContent className="max-w-[280px] p-3 bg-slate-900/95 backdrop-blur-sm border border-cyan-500/30 shadow-xl shadow-cyan-500/10">
+                        {renderTooltipContent()}
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>
