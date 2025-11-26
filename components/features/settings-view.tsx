@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -14,28 +14,22 @@ interface SettingsViewProps {
     onClose: () => void
 }
 
-function getInitialSettings() {
-    if (typeof window === "undefined") {
-        return {
-            selectedModel: DEFAULT_MODEL,
-            customPrompt: DEFAULT_PROMPT,
-            learningDays: 3
-        }
-    }
-    const savedSettings = storage.getSettings()
-    return {
-        selectedModel: savedSettings?.selectedModel ?? DEFAULT_MODEL,
-        customPrompt: savedSettings?.customPrompt ?? DEFAULT_PROMPT,
-        learningDays: savedSettings?.learningDays ?? 3
-    }
-}
-
 export function SettingsView({ onClose }: SettingsViewProps) {
-    const initialSettings = getInitialSettings()
-    const [selectedModel, setSelectedModel] = useState(initialSettings.selectedModel)
-    const [customPrompt, setCustomPrompt] = useState(initialSettings.customPrompt)
-    const [learningDays, setLearningDays] = useState(initialSettings.learningDays)
+    // Initialize with default values to match server-side rendering
+    const [selectedModel, setSelectedModel] = useState(DEFAULT_MODEL)
+    const [customPrompt, setCustomPrompt] = useState(DEFAULT_PROMPT)
+    const [learningDays, setLearningDays] = useState(3)
     const [isSaved, setIsSaved] = useState(false)
+
+    // Load saved settings on client-side only
+    useEffect(() => {
+        const savedSettings = storage.getSettings()
+        if (savedSettings) {
+            setSelectedModel(savedSettings.selectedModel ?? DEFAULT_MODEL)
+            setCustomPrompt(savedSettings.customPrompt ?? DEFAULT_PROMPT)
+            setLearningDays(savedSettings.learningDays ?? 3)
+        }
+    }, [])
 
     const handleSave = () => {
         const settings: Settings = {
