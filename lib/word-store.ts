@@ -8,7 +8,7 @@ import level2 from "@/data/words/level-2.json"
 import level3 from "@/data/words/level-3.json"
 import level4 from "@/data/words/level-4.json"
 import { WordEntry, WordExample, WordLevel, WordQA, WORD_LEVELS } from "@/types/word"
-import { generateExampleAI, generateWordEntryAI, askWordQuestionAI } from "@/lib/word-ai"
+import { generateExampleAI, generateWordEntryAI, askWordQuestionAI, generateMemeImageAI, MemeGenerationOptions, MemeGenerationResult } from "@/lib/word-ai"
 import { cleanWordToken, normalizeToken, stripAffixes } from "@/lib/word-utils"
 
 type WordMap = Record<string, WordEntry>
@@ -74,7 +74,7 @@ interface WordStore {
     words: WordMap
     _hasHydrated: boolean
     findWord: (token: string) => WordEntry | undefined
-    ensureWord: (token: string, context?: string) => Promise<WordEntry>
+    ensureWord: (token: string, context?: string, force?: boolean) => Promise<WordEntry>
     upsertWord: (entry: WordEntry) => void
     addExample: (token: string, example: WordExample) => void
     addAlternative: (token: string, altWord: string, example: WordExample) => void
@@ -85,6 +85,8 @@ interface WordStore {
     askAI: (token: string, question: string) => Promise<string>
     addQA: (token: string, qa: WordQA) => void
     generateAIExample: (token: string) => Promise<WordExample>
+    generateMemeImage: (token: string, options?: MemeGenerationOptions) => Promise<MemeGenerationResult>
+    setMemeData: (token: string, data: MemeGenerationResult) => void
     getLearnedWords: () => WordEntry[]
     getAllWords: () => WordEntry[]
 }
@@ -126,13 +128,13 @@ const createWordStore: StateCreator<WordStore> = (set, get) => {
             })
         },
         
-        ensureWord: async (token: string, context?: string) => {
+        ensureWord: async (token: string, context?: string, force?: boolean) => {
             const cleaned = cleanWordToken(token)
             if (!cleaned) {
                 throw new Error("Cannot ensure empty token")
             }
             const existing = get().findWord(cleaned)
-            if (existing) return existing
+            if (existing && !force) return existing
 
             const key = normalizeToken(cleaned)
             if (!key) {
@@ -250,6 +252,21 @@ const createWordStore: StateCreator<WordStore> = (set, get) => {
             const example = await generateExampleAI(entry)
             get().addExample(token, example)
             return example
+        },
+        
+        generateMemeImage: async (token: string, options?: MemeGenerationOptions) => {
+            const entry = await get().ensureWord(token)
+            const result = await generateMemeImageAI(entry, options)
+            get().setMemeData(token, result)
+            return result
+        },
+        
+        setMemeData: (token: string, data: MemeGenerationResult) => {
+            updateWord(token, (entry) => ({
+                ...entry,
+                memeImage: data.imageUrl,
+                memeConcept: data.concept,
+            }))
         },
         
         // Get all learned words from the store

@@ -14,6 +14,8 @@ export interface Settings {
     selectedModel: string
     customPrompt: string
     learningDays: number // Number of days to split learning content
+    memeTextModel?: string // Model for generating meme concept/scenario
+    memeImageModel?: string // Model for generating the meme image
 }
 
 export interface CurrentView {

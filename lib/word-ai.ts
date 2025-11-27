@@ -164,3 +164,43 @@ export async function generateExampleAI(word: WordEntry): Promise<WordExample> {
     const cleaned = sanitizeWordJSON(content)
     return JSON.parse(cleaned) as WordExample
 }
+
+export interface MemeGenerationOptions {
+    textModel?: string
+    imageModel?: string
+}
+
+export interface MemeGenerationResult {
+    imageUrl: string
+    concept?: {
+        scenario: string
+        imagePrompt: string
+        humor: string
+    }
+}
+
+export async function generateMemeImageAI(word: WordEntry, options?: MemeGenerationOptions): Promise<MemeGenerationResult> {
+    const response = await fetch('/api/meme', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            word: word.word,
+            translation: word.translation,
+            textModel: options?.textModel,
+            imageModel: options?.imageModel,
+        }),
+    })
+
+    if (!response.ok) {
+        const error = await response.json().catch(() => ({}))
+        throw new Error(error?.error || 'Failed to generate meme image')
+    }
+
+    const data = await response.json()
+    return {
+        imageUrl: data.imageUrl,
+        concept: data.concept,
+    }
+}

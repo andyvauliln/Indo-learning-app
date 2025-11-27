@@ -1,7 +1,8 @@
 "use client"
 
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { BookOpen, Brain, Check, ChevronDown, ChevronUp, GraduationCap, Info, Loader2, MessageCircle, Plus, Sparkles, Trash2, Volume2 } from "lucide-react"
+import { BookOpen, Brain, Check, ChevronDown, ChevronUp, GraduationCap, ImageIcon, Info, Loader2, MessageCircle, Plus, Sparkles, Trash2, Volume2 } from "lucide-react"
+import NextImage from "next/image"
 
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
@@ -12,6 +13,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { useWordStore } from "@/lib/word-store"
+import { storage } from "@/lib/storage"
+import { DEFAULT_MEME_TEXT_MODEL, DEFAULT_IMAGE_MODEL } from "@/lib/models"
 import { cleanWordToken } from "@/lib/word-utils"
 import { cn } from "@/lib/utils"
 import { WordEntry, WordLevel, WordVariant } from "@/types/word"
@@ -76,6 +79,7 @@ export function Word({ text, sentence }: WordProps) {
     const [isEnsuring, setIsEnsuring] = useState(false)
     const [aiExampleLoading, setAiExampleLoading] = useState(false)
     const [askLoading, setAskLoading] = useState(false)
+    const [memeLoading, setMemeLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const [showAllMeanings, setShowAllMeanings] = useState(false)
     const [showAllForms, setShowAllForms] = useState(false)
@@ -98,6 +102,7 @@ export function Word({ text, sentence }: WordProps) {
     const updateNotes = useWordStore(state => state.updateNotes)
     const askAI = useWordStore(state => state.askAI)
     const generateAIExample = useWordStore(state => state.generateAIExample)
+    const generateMemeImage = useWordStore(state => state.generateMemeImage)
 
     const levelStyles = LEVEL_COLORS[wordEntry?.level || "2"]
 
@@ -245,6 +250,24 @@ export function Word({ text, sentence }: WordProps) {
             setError(err instanceof Error ? err.message : "Failed to generate example")
         } finally {
             setAiExampleLoading(false)
+        }
+    }
+
+    const handleGenerateMeme = async () => {
+        setMemeLoading(true)
+        setError(null)
+        try {
+            // Get model settings from storage
+            const settings = storage.getSettings()
+            const options = {
+                textModel: settings?.memeTextModel || DEFAULT_MEME_TEXT_MODEL,
+                imageModel: settings?.memeImageModel || DEFAULT_IMAGE_MODEL,
+            }
+            await generateMemeImage(cleanedToken, options)
+        } catch (err) {
+            setError(err instanceof Error ? err.message : "Failed to generate meme image")
+        } finally {
+            setMemeLoading(false)
         }
     }
 
@@ -537,6 +560,20 @@ export function Word({ text, sentence }: WordProps) {
                                     )}
                                 </Button>
 
+                                <Button size="sm" variant="outline" onClick={handleGenerateMeme} disabled={memeLoading}>
+                                    {memeLoading ? (
+                                        <>
+                                            <Loader2 className="mr-2 h-3 w-3 animate-spin" />
+                                            Creating Meme...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <ImageIcon className="mr-2 h-3 w-3" />
+                                            {wordEntry.memeImage ? 'Regenerate Meme' : 'Generate Meme'}
+                                        </>
+                                    )}
+                                </Button>
+
                                     <Button 
                                         size="default" 
                                         variant="outline" 
@@ -596,6 +633,53 @@ export function Word({ text, sentence }: WordProps) {
                                     </Button>
                                 </div>
                             </div>
+
+                            {/* Meme Image Section */}
+                            {(wordEntry.memeImage || memeLoading) && (
+                                <section className="space-y-3">
+                                    <div className="flex items-center gap-2">
+                                        <ImageIcon className={cn("h-4 w-4", levelStyles.text)} />
+                                        <h3 className="font-semibold text-lg">Meme Image</h3>
+                                    </div>
+                                    {memeLoading ? (
+                                        <div className="flex flex-col items-center justify-center gap-3 p-8 rounded-lg border border-border/50 bg-muted/20">
+                                            <div className="relative">
+                                                <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
+                                                <Loader2 className="h-8 w-8 animate-spin text-primary relative" />
+                                            </div>
+                                            <p className="text-sm text-muted-foreground">Creating a memorable meme for &ldquo;{wordEntry.word}&rdquo;...</p>
+                                        </div>
+                                    ) : wordEntry.memeImage ? (
+                                        <div className="rounded-lg border border-border/50 bg-muted/20 p-4 overflow-hidden space-y-4">
+                                            {/* Meme Concept Info */}
+                                            {wordEntry.memeConcept && (
+                                                <div className="space-y-2 pb-3 border-b border-border/30">
+                                                    <div className="flex items-start gap-2">
+                                                        <span className="text-lg">💡</span>
+                                                        <div>
+                                                            <p className="text-sm font-medium text-foreground">{wordEntry.memeConcept.scenario}</p>
+                                                            <p className="text-xs text-muted-foreground mt-1 italic">😄 {wordEntry.memeConcept.humor}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            {/* Meme Image */}
+                                            <div className="relative w-full max-w-md mx-auto aspect-square">
+                                                <NextImage 
+                                                    src={wordEntry.memeImage} 
+                                                    alt={`Visual mnemonic meme for learning the Indonesian word ${wordEntry.word} meaning ${wordEntry.translation}`}
+                                                    fill
+                                                    className="rounded-lg shadow-lg object-cover"
+                                                    unoptimized
+                                                />
+                                            </div>
+                                            <p className="text-center text-xs text-muted-foreground">
+                                                Visual mnemonic for &ldquo;{wordEntry.word}&rdquo; ({wordEntry.translation})
+                                            </p>
+                                        </div>
+                                    ) : null}
+                                </section>
+                            )}
 
                             {/* Examples Section */}
                             {showExamplesSection && (
