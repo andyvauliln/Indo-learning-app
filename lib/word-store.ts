@@ -74,7 +74,7 @@ interface WordStore {
     words: WordMap
     _hasHydrated: boolean
     findWord: (token: string) => WordEntry | undefined
-    ensureWord: (token: string, context?: string) => Promise<WordEntry>
+    ensureWord: (token: string, context?: string, force?: boolean) => Promise<WordEntry>
     upsertWord: (entry: WordEntry) => void
     addExample: (token: string, example: WordExample) => void
     addAlternative: (token: string, altWord: string, example: WordExample) => void
@@ -128,13 +128,13 @@ const createWordStore: StateCreator<WordStore> = (set, get) => {
             })
         },
         
-        ensureWord: async (token: string, context?: string) => {
+        ensureWord: async (token: string, context?: string, force?: boolean) => {
             const cleaned = cleanWordToken(token)
             if (!cleaned) {
                 throw new Error("Cannot ensure empty token")
             }
             const existing = get().findWord(cleaned)
-            if (existing) return existing
+            if (existing && !force) return existing
 
             const key = normalizeToken(cleaned)
             if (!key) {

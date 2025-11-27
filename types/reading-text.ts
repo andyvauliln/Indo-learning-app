@@ -35,6 +35,7 @@ export interface StatisticsData {
     learnedCount: number
     totalSentences: number
     wordCount: number
+    learnedWordCount: number
     learnedPercentage: number
     daysPassed: number
     totalDaysGoal: number
