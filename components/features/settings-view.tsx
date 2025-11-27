@@ -66,7 +66,7 @@ export function SettingsView({ onClose }: SettingsViewProps) {
                         <CardTitle className="text-2xl">Translation Settings</CardTitle>
                     </div>
                     <CardDescription>
-                        Configure the AI model and prompt for Indonesian translations
+                        Configure the AI model and prompt for language translations. Select your languages in the header.
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -117,7 +117,7 @@ export function SettingsView({ onClose }: SettingsViewProps) {
                             className="min-h-[120px] text-base"
                         />
                         <p className="text-sm text-muted-foreground">
-                            This prompt will be used to guide the AI when translating your text to Indonesian.
+                            This prompt will be used to guide the AI when translating your text to your selected learning language.
                         </p>
                     </div>
 

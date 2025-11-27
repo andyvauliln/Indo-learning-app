@@ -38,7 +38,7 @@ async function generateSentenceDataAI(sentence: string): Promise<Omit<SentenceDa
         headers: {
             "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
             "HTTP-Referer": SITE_URL,
-            "X-Title": "Indo Learning App",
+            "X-Title": "Langotron",
             "Content-Type": "application/json",
         },
         body: JSON.stringify({

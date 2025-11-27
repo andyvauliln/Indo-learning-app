@@ -1,10 +1,11 @@
 import { WordEntry, WordExample, WordGenerationArgs } from "@/types/word"
 import { sanitizeWordJSON, validateWordEntry } from "@/lib/word-utils"
+import { getLanguageName } from "@/types/language"
 
 const OPENROUTER_API_KEY = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
-const SITE_NAME = "Indo Learning App"
+const SITE_NAME = "Langotron"
 const DEFAULT_MODEL = "openrouter/auto"
 
 async function callOpenRouter<T>(body: Record<string, unknown>): Promise<T> {
@@ -31,7 +32,12 @@ async function callOpenRouter<T>(body: Record<string, unknown>): Promise<T> {
     return response.json()
 }
 
-export async function generateWordEntryAI(args: WordGenerationArgs): Promise<WordEntry> {
+export interface GenerateWordEntryOptions extends WordGenerationArgs {
+    originalLanguage?: string
+    learningLanguage?: string
+}
+
+export async function generateWordEntryAI(args: GenerateWordEntryOptions): Promise<WordEntry> {
     const {
         baseWord,
         level,
@@ -41,7 +47,12 @@ export async function generateWordEntryAI(args: WordGenerationArgs): Promise<Wor
         additionalContext,
         model = DEFAULT_MODEL,
         temperature = 0.2,
+        originalLanguage = 'en',
+        learningLanguage = 'id',
     } = args
+
+    const originalLangName = getLanguageName(originalLanguage)
+    const learningLangName = getLanguageName(learningLanguage)
 
     const schemaInstructions = [
         "Return a single JSON object that matches this schema:",
@@ -59,7 +70,7 @@ export async function generateWordEntryAI(args: WordGenerationArgs): Promise<Wor
         '  "notes": string,',
         '  "q&a": [{"qestions": string, "answer": string}]',
         "}",
-        "Use Indonesian for example sentences and English for their translations.",
+        `Use ${learningLangName} for example sentences and ${originalLangName} for their translations.`,
         "Do not add commentary outside of the JSON object.",
     ]
 
@@ -68,7 +79,7 @@ export async function generateWordEntryAI(args: WordGenerationArgs): Promise<Wor
         `Desired level: ${level}`,
         `Category: ${category}`,
         `Type: ${type}`,
-        translationHint ? `English meaning hint: ${translationHint}` : null,
+        translationHint ? `${originalLangName} meaning hint: ${translationHint}` : null,
         additionalContext ? `Extra context: ${additionalContext}` : null,
     ]
         .filter(Boolean)
@@ -82,7 +93,7 @@ export async function generateWordEntryAI(args: WordGenerationArgs): Promise<Wor
         messages: [
             {
                 role: "system",
-                content: "You are an Indonesian language tutor who produces structured vocabulary entries for learners.",
+                content: `You are a ${learningLangName} language tutor who produces structured vocabulary entries for learners who speak ${originalLangName}.`,
             },
             {
                 role: "user",
@@ -101,7 +112,27 @@ export async function generateWordEntryAI(args: WordGenerationArgs): Promise<Wor
     return validateWordEntry(parsed)
 }
 
-export async function askWordQuestionAI(word: WordEntry, question: string): Promise<string> {
+export interface AskWordQuestionOptions {
+    word: WordEntry
+    question: string
+    originalLanguage?: string
+    learningLanguage?: string
+}
+
+export async function askWordQuestionAI(options: AskWordQuestionOptions): Promise<string>
+export async function askWordQuestionAI(word: WordEntry, question: string): Promise<string>
+export async function askWordQuestionAI(
+    wordOrOptions: WordEntry | AskWordQuestionOptions, 
+    questionArg?: string
+): Promise<string> {
+    const options: AskWordQuestionOptions = 'word' in wordOrOptions && 'question' in wordOrOptions
+        ? wordOrOptions as AskWordQuestionOptions
+        : { word: wordOrOptions as WordEntry, question: questionArg!, originalLanguage: 'en', learningLanguage: 'id' }
+    
+    const { word, question, originalLanguage = 'en', learningLanguage = 'id' } = options
+    const originalLangName = getLanguageName(originalLanguage)
+    const learningLangName = getLanguageName(learningLanguage)
+    
     const data = await callOpenRouter<{
         choices: { message: { content: string } }[]
     }>({
@@ -110,7 +141,7 @@ export async function askWordQuestionAI(word: WordEntry, question: string): Prom
         messages: [
             {
                 role: "system",
-                content: "You are an Indonesian language tutor. Provide concise bilingual answers (Indonesian first, English second).",
+                content: `You are a ${learningLangName} language tutor. Provide concise bilingual answers (${learningLangName} first, ${originalLangName} second).`,
             },
             {
                 role: "user",
@@ -132,7 +163,25 @@ export async function askWordQuestionAI(word: WordEntry, question: string): Prom
     return content.trim()
 }
 
-export async function generateExampleAI(word: WordEntry): Promise<WordExample> {
+export interface GenerateExampleOptions {
+    word: WordEntry
+    originalLanguage?: string
+    learningLanguage?: string
+}
+
+export async function generateExampleAI(options: GenerateExampleOptions): Promise<WordExample>
+export async function generateExampleAI(word: WordEntry): Promise<WordExample>
+export async function generateExampleAI(
+    wordOrOptions: WordEntry | GenerateExampleOptions
+): Promise<WordExample> {
+    const options: GenerateExampleOptions = 'word' in wordOrOptions && !('examples' in wordOrOptions)
+        ? wordOrOptions as GenerateExampleOptions
+        : { word: wordOrOptions as WordEntry, originalLanguage: 'en', learningLanguage: 'id' }
+    
+    const { word, originalLanguage = 'en', learningLanguage = 'id' } = options
+    const originalLangName = getLanguageName(originalLanguage)
+    const learningLangName = getLanguageName(learningLanguage)
+    
     const data = await callOpenRouter<{
         choices: { message: { content: string } }[]
     }>({
@@ -141,7 +190,7 @@ export async function generateExampleAI(word: WordEntry): Promise<WordExample> {
         messages: [
             {
                 role: "system",
-                content: "You create short Indonesian example sentences with English translations.",
+                content: `You create short ${learningLangName} example sentences with ${originalLangName} translations.`,
             },
             {
                 role: "user",

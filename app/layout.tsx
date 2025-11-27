@@ -11,8 +11,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Indo Learning App",
-  description: "A futuristic Indonesian language learning application",
+  title: "Langotron",
+  description: "A futuristic multi-language learning application",
 };
 
 export default function RootLayout({

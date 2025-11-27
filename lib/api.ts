@@ -1,11 +1,43 @@
+import { getLanguageName } from "@/types/language"
+
 const OPENROUTER_API_KEY = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
-const SITE_NAME = "Indo Learning App"
+const SITE_NAME = "Langotron"
 
-export async function generateTranslation(text: string, prompt: string, model: string): Promise<string> {
+export interface TranslationOptions {
+    text: string
+    prompt: string
+    model: string
+    originalLanguage?: string // Language code e.g. 'en'
+    learningLanguage?: string // Language code e.g. 'id'
+}
+
+export async function generateTranslation(options: TranslationOptions): Promise<string>
+export async function generateTranslation(text: string, prompt: string, model: string): Promise<string>
+export async function generateTranslation(
+    textOrOptions: string | TranslationOptions, 
+    promptArg?: string, 
+    modelArg?: string
+): Promise<string> {
+    // Handle both function signatures for backward compatibility
+    const options: TranslationOptions = typeof textOrOptions === 'string'
+        ? { 
+            text: textOrOptions, 
+            prompt: promptArg!, 
+            model: modelArg!,
+            originalLanguage: 'en',
+            learningLanguage: 'id'
+        }
+        : textOrOptions
+    
+    const { text, prompt, model, originalLanguage = 'en', learningLanguage = 'id' } = options
+    
     if (!OPENROUTER_API_KEY) {
         throw new Error("Missing OpenRouter API Key")
     }
+
+    const originalLangName = getLanguageName(originalLanguage)
+    const learningLangName = getLanguageName(learningLanguage)
 
     try {
         const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -21,7 +53,7 @@ export async function generateTranslation(text: string, prompt: string, model: s
                 "messages": [
                     {
                         "role": "system",
-                        "content": "You are a helpful Indonesian language tutor. Translate the user's text to Indonesian based on their instructions. Provide ONLY the translation unless asked otherwise."
+                        "content": `You are a helpful ${learningLangName} language tutor. Translate the user's text from ${originalLangName} to ${learningLangName} based on their instructions. Provide ONLY the translation unless asked otherwise.`
                     },
                     {
                         "role": "user",

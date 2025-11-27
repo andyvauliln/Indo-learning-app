@@ -29,7 +29,7 @@ export function AppSidebar({ tasks, currentSubtaskId, onSelectSubtask }: AppSide
             <SidebarHeader className="border-b border-border/50 p-4">
                 <h2 className="text-xl font-bold text-primary flex items-center gap-2">
                     <BookOpen className="h-6 w-6" />
-                    Indo Learn
+                    Langotron
                 </h2>
             </SidebarHeader>
             <SidebarContent>

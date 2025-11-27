@@ -3,13 +3,10 @@
 import { create, StateCreator } from "zustand"
 import { persist, createJSONStorage } from "zustand/middleware"
 
-import level1 from "@/data/words/level-1.json"
-import level2 from "@/data/words/level-2.json"
-import level3 from "@/data/words/level-3.json"
-import level4 from "@/data/words/level-4.json"
 import { WordEntry, WordExample, WordLevel, WordQA, WORD_LEVELS } from "@/types/word"
 import { generateExampleAI, generateWordEntryAI, askWordQuestionAI, generateMemeImageAI, MemeGenerationOptions, MemeGenerationResult } from "@/lib/word-ai"
 import { cleanWordToken, normalizeToken, stripAffixes } from "@/lib/word-utils"
+import { DEFAULT_LEARNING_LANGUAGE, DEFAULT_ORIGINAL_LANGUAGE } from "@/types/language"
 
 type WordMap = Record<string, WordEntry>
 
@@ -54,8 +51,6 @@ function normalizeWordEntry(entry: RawWordEntry): WordEntry {
     }
 }
 
-const DEFAULT_WORDS: WordEntry[] = [...level1, ...level2, ...level3, ...level4].map(normalizeWordEntry)
-
 function buildWordMap(entries: WordEntry[]): WordMap {
     return entries.reduce<WordMap>((map, entry) => {
         const key = normalizeToken(entry.word)
@@ -66,13 +61,18 @@ function buildWordMap(entries: WordEntry[]): WordMap {
     }, {})
 }
 
-const DEFAULT_WORD_MAP = buildWordMap(DEFAULT_WORDS)
+// Start with empty word map - words will be loaded from API based on selected language
+const DEFAULT_WORD_MAP: WordMap = {}
 
 const inFlightRequests: Record<string, Promise<WordEntry>> = {}
 
 interface WordStore {
     words: WordMap
     _hasHydrated: boolean
+    originalLanguage: string
+    learningLanguage: string
+    setLanguages: (original: string, learning: string) => void
+    loadWordsForLanguage: (languageCode: string) => Promise<void>
     findWord: (token: string) => WordEntry | undefined
     ensureWord: (token: string, context?: string, force?: boolean) => Promise<WordEntry>
     upsertWord: (entry: WordEntry) => void
@@ -112,6 +112,35 @@ const createWordStore: StateCreator<WordStore> = (set, get) => {
     return {
         words: { ...DEFAULT_WORD_MAP },
         _hasHydrated: false,
+        originalLanguage: DEFAULT_ORIGINAL_LANGUAGE,
+        learningLanguage: DEFAULT_LEARNING_LANGUAGE,
+        
+        setLanguages: (original: string, learning: string) => {
+            set({ originalLanguage: original, learningLanguage: learning })
+        },
+        
+        loadWordsForLanguage: async (languageCode: string) => {
+            try {
+                // Load all levels for the specified language
+                const levels: WordLevel[] = ['1', '2', '3', '4']
+                const allWords: WordEntry[] = []
+                
+                for (const level of levels) {
+                    const response = await fetch(`/api/words?level=${level}&lang=${languageCode}`)
+                    if (response.ok) {
+                        const words = await response.json()
+                        allWords.push(...words.map(normalizeWordEntry))
+                    }
+                }
+                
+                const wordMap = buildWordMap(allWords)
+                set((state) => ({
+                    words: { ...state.words, ...wordMap }
+                }))
+            } catch (error) {
+                console.error('Error loading words for language:', error)
+            }
+        },
         
         findWord: (token: string) => {
             const target = normalizeToken(token)
@@ -142,10 +171,13 @@ const createWordStore: StateCreator<WordStore> = (set, get) => {
             }
 
             if (!inFlightRequests[key]) {
+                const { originalLanguage, learningLanguage } = get()
                 inFlightRequests[key] = generateWordEntryAI({
                     baseWord: cleaned,
                     level: "2",
                     additionalContext: context,
+                    originalLanguage,
+                    learningLanguage,
                 })
                     .then(entry => {
                         set((state: WordStore) => ({
@@ -235,7 +267,13 @@ const createWordStore: StateCreator<WordStore> = (set, get) => {
         
         askAI: async (token: string, question: string) => {
             const entry = await get().ensureWord(token)
-            const answer = await askWordQuestionAI(entry, question)
+            const { originalLanguage, learningLanguage } = get()
+            const answer = await askWordQuestionAI({
+                word: entry,
+                question,
+                originalLanguage,
+                learningLanguage,
+            })
             get().addQA(token, { qestions: question, answer })
             return answer
         },
@@ -249,7 +287,12 @@ const createWordStore: StateCreator<WordStore> = (set, get) => {
         
         generateAIExample: async (token: string) => {
             const entry = await get().ensureWord(token)
-            const example = await generateExampleAI(entry)
+            const { originalLanguage, learningLanguage } = get()
+            const example = await generateExampleAI({
+                word: entry,
+                originalLanguage,
+                learningLanguage,
+            })
             get().addExample(token, example)
             return example
         },
@@ -285,7 +328,7 @@ const createWordStore: StateCreator<WordStore> = (set, get) => {
 
 export const useWordStore = create<WordStore>()(
     persist(createWordStore, {
-        name: "indo_app_word_entries",
+        name: "langotron_word_entries",
         version: 1,
         storage: typeof window === "undefined" ? undefined : createJSONStorage(() => localStorage),
         // Merge persisted state with default state, preserving user's learned words
