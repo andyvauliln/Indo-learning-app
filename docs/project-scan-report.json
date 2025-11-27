@@ -1,0 +1,65 @@
+{
+    "workflow_version": "1.2.0",
+    "timestamps": {
+        "started": "2025-11-27T05:56:44+08:00",
+        "last_updated": "2025-11-27T06:01:12+08:00",
+        "completed": "2025-11-27T06:01:12+08:00"
+    },
+    "mode": "initial_scan",
+    "scan_level": "exhaustive",
+    "project_root": "/Users/hallojohnnypitt/Projects/Indo-learning-app",
+    "output_folder": "/Users/hallojohnnypitt/Projects/Indo-learning-app/docs",
+    "completed_steps": [
+        {
+            "step": "step_1",
+            "status": "completed",
+            "timestamp": "2025-11-27T05:58:02+08:00",
+            "summary": "Classified as monolith with 1 part (web app)"
+        },
+        {
+            "step": "step_2",
+            "status": "completed",
+            "timestamp": "2025-11-27T05:59:00+08:00",
+            "summary": "Found 7 existing docs"
+        },
+        {
+            "step": "step_3",
+            "status": "completed",
+            "timestamp": "2025-11-27T06:00:00+08:00",
+            "summary": "Tech stack: Next.js 16 + React 19 + TypeScript"
+        },
+        {
+            "step": "all_documentation",
+            "status": "completed",
+            "timestamp": "2025-11-27T06:01:12+08:00",
+            "summary": "Generated 8 comprehensive documentation files"
+        }
+    ],
+    "current_step": "completed",
+    "findings": {
+        "project_classification": "Monolith, 1 part, Next.js + TypeScript",
+        "technology_stack": "Next.js 16 + React 19 + TypeScript + Tailwind v4",
+        "existing_docs_count": 7,
+        "total_components": 24,
+        "total_files": 87
+    },
+    "project_types": [
+        {
+            "part_id": "main",
+            "project_type_id": "web",
+            "display_name": "Indonesian Learning Web App"
+        }
+    ],
+    "outputs_generated": [
+        "project-scan-report.json",
+        "technology-stack.md",
+        "project-overview.md",
+        "development-guide.md",
+        "component-inventory.md",
+        "api-documentation.md",
+        "data-models.md",
+        "source-tree-analysis.md",
+        "index.md"
+    ],
+    "resume_instructions": "Workflow completed successfully"
+}

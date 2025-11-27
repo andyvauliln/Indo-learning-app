@@ -417,14 +417,35 @@ export function TaskView({ task, subtask, tasks, onUpdateTasks, onNextTask }: Ta
                         <div className="text-center space-y-2 py-4">
                             <h3 className="text-xl font-semibold">Vocabulary Review & Pronunciation</h3>
                             <p className="text-muted-foreground">
-                                Practice Indonesian words with audio and pronunciation checks.
+                                Practice Indonesian words from your learning content with audio and pronunciation checks.
                             </p>
                         </div>
-                        <WordReviewSlider 
-                            onComplete={() => {
-                                updateSubtask({ status: "completed" })
-                            }}
-                        />
+                        {(() => {
+                            // Find the previous subtask's content (usually the "read" or "generate" task)
+                            const subtaskIndex = task.subtasks.findIndex(s => s.id === subtask.id)
+                            let contentToReview = ""
+                            let learnedParagraphs = {}
+                            
+                            // Look backwards for content and learned state
+                            for (let i = subtaskIndex - 1; i >= 0; i--) {
+                                const prevSubtask = task.subtasks[i]
+                                if (prevSubtask.content && (prevSubtask.type === "read" || prevSubtask.type === "generate")) {
+                                    contentToReview = prevSubtask.content
+                                    learnedParagraphs = prevSubtask.learnedParagraphs || {}
+                                    break
+                                }
+                            }
+                            
+                            return (
+                                <WordReviewSlider 
+                                    content={contentToReview}
+                                    learnedParagraphs={learnedParagraphs}
+                                    onComplete={() => {
+                                        updateSubtask({ status: "completed" })
+                                    }}
+                                />
+                            )
+                        })()}
                         {subtask.status !== "completed" && (
                             <Button 
                                 onClick={() => updateSubtask({ status: "completed" })} 

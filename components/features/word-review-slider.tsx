@@ -24,9 +24,31 @@ import type { WordEntry, WordExample } from "@/types/word"
 
 interface WordReviewSliderProps {
     onComplete?: () => void
+    content?: string
+    learnedParagraphs?: Record<string, boolean>
 }
 
-// Fetch words from API
+// Fetch words from sentences
+async function fetchWordsFromSentences(content: string, learnedParagraphs: Record<string, boolean>): Promise<{
+    words: WordEntry[]
+    sentenceRange: { start: number; end: number }
+    totalSentences: number
+    message?: string
+}> {
+    const response = await fetch('/api/words/from-sentences', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ content, learnedParagraphs })
+    })
+    if (!response.ok) {
+        throw new Error('Failed to fetch words from sentences')
+    }
+    return response.json()
+}
+
+// Fallback: Fetch words from API (Level 1)
 async function fetchLevel1Words(): Promise<WordEntry[]> {
     const response = await fetch('/api/words?level=1&limit=20')
     if (!response.ok) {
@@ -35,13 +57,14 @@ async function fetchLevel1Words(): Promise<WordEntry[]> {
     return response.json()
 }
 
-export function WordReviewSlider({ onComplete }: WordReviewSliderProps) {
+export function WordReviewSlider({ onComplete, content, learnedParagraphs = {} }: WordReviewSliderProps) {
     const [words, setWords] = useState<WordEntry[]>([])
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [showPronunciationCheck, setShowPronunciationCheck] = useState(false)
     const [pronunciationAttempts, setPronunciationAttempts] = useState<Record<string, { correct: boolean; attempts: number }>>({})
+    const [sentenceInfo, setSentenceInfo] = useState<{ start: number; end: number; total: number } | null>(null)
     
     const { speak, speakSlowly, speakSentence, isSpeaking, stop, isSupported: ttsSupported } = useTTS()
     const { 
@@ -63,9 +86,27 @@ export function WordReviewSlider({ onComplete }: WordReviewSliderProps) {
             try {
                 setIsLoading(true)
                 setError(null)
-                const data = await fetchLevel1Words()
-                if (mounted) {
-                    setWords(data)
+                
+                // If content is provided, fetch words from sentences
+                if (content) {
+                    const result = await fetchWordsFromSentences(content, learnedParagraphs)
+                    if (mounted) {
+                        setWords(result.words)
+                        setSentenceInfo({
+                            start: result.sentenceRange.start + 1, // Convert to 1-based
+                            end: result.sentenceRange.end,
+                            total: result.totalSentences
+                        })
+                        if (result.words.length === 0 && result.message) {
+                            setError(result.message)
+                        }
+                    }
+                } else {
+                    // Fallback to Level 1 words
+                    const data = await fetchLevel1Words()
+                    if (mounted) {
+                        setWords(data)
+                    }
                 }
             } catch (err) {
                 if (mounted) {
@@ -80,7 +121,7 @@ export function WordReviewSlider({ onComplete }: WordReviewSliderProps) {
         
         loadWords()
         return () => { mounted = false }
-    }, [])
+    }, [content, learnedParagraphs])
 
     // Reset pronunciation check when word changes
     useEffect(() => {
@@ -180,6 +221,25 @@ export function WordReviewSlider({ onComplete }: WordReviewSliderProps) {
 
     return (
         <div className="w-full max-w-4xl mx-auto space-y-6">
+            {/* Sentence Range Info */}
+            {sentenceInfo && (
+                <Card className="bg-primary/5 border-primary/20">
+                    <CardContent className="py-3 px-4">
+                        <div className="flex items-center justify-between text-sm">
+                            <div className="flex items-center gap-2">
+                                <BookOpen className="h-4 w-4 text-primary" />
+                                <span className="text-muted-foreground">
+                                    Learning from sentences <strong className="text-foreground">{sentenceInfo.start} - {sentenceInfo.end}</strong>
+                                </span>
+                            </div>
+                            <span className="text-muted-foreground text-xs">
+                                of {sentenceInfo.total} total sentences
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+            )}
+            
             {/* Progress Header */}
             <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
