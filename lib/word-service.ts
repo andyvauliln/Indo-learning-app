@@ -1,5 +1,5 @@
 import path from "node:path"
-import { readFile, writeFile } from "node:fs/promises"
+import { readFile, writeFile, mkdir } from "node:fs/promises"
 
 import {
     WordCreateInput,
@@ -11,26 +11,42 @@ import {
     WORD_LEVELS,
 } from "@/types/word"
 import { buildWordTokens, normalizeToken, sanitizeWordJSON, stripAffixes, validateWordEntry } from "@/lib/word-utils"
+import { getLanguageName, DEFAULT_LEARNING_LANGUAGE } from "@/types/language"
 
-const WORD_DATA_DIR = path.join(process.cwd(), "data", "words")
+const WORD_DATA_BASE_DIR = path.join(process.cwd(), "data", "words")
 const OPENROUTER_API_KEY = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 const OPENROUTER_DEFAULT_MODEL = "openrouter/auto"
-const OPENROUTER_TITLE = "Indo Learning App"
+const OPENROUTER_TITLE = "Langotron"
 
-function getWordFilePath(level: WordLevel) {
-    return path.join(WORD_DATA_DIR, `level-${level}.json`)
+function getWordDataDir(languageCode: string = DEFAULT_LEARNING_LANGUAGE) {
+    return path.join(WORD_DATA_BASE_DIR, languageCode)
 }
 
-async function readWordFile(level: WordLevel): Promise<WordEntry[]> {
-    const filePath = getWordFilePath(level)
-    const fileContents = await readFile(filePath, "utf8")
-    return JSON.parse(fileContents) as WordEntry[]
+function getWordFilePath(level: WordLevel, languageCode: string = DEFAULT_LEARNING_LANGUAGE) {
+    return path.join(getWordDataDir(languageCode), `level-${level}.json`)
 }
 
-async function writeWordFile(level: WordLevel, words: WordEntry[]) {
-    const filePath = getWordFilePath(level)
-    const sorted = [...words].sort((a, b) => a.word.localeCompare(b.word, "id-ID"))
+async function readWordFile(level: WordLevel, languageCode: string = DEFAULT_LEARNING_LANGUAGE): Promise<WordEntry[]> {
+    const filePath = getWordFilePath(level, languageCode)
+    try {
+        const fileContents = await readFile(filePath, "utf8")
+        return JSON.parse(fileContents) as WordEntry[]
+    } catch (error: unknown) {
+        // If file doesn't exist, return empty array
+        if (error && typeof error === 'object' && 'code' in error && error.code === 'ENOENT') {
+            return []
+        }
+        throw error
+    }
+}
+
+async function writeWordFile(level: WordLevel, words: WordEntry[], languageCode: string = DEFAULT_LEARNING_LANGUAGE) {
+    const dataDir = getWordDataDir(languageCode)
+    await mkdir(dataDir, { recursive: true })
+    const filePath = getWordFilePath(level, languageCode)
+    // Use appropriate locale for sorting based on language
+    const sorted = [...words].sort((a, b) => a.word.localeCompare(b.word, languageCode))
     await writeFile(filePath, JSON.stringify(sorted, null, 2) + "\n", "utf8")
 }
 
@@ -39,18 +55,18 @@ function ensureLevels(levels?: WordLevel[]): WordLevel[] {
     return Array.from(new Set(levels.filter((level): level is WordLevel => WORD_LEVELS.includes(level))))
 }
 
-export async function getWords(level: WordLevel): Promise<WordEntry[]> {
-    return readWordFile(level)
+export async function getWords(level: WordLevel, languageCode: string = DEFAULT_LEARNING_LANGUAGE): Promise<WordEntry[]> {
+    return readWordFile(level, languageCode)
 }
 
-export async function getWord(level: WordLevel, word: string): Promise<WordEntry | undefined> {
+export async function getWord(level: WordLevel, word: string, languageCode: string = DEFAULT_LEARNING_LANGUAGE): Promise<WordEntry | undefined> {
     const normalized = normalizeToken(word)
-    const words = await readWordFile(level)
+    const words = await readWordFile(level, languageCode)
     return words.find(entry => normalizeToken(entry.word) === normalized)
 }
 
-export async function createWord(level: WordLevel, payload: WordCreateInput): Promise<WordEntry> {
-    const words = await readWordFile(level)
+export async function createWord(level: WordLevel, payload: WordCreateInput, languageCode: string = DEFAULT_LEARNING_LANGUAGE): Promise<WordEntry> {
+    const words = await readWordFile(level, languageCode)
     const normalized = normalizeToken(payload.word)
     if (words.some(entry => normalizeToken(entry.word) === normalized)) {
         throw new Error(`Word "${payload.word}" already exists in level ${level}`)
@@ -59,12 +75,12 @@ export async function createWord(level: WordLevel, payload: WordCreateInput): Pr
         ...payload,
         learned: payload.learned ?? false,
     }
-    await writeWordFile(level, [...words, word])
+    await writeWordFile(level, [...words, word], languageCode)
     return word
 }
 
-export async function updateWord(level: WordLevel, targetWord: string, updates: WordUpdateInput): Promise<WordEntry> {
-    const words = await readWordFile(level)
+export async function updateWord(level: WordLevel, targetWord: string, updates: WordUpdateInput, languageCode: string = DEFAULT_LEARNING_LANGUAGE): Promise<WordEntry> {
+    const words = await readWordFile(level, languageCode)
     const normalized = normalizeToken(targetWord)
     const index = words.findIndex(entry => normalizeToken(entry.word) === normalized)
     if (index === -1) {
@@ -75,21 +91,25 @@ export async function updateWord(level: WordLevel, targetWord: string, updates: 
         ...updates,
     } as WordEntry
     words[index] = nextWord
-    await writeWordFile(level, words)
+    await writeWordFile(level, words, languageCode)
     return nextWord
 }
 
-export async function deleteWord(level: WordLevel, targetWord: string): Promise<void> {
-    const words = await readWordFile(level)
+export async function deleteWord(level: WordLevel, targetWord: string, languageCode: string = DEFAULT_LEARNING_LANGUAGE): Promise<void> {
+    const words = await readWordFile(level, languageCode)
     const normalized = normalizeToken(targetWord)
     const filtered = words.filter(entry => normalizeToken(entry.word) !== normalized)
     if (filtered.length === words.length) {
         throw new Error(`Word "${targetWord}" was not found in level ${level}`)
     }
-    await writeWordFile(level, filtered)
+    await writeWordFile(level, filtered, languageCode)
 }
 
-export async function searchWords(query: string, options?: WordSearchOptions): Promise<WordEntry[]> {
+export interface WordSearchOptionsWithLanguage extends WordSearchOptions {
+    languageCode?: string
+}
+
+export async function searchWords(query: string, options?: WordSearchOptionsWithLanguage): Promise<WordEntry[]> {
     const trimmed = query.trim()
     if (!trimmed) return []
 
@@ -100,11 +120,12 @@ export async function searchWords(query: string, options?: WordSearchOptions): P
     const includeLearned = options?.includeLearned ?? true
     const limit = options?.limit ?? Infinity
     const exact = options?.exact ?? false
+    const languageCode = options?.languageCode ?? DEFAULT_LEARNING_LANGUAGE
 
     const matches: WordEntry[] = []
 
     for (const level of targetLevels) {
-        const words = await readWordFile(level)
+        const words = await readWordFile(level, languageCode)
         for (const word of words) {
             if (!includeLearned && word.learned) continue
             const tokens = buildWordTokens(word, includeForms)
@@ -130,7 +151,12 @@ export async function searchWords(query: string, options?: WordSearchOptions): P
     return matches
 }
 
-export async function generateWordWithAI(args: WordGenerationArgs): Promise<WordEntry> {
+export interface GenerateWordWithAIArgs extends WordGenerationArgs {
+    originalLanguage?: string
+    learningLanguage?: string
+}
+
+export async function generateWordWithAI(args: GenerateWordWithAIArgs): Promise<WordEntry> {
     if (!OPENROUTER_API_KEY) {
         throw new Error("Missing OpenRouter API key.")
     }
@@ -144,7 +170,12 @@ export async function generateWordWithAI(args: WordGenerationArgs): Promise<Word
         additionalContext,
         model = OPENROUTER_DEFAULT_MODEL,
         temperature = 0.2,
+        originalLanguage = 'en',
+        learningLanguage = 'id',
     } = args
+
+    const originalLangName = getLanguageName(originalLanguage)
+    const learningLangName = getLanguageName(learningLanguage)
 
     const instructions = [
         "Return a single JSON object that matches this schema:",
@@ -162,7 +193,7 @@ export async function generateWordWithAI(args: WordGenerationArgs): Promise<Word
         '  "notes": string,',
         '  "q&a": [{"qestions": string, "answer": string}]',
         "}",
-        "Do not add commentary. Use proper Indonesian in the examples and supply English translations.",
+        `Do not add commentary. Use proper ${learningLangName} in the examples and supply ${originalLangName} translations.`,
     ]
 
     const userPrompt = [
@@ -170,7 +201,7 @@ export async function generateWordWithAI(args: WordGenerationArgs): Promise<Word
         `Desired level: ${level}`,
         `Category: ${category}`,
         `Type: ${type}`,
-        translationHint ? `English meaning hint: ${translationHint}` : null,
+        translationHint ? `${originalLangName} meaning hint: ${translationHint}` : null,
         additionalContext ? `Extra context: ${additionalContext}` : null,
     ]
         .filter(Boolean)
@@ -190,7 +221,7 @@ export async function generateWordWithAI(args: WordGenerationArgs): Promise<Word
             messages: [
                 {
                     role: "system",
-                    content: "You are an Indonesian language coach who produces structured vocabulary entries for learners.",
+                    content: `You are a ${learningLangName} language coach who produces structured vocabulary entries for learners who speak ${originalLangName}.`,
                 },
                 {
                     role: "user",

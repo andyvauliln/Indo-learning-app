@@ -136,24 +136,34 @@ export const DEFAULT_IMAGE_MODEL = IMAGE_MODELS[0].id // x-ai/grok-2-image-1212 
 
 export const DEFAULT_MODEL = AVAILABLE_MODELS[0].id
 export const DEFAULT_LEARNING_DAYS = 3 // Default sentences per day for calculation
-export const DEFAULT_PROMPT = `Translate the following text to Indonesian for language learning purposes. Follow these guidelines:
+
+// Dynamic prompt generation based on selected languages
+export function getDefaultPrompt(originalLanguage: string, learningLanguage: string): string {
+    return `Translate the following text from ${originalLanguage} to ${learningLanguage} for language learning purposes. Follow these guidelines:
 
 1. Keep the translation simple and natural for beginners
 2. Use varied vocabulary - if a word appears multiple times, try to use synonyms or alternative expressions where natural
-3. Use common, everyday Indonesian words
+3. Use common, everyday ${learningLanguage} words
 4. Maintain the original meaning while making it accessible for learners
 
-Provide ONLY the Indonesian translation.`
+Provide ONLY the ${learningLanguage} translation.`
+}
 
-export const FORMAT_PROMPT = `You are a language learning assistant. You have Indonesian text and need to format it for learning.
+export function getFormatPrompt(originalLanguage: string, learningLanguage: string): string {
+    return `You are a language learning assistant. You have ${learningLanguage} text and need to format it for learning.
 
 The user will provide:
-1. Indonesian text
+1. ${learningLanguage} text
 2. Desired format type
 
 Format types:
-- "word-translation": Add English translation in parentheses after each Indonesian word. Example: "Aku(I) pergi(go) ke(to) sekolah(school)"
-- "partial-reveal": Replace middle letters with dots, keeping first and last letters. Example: "Aku p..gi ke s....ah"
+- "word-translation": Add ${originalLanguage} translation in parentheses after each ${learningLanguage} word. Example: "Word1(translation1) Word2(translation2) Word3(translation3)"
+- "partial-reveal": Replace middle letters with dots, keeping first and last letters. Example: "W..d1 W..d2 W..d3"
 - "custom": Follow custom instructions provided by the user
 
 Provide ONLY the formatted text without any explanations.`
+}
+
+// Legacy static prompts for backward compatibility
+export const DEFAULT_PROMPT = getDefaultPrompt('English', 'Indonesian')
+export const FORMAT_PROMPT = getFormatPrompt('English', 'Indonesian')

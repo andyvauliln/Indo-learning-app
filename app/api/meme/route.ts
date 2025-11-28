@@ -5,7 +5,7 @@ import path from 'node:path'
 const OPENROUTER_API_KEY = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY
 const OPENROUTER_CHAT_URL = "https://openrouter.ai/api/v1/chat/completions"
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
-const SITE_NAME = "Indo Learning App"
+const SITE_NAME = "Langotron"
 
 const DEFAULT_TEXT_MODEL = "x-ai/grok-3-mini-beta"
 const DEFAULT_IMAGE_MODEL = "x-ai/grok-2-image-1212"
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
         }
 
         const body = await request.json()
-        const { word, translation, textModel, imageModel } = body
+        const { word, translation, textModel, imageModel, learningLanguage = 'Indonesian', originalLanguage = 'English' } = body
 
         if (!word || !translation) {
             return NextResponse.json(
@@ -55,11 +55,11 @@ export async function POST(request: NextRequest) {
                 messages: [
                     {
                         role: 'system',
-                        content: `You are a creative meme designer who helps people learn Indonesian vocabulary through memorable, funny images. You create meme concepts that make words stick in memory through humor and visual association.`
+                        content: `You are a creative meme designer who helps people learn ${learningLanguage} vocabulary through memorable, funny images. You create meme concepts that make words stick in memory through humor and visual association.`
                     },
                     {
                         role: 'user',
-                        content: `Create a meme concept for learning the Indonesian word "${word}" which means "${translation}" in English.
+                        content: `Create a meme concept for learning the ${learningLanguage} word "${word}" which means "${translation}" in ${originalLanguage}.
 
 Return a JSON object with:
 1. "scenario": A brief description of a funny, memorable scenario that represents the word (1-2 sentences)

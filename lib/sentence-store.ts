@@ -55,7 +55,7 @@ const createSentenceStore: StateCreator<SentenceStore> = (set, get) => ({
 
 export const useSentenceStore = create<SentenceStore>()(
     persist(createSentenceStore, {
-        name: "indo_app_sentences",
+        name: "langotron_sentences",
         version: 1,
         storage: typeof window === "undefined" ? undefined : createJSONStorage(() => localStorage),
     })

@@ -4,8 +4,11 @@ import { Progress } from "@/components/ui/progress"
 import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
-import { Settings, Trash2 } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Settings, Trash2, ArrowRight } from "lucide-react"
 import { storage, type User, type Task } from "@/lib/storage"
+import { useLanguageStore } from "@/lib/language-store"
+import { SUPPORTED_LANGUAGES, getLanguageGreeting } from "@/types/language"
 
 interface AppHeaderProps {
     user: User
@@ -16,6 +19,8 @@ interface AppHeaderProps {
 }
 
 export function AppHeader({ user, tasks, currentTaskId, onOpenSettings, onCleanDatabase }: AppHeaderProps) {
+    const { originalLanguage, learningLanguage, setOriginalLanguage, setLearningLanguage } = useLanguageStore()
+    
     const handleCleanDatabase = () => {
         if (window.confirm("Are you sure you want to clean all database? This will delete all your progress, tasks, and settings. This action cannot be undone.")) {
             storage.resetProgress()
@@ -36,6 +41,9 @@ export function AppHeader({ user, tasks, currentTaskId, onOpenSettings, onCleanD
     const currentTask = tasks.find(t => t.id === currentTaskId)
     const currentTaskName = currentTask?.title
 
+    // Get greeting in learning language
+    const greeting = getLanguageGreeting(learningLanguage)
+
     return (
         <header className="flex h-16 shrink-0 items-center gap-2 border-b border-border/50 bg-background/50 px-4 backdrop-blur-sm transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
             <SidebarTrigger className="-ml-1" />
@@ -43,7 +51,7 @@ export function AppHeader({ user, tasks, currentTaskId, onOpenSettings, onCleanD
             <div className="flex flex-1 items-center justify-between">
                 <div className="flex items-center gap-4">
                     <h1 className="text-lg font-semibold text-foreground">
-                        Selamat Pagi, <span className="text-primary">{user.name}</span>
+                        {greeting}, <span className="text-primary">{user.name}</span>
                     </h1>
                     {currentTaskName && (
                         <>
@@ -54,7 +62,48 @@ export function AppHeader({ user, tasks, currentTaskId, onOpenSettings, onCleanD
                         </>
                     )}
                 </div>
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-4">
+                    {/* Language Selection */}
+                    <div className="flex items-center gap-2">
+                        <Select value={originalLanguage} onValueChange={setOriginalLanguage}>
+                            <SelectTrigger className="w-[130px] h-8 text-xs">
+                                <SelectValue placeholder="From" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {SUPPORTED_LANGUAGES.map((lang) => (
+                                    <SelectItem 
+                                        key={lang.code} 
+                                        value={lang.code}
+                                        disabled={lang.code === learningLanguage}
+                                    >
+                                        <span className="flex items-center gap-2">
+                                            <span>{lang.nativeName}</span>
+                                        </span>
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                        <ArrowRight className="h-4 w-4 text-muted-foreground" />
+                        <Select value={learningLanguage} onValueChange={setLearningLanguage}>
+                            <SelectTrigger className="w-[130px] h-8 text-xs">
+                                <SelectValue placeholder="To" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {SUPPORTED_LANGUAGES.map((lang) => (
+                                    <SelectItem 
+                                        key={lang.code} 
+                                        value={lang.code}
+                                        disabled={lang.code === originalLanguage}
+                                    >
+                                        <span className="flex items-center gap-2">
+                                            <span>{lang.nativeName}</span>
+                                        </span>
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    <Separator orientation="vertical" className="h-6" />
                     <div className="flex flex-col items-end gap-1">
                         <span className="text-xs text-muted-foreground">Overall Progress</span>
                         <div className="flex items-center gap-2">

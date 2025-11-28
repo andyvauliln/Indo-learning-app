@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getWords } from '@/lib/word-service'
 import type { WordLevel } from '@/types/word'
+import { DEFAULT_LEARNING_LANGUAGE } from '@/types/language'
 
 export async function GET(request: NextRequest) {
     try {
@@ -8,6 +9,7 @@ export async function GET(request: NextRequest) {
         const level = (searchParams.get('level') || '1') as WordLevel
         const limitParam = searchParams.get('limit')
         const limit = limitParam ? parseInt(limitParam, 10) : undefined
+        const languageCode = searchParams.get('lang') || DEFAULT_LEARNING_LANGUAGE
 
         // Validate level
         if (!['1', '2', '3', '4'].includes(level)) {
@@ -17,7 +19,7 @@ export async function GET(request: NextRequest) {
             )
         }
 
-        const words = await getWords(level)
+        const words = await getWords(level, languageCode)
         
         // Shuffle and limit words for review
         const shuffled = [...words].sort(() => Math.random() - 0.5)

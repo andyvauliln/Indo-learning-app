@@ -1,8 +1,8 @@
 // Storage Keys
-const STORAGE_KEY_USER = "indo_app_user"
-const STORAGE_KEY_TASKS = "indo_app_tasks"
-const STORAGE_KEY_SETTINGS = "indo_app_settings"
-const STORAGE_KEY_CURRENT_VIEW = "indo_app_current_view"
+const STORAGE_KEY_USER = "langotron_user"
+const STORAGE_KEY_TASKS = "langotron_tasks"
+const STORAGE_KEY_SETTINGS = "langotron_settings"
+const STORAGE_KEY_CURRENT_VIEW = "langotron_current_view"
 
 // Types
 export interface User {

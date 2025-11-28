@@ -1,24 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Langotron
+
+A futuristic multi-language learning application built with Next.js. Learn any language through personalized content, AI-powered translations, and interactive vocabulary building.
+
+## Features
+
+- **Multi-Language Support**: Learn any language from any source language
+  - Default: English → Indonesian
+  - Easily switch between 16+ supported languages
+- **Personalized Learning**: Write your own content and get AI-translated learning materials
+- **Vocabulary Building**: Track words, examples, and progress
+- **AI-Powered**: Generate word entries, examples, memes, and more
+- **Interactive Reading**: Multiple display formats (clean, word-translation, partial-reveal)
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
+
+```bash
+npm install
+```
+
+Set up your environment variables in `.env.local`:
+
+```bash
+NEXT_PUBLIC_OPENROUTER_API_KEY=your_openrouter_api_key
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Supported Languages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- English, Indonesian, Spanish, French, German
+- Japanese, Korean, Chinese, Portuguese, Italian
+- Dutch, Russian, Arabic, Hindi, Thai, Vietnamese
+
+## Data Structure
+
+Word data is organized by language:
+```
+data/words/
+├── en/          # English words
+│   ├── level-1.json
+│   ├── level-2.json
+│   ├── level-3.json
+│   └── level-4.json
+├── id/          # Indonesian words
+│   └── ...
+└── [lang]/      # Other languages
+    └── ...
+```
+
+## Tech Stack
+
+- **Next.js 16** - React framework
+- **Zustand** - State management
+- **Tailwind CSS** - Styling
+- **OpenRouter API** - AI translations and word generation
 
 ## Learn More
 
@@ -26,8 +69,6 @@ To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
 

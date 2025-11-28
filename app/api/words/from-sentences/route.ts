@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from "next/server"
 import { searchWords } from "@/lib/word-service"
 import { tokenizeSentence, isWordLikeToken, normalizeToken, cleanWordToken } from "@/lib/word-utils"
 import { WordEntry } from "@/types/word"
+import { DEFAULT_LEARNING_LANGUAGE } from "@/types/language"
 
 export async function POST(request: NextRequest) {
     try {
-        const { content, learnedParagraphs } = await request.json()
+        const { content, learnedParagraphs, languageCode = DEFAULT_LEARNING_LANGUAGE } = await request.json()
 
         if (!content || typeof content !== 'string') {
             return NextResponse.json({ error: 'Content is required' }, { status: 400 })
@@ -68,7 +69,8 @@ export async function POST(request: NextRequest) {
                     includeForms: true,
                     includeLearned: true,
                     limit: 1,
-                    exact: false
+                    exact: false,
+                    languageCode
                 })
                 if (results.length > 0) {
                     // Use normalized word as key to avoid duplicates
