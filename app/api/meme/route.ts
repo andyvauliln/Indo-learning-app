@@ -4,12 +4,11 @@ import path from 'node:path'
 
 const OPENROUTER_API_KEY = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY
 const OPENROUTER_CHAT_URL = "https://openrouter.ai/api/v1/chat/completions"
-const OPENROUTER_IMAGE_URL = "https://openrouter.ai/api/v1/images/generations"
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 const SITE_NAME = "Indo Learning App"
 
 const DEFAULT_TEXT_MODEL = "x-ai/grok-3-mini-beta"
-const DEFAULT_IMAGE_MODEL = "google/imagen-3"
+const DEFAULT_IMAGE_MODEL = "x-ai/grok-2-image-1212"
 
 interface MemeConceptResponse {
     scenario: string
@@ -119,10 +118,10 @@ Return ONLY valid JSON, no markdown or explanations.`
 
         console.log('Meme concept:', memeConcept)
 
-        // STEP 2: Generate image using image model (Google Imagen or other)
+        // STEP 2: Generate image using OpenRouter (Grok or other image models)
         console.log(`Generating image with ${selectedImageModel}...`)
 
-        const imageResponse = await fetch(OPENROUTER_IMAGE_URL, {
+        const imageResponse = await fetch(OPENROUTER_CHAT_URL, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
@@ -132,10 +131,14 @@ Return ONLY valid JSON, no markdown or explanations.`
             },
             body: JSON.stringify({
                 model: selectedImageModel,
-                prompt: memeConcept.imagePrompt,
-                n: 1,
-                size: '1024x1024',
-                response_format: 'b64_json',
+                messages: [
+                    {
+                        role: 'user',
+                        content: memeConcept.imagePrompt
+                    }
+                ],
+                // Request image output
+                modalities: ['image', 'text'],
             }),
         })
 
@@ -149,31 +152,53 @@ Return ONLY valid JSON, no markdown or explanations.`
         }
 
         const imageData = await imageResponse.json()
-        const imageBase64 = imageData.data?.[0]?.b64_json
-
-        if (!imageBase64) {
+        console.log('Image response:', JSON.stringify(imageData, null, 2))
+        
+        // OpenRouter returns image URL in the message content
+        const messageContent = imageData.choices?.[0]?.message?.content
+        
+        if (!messageContent) {
             return NextResponse.json(
                 { error: 'No image data received from image model' },
                 { status: 500 }
             )
         }
 
-        // Save the image to public/memes directory
-        const sanitizedWord = word.toLowerCase().replace(/[^a-z0-9]/g, '-')
-        const timestamp = Date.now()
-        const filename = `${sanitizedWord}-${timestamp}.png`
-        const memesDir = path.join(process.cwd(), 'public', 'memes')
-        
-        // Ensure directory exists
-        await mkdir(memesDir, { recursive: true })
-        
-        const filePath = path.join(memesDir, filename)
-        const imageBuffer = Buffer.from(imageBase64, 'base64')
-        
-        await writeFile(filePath, imageBuffer)
+        // The content might be a URL or contain image data
+        let imageUrl: string
 
-        // Return the public URL path with concept info
-        const imageUrl = `/memes/${filename}`
+        // Check if it's a direct URL (starts with http)
+        if (typeof messageContent === 'string' && messageContent.startsWith('http')) {
+            // Download the image from the URL
+            const imageUrlResponse = await fetch(messageContent)
+            if (!imageUrlResponse.ok) {
+                return NextResponse.json(
+                    { error: 'Failed to download generated image' },
+                    { status: 500 }
+                )
+            }
+            
+            const imageBuffer = Buffer.from(await imageUrlResponse.arrayBuffer())
+            
+            // Save to local filesystem
+            const sanitizedWord = word.toLowerCase().replace(/[^a-z0-9]/g, '-')
+            const timestamp = Date.now()
+            const filename = `${sanitizedWord}-${timestamp}.png`
+            const memesDir = path.join(process.cwd(), 'public', 'memes')
+            
+            await mkdir(memesDir, { recursive: true })
+            const filePath = path.join(memesDir, filename)
+            await writeFile(filePath, imageBuffer)
+            
+            imageUrl = `/memes/${filename}`
+        } else {
+            // If it's not a URL, return error
+            console.error('Unexpected image response format:', messageContent)
+            return NextResponse.json(
+                { error: 'Unexpected image format from model' },
+                { status: 500 }
+            )
+        }
 
         return NextResponse.json({
             success: true,

@@ -99,40 +99,40 @@ export const MEME_TEXT_MODELS: ModelConfig[] = [
     },
 ]
 
-// Models for image generation
+// Models for image generation (via OpenRouter)
 export const IMAGE_MODELS: ModelConfig[] = [
     {
-        id: "google/imagen-3",
-        name: "Imagen 3",
-        provider: "Google",
-        description: "High quality, cost-effective image generation",
+        id: "x-ai/grok-2-image-1212",
+        name: "Grok 2 Image",
+        provider: "xAI",
+        description: "Free image generation with Grok",
+        price: "FREE"
+    },
+    {
+        id: "black-forest-labs/flux-1.1-pro",
+        name: "FLUX 1.1 Pro",
+        provider: "Black Forest Labs",
+        description: "High quality, fast image generation",
         price: "$0.04/image"
     },
     {
-        id: "google/imagen-3-fast",
-        name: "Imagen 3 Fast",
-        provider: "Google",
-        description: "Faster, cheaper image generation",
-        price: "$0.02/image"
+        id: "black-forest-labs/flux-pro",
+        name: "FLUX Pro",
+        provider: "Black Forest Labs",
+        description: "Professional quality images",
+        price: "$0.05/image"
     },
     {
         id: "openai/dall-e-3",
         name: "DALL-E 3",
         provider: "OpenAI",
-        description: "High quality but more expensive",
+        description: "High quality, detailed images",
         price: "$0.08/image"
-    },
-    {
-        id: "stabilityai/stable-diffusion-3",
-        name: "Stable Diffusion 3",
-        provider: "Stability AI",
-        description: "Open-source, good quality",
-        price: "$0.035/image"
     },
 ]
 
 export const DEFAULT_MEME_TEXT_MODEL = MEME_TEXT_MODELS[0].id
-export const DEFAULT_IMAGE_MODEL = IMAGE_MODELS[0].id
+export const DEFAULT_IMAGE_MODEL = IMAGE_MODELS[0].id // x-ai/grok-2-image-1212 (FREE)
 
 export const DEFAULT_MODEL = AVAILABLE_MODELS[0].id
 export const DEFAULT_LEARNING_DAYS = 3 // Default sentences per day for calculation

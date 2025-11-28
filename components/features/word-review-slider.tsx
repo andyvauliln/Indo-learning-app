@@ -21,6 +21,11 @@ import {
 import { useTTS, usePronunciationCheck } from "@/hooks/use-speech"
 import { cn } from "@/lib/utils"
 import type { WordEntry, WordExample } from "@/types/word"
+import { useWordStore } from "@/lib/word-store"
+import { storage } from "@/lib/storage"
+import { DEFAULT_MEME_TEXT_MODEL, DEFAULT_IMAGE_MODEL } from "@/lib/models"
+import Image from "next/image"
+import { ImageIcon } from "lucide-react"
 
 interface WordReviewSliderProps {
     onComplete?: () => void
@@ -65,6 +70,7 @@ export function WordReviewSlider({ onComplete, content, learnedParagraphs = {} }
     const [showPronunciationCheck, setShowPronunciationCheck] = useState(false)
     const [pronunciationAttempts, setPronunciationAttempts] = useState<Record<string, { correct: boolean; attempts: number }>>({})
     const [sentenceInfo, setSentenceInfo] = useState<{ start: number; end: number; total: number } | null>(null)
+    const [memeLoading, setMemeLoading] = useState(false)
     
     const { speak, speakSlowly, speakSentence, isSpeaking, stop, isSupported: ttsSupported } = useTTS()
     const { 
@@ -74,8 +80,17 @@ export function WordReviewSlider({ onComplete, content, learnedParagraphs = {} }
         reset: resetPronunciation,
         isSupported: pronunciationSupported 
     } = usePronunciationCheck()
+    
+    const generateMemeImage = useWordStore(state => state.generateMemeImage)
+    const storeWords = useWordStore(state => state.words)
 
-    const currentWord = words[currentIndex]
+    // Get current word and merge with store data to get meme updates
+    const baseWord = words[currentIndex]
+    const storeWord = baseWord ? storeWords[baseWord.word] : undefined
+    const currentWord = baseWord && storeWord 
+        ? { ...baseWord, memeImage: storeWord.memeImage, memeConcept: storeWord.memeConcept }
+        : baseWord
+    
     const progress = words.length > 0 ? ((currentIndex + 1) / words.length) * 100 : 0
 
     // Load words on mount
@@ -165,6 +180,24 @@ export function WordReviewSlider({ onComplete, content, learnedParagraphs = {} }
             await checkPronunciation(currentWord.word)
         }
     }, [currentWord, checkPronunciation])
+
+    const handleGenerateMeme = useCallback(async () => {
+        if (!currentWord) return
+        
+        setMemeLoading(true)
+        try {
+            const settings = storage.getSettings()
+            const options = {
+                textModel: settings?.memeTextModel || DEFAULT_MEME_TEXT_MODEL,
+                imageModel: settings?.memeImageModel || DEFAULT_IMAGE_MODEL,
+            }
+            await generateMemeImage(currentWord.word, options)
+        } catch (err) {
+            console.error("Failed to generate meme:", err)
+        } finally {
+            setMemeLoading(false)
+        }
+    }, [currentWord, generateMemeImage])
 
     // Track pronunciation attempts
     useEffect(() => {
@@ -374,6 +407,86 @@ export function WordReviewSlider({ onComplete, content, learnedParagraphs = {} }
                             </p>
                         </div>
                     )}
+
+                    {/* Meme Image Section */}
+                    <div className="border-t pt-6">
+                        <div className="space-y-4">
+                            <div className="flex items-center justify-between">
+                                <h3 className="font-semibold text-lg flex items-center gap-2">
+                                    <ImageIcon className="h-5 w-5 text-purple-500" />
+                                    Visual Memory Aid
+                                </h3>
+                                <Button 
+                                    size="sm" 
+                                    variant="outline" 
+                                    onClick={handleGenerateMeme} 
+                                    disabled={memeLoading}
+                                >
+                                    {memeLoading ? (
+                                        <>
+                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                            Creating Meme...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Sparkles className="mr-2 h-4 w-4" />
+                                            {currentWord.memeImage ? 'Regenerate Meme' : 'Generate Meme'}
+                                        </>
+                                    )}
+                                </Button>
+                            </div>
+
+                            {memeLoading ? (
+                                <div className="flex flex-col items-center justify-center gap-3 p-8 rounded-lg border border-border/50 bg-muted/20">
+                                    <div className="relative">
+                                        <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
+                                        <Loader2 className="h-8 w-8 animate-spin text-primary relative" />
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">Creating a memorable meme for &ldquo;{currentWord.word}&rdquo;...</p>
+                                </div>
+                            ) : currentWord.memeImage ? (
+                                <div className="rounded-lg border border-border/50 bg-muted/20 p-4 overflow-hidden space-y-4">
+                                    {/* Meme Concept Info */}
+                                    {currentWord.memeConcept && (
+                                        <div className="space-y-2 pb-3 border-b border-border/30">
+                                            <div className="flex items-start gap-2">
+                                                <span className="text-lg">💡</span>
+                                                <div>
+                                                    <p className="text-sm font-medium text-foreground">{currentWord.memeConcept.scenario}</p>
+                                                    <p className="text-xs text-muted-foreground mt-1 italic">😄 {currentWord.memeConcept.humor}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {/* Meme Image */}
+                                    <div className="relative w-full max-w-md mx-auto aspect-square">
+                                        <Image 
+                                            src={currentWord.memeImage} 
+                                            alt={`Visual mnemonic meme for learning the Indonesian word ${currentWord.word} meaning ${currentWord.translation}`}
+                                            fill
+                                            className="rounded-lg shadow-lg object-cover"
+                                            unoptimized
+                                        />
+                                    </div>
+                                    <p className="text-center text-xs text-muted-foreground">
+                                        Visual mnemonic for &ldquo;{currentWord.word}&rdquo; ({currentWord.translation})
+                                    </p>
+                                </div>
+                            ) : (
+                                <div className="flex flex-col items-center gap-4 py-6 px-4 rounded-lg border border-dashed border-border/50 bg-muted/10">
+                                    <ImageIcon className="h-12 w-12 text-muted-foreground/50" />
+                                    <div className="text-center space-y-1">
+                                        <p className="text-sm text-muted-foreground">
+                                            Generate a fun meme to help remember this word!
+                                        </p>
+                                        <p className="text-xs text-muted-foreground/70">
+                                            Visual aids can improve memory retention
+                                        </p>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
 
                     {/* Pronunciation Check Section */}
                     <div className="border-t pt-6">
